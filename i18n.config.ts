@@ -6,6 +6,7 @@ export default defineI18nConfig(() => ({
             team: 'Team',
             articles: 'Articles',
             gallery: 'Gallery',
+            copyright: 'Copywright: Leo Mihalcea'
         },
         ro: {
             home: 'Acasă',
@@ -13,6 +14,7 @@ export default defineI18nConfig(() => ({
             team: 'Echipa',
             articles: 'Articole',
             gallery: 'Galerie',
+            copyright: 'Copywright: Leo Mihalcea'
         }
     }
 }));
