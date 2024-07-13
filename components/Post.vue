@@ -1,27 +1,22 @@
 <template>
-    <NuxtLink :to='post.uri'>
-        <div class="flex
-       items-center
-       bg-gradient-to-r
-       from-cyan-500
-       to-blue-500
-       p-8x
-       rounded-lg
-       text-white
-       transition-all
-       hover:-translate-y-1
-       hover:scale-105"
-        >
-            <div>
-                <h2 class="font-semibold text-2xl">{{ post.title }}</h2>
-                <p>{{ new Date(post.date).toLocaleDateString() }}</p>
+    <div class="border-1 border-primary border-round m-2 mt-6">
+        <div class="mb-3">
+            <div class="relative mx-auto" v-if="post._embedded['wp:featuredmedia']">
+                <nuxt-img :src="post._embedded['wp:featuredmedia'][0]?.link" class="w-full border-round"
+                          alt="Blog post cover image"/>
             </div>
         </div>
-    </NuxtLink>
+        <div class="p-3">
+            <div class="title text-lg mb-4 font-semibold">{{ post.title.rendered }}</div>
+            <div class="flex justify-content-between align-items-center h-2rem text-color-secondary">
+                <div>{{ post.excerpt.rendered }}</div>
+            </div>
+        </div>
+    </div>
 </template>
 <script setup lang="ts">
 const props = defineProps<{
-    post: Record<'title' | 'date' | 'excerpt' | 'uri', string>
+    post: any
 }>();
 
 </script>
