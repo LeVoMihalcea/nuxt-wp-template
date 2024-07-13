@@ -1313,7 +1313,7 @@
     vite-plugin-checker "^0.7.0"
     vue-bundle-renderer "^2.1.0"
 
-"@nuxtjs/google-fonts@^3.1.3":
+"@nuxtjs/google-fonts@^3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/google-fonts/-/google-fonts-3.2.0.tgz#03e3284dc980e6bcaa0c67c3080aecda76574b1c"
   integrity sha512-cGAjDJoeQ2jm6VJCo4AtSmKO6KjsbO9RSLj8q261fD0lMVNMZCxkCxBkg8L0/2Vfgp+5QBHWVXL71p1tiybJFw==
@@ -1500,6 +1500,60 @@
   version "1.0.0-next.25"
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.25.tgz#f077fdc0b5d0078d30893396ff4827a13f99e817"
   integrity sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==
+
+"@primeuix/styled@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@primeuix/styled/-/styled-0.0.5.tgz#430d06554470fddc28814059d76e63c9c21535b9"
+  integrity sha512-pVoGn/uPkVm/DyF3TR3EmH/pL/dP4nR42FcYbVduFq9VfO3KVeOEqvcCULHXos66RZO9MCbCFUoLy6ctf9GUGQ==
+  dependencies:
+    "@primeuix/utils" "^0.0.5"
+
+"@primeuix/utils@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@primeuix/utils/-/utils-0.0.5.tgz#4bb032a3338fba51c1a2df8010d91973b6fa2520"
+  integrity sha512-ntUiUgtRtkF8KuaxHffzhYxQxoXk6LAPHm7CVlFjdqS8Rx8xRkLkZVyo84E+pO2hcNFkOGVP/GxHhQ2s94O8zA==
+
+"@primevue/auto-import-resolver@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@primevue/auto-import-resolver/-/auto-import-resolver-4.0.0.tgz#16571b437fd027e77ee6ed24f264601a75d32958"
+  integrity sha512-3bCZzZuM5kiKl7qO5+Q7BuP6xslc9yPfRiUL4k+mLrR2mwUI0rWFLQR4LyhMUVyHJ5izbVoS7kinppGgOuCrMA==
+  dependencies:
+    "@primevue/metadata" "4.0.0"
+
+"@primevue/core@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@primevue/core/-/core-4.0.0.tgz#b4199eec0abfbdcfc5d2951a9166a944f12a00ff"
+  integrity sha512-M+GF1HYnl/x5J6uevXh1k42J0XnFhp0XHce+cHddWg7v3bVwgsn7LD3AKKcf0A/iQQPXVKX9nY/4/9eFVct67w==
+  dependencies:
+    "@primeuix/styled" "^0.0.5"
+
+"@primevue/icons@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@primevue/icons/-/icons-4.0.0.tgz#9bd7f87e53432942f9819564858ee0e3718cfc0b"
+  integrity sha512-gv9pbj7JjCuW59tW2csIJgg6btTJpkr/mjlfqscEIrYzDGqzCrbfxLur48gA2dyhYsiQPPTbIHFwL944piFgIg==
+  dependencies:
+    "@primevue/core" "4.0.0"
+
+"@primevue/metadata@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@primevue/metadata/-/metadata-4.0.0.tgz#3b431bfe3e2f1613fe9d7dfcf2796bd6831bf067"
+  integrity sha512-RqP27igA5Ky1AcaXHyk6o5hRg+kGxBByl1Q1HxAVae1wOuDl5eP2pxwTWNAs0ELwrQ/urc5ssjaF18S98DAl+w==
+
+"@primevue/nuxt-module@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@primevue/nuxt-module/-/nuxt-module-4.0.0.tgz#42cde160c1a8d95d0781f2a8c831d2c24482ca18"
+  integrity sha512-9R8rarSY6kxsHVyfo9Pbx3+75mTFyDkYJs5XPDIzZFLXu2ZaodaZvNhwQ8I9ZAYis5UNy4yIjCsWnmXaOSW0+w==
+  dependencies:
+    "@nuxt/kit" "^3.7.3"
+    "@primevue/auto-import-resolver" "4.0.0"
+    pathe "^1.1.2"
+    primevue "4.0.0"
+    unplugin-vue-components "0.27.0"
+
+"@primevue/themes@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@primevue/themes/-/themes-4.0.0.tgz#f0c1a08583ba8d294f55f097d47ca35fd3e1919e"
+  integrity sha512-y1HKYTuWma3T8NM9xVsLeJJeFWMxLIdJqNvQ+l8CnASgU+GH+KxMXOpPXqTAiJ2zpPmBL5VwpCCJWX93DjjvMQ==
 
 "@rollup/plugin-alias@^5.1.0":
   version "5.1.0"
@@ -2998,6 +3052,11 @@ devlop@^1.0.0, devlop@^1.1.0:
   dependencies:
     dequal "^2.0.0"
 
+diacritics@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/diacritics/-/diacritics-1.3.0.tgz#3efa87323ebb863e6696cebb0082d48ff3d6f7a1"
+  integrity sha512-wlwEkqcsaxvPJML+rDh/2iS824jbREk6DUMUKkEaSlxdYHeS43cClJtsWglvw2RfeXGm6ohKDqsXteJ5sP5enA==
+
 diff@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-5.2.0.tgz#26ded047cd1179b78b9537d5ef725503ce1ae531"
@@ -3068,9 +3127,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.4.820:
-  version "1.4.825"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.825.tgz#2d9c3d1eb81a67ecea0c06bcf70740b00ba52718"
-  integrity sha512-OCcF+LwdgFGcsYPYC5keEEFC2XT0gBhrYbeGzHCx7i9qRFbzO/AqTmc/C/1xNhJj+JA7rzlN7mpBuStshh96Cg==
+  version "1.4.827"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.827.tgz#76068ed1c71dd3963e1befc8ae815004b2da6a02"
+  integrity sha512-VY+J0e4SFcNfQy19MEoMdaIcZLmDCprqvBtkii1WTCTQHpRvf5N8+3kTYCgL/PcntvwQvmMJWTuDPsq+IlhWKQ==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -5069,9 +5128,9 @@ node-addon-api@^6.1.0:
   integrity sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==
 
 node-addon-api@^7.0.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-7.1.0.tgz#71f609369379c08e251c558527a107107b5e0fdb"
-  integrity sha512-mNcltoe1R8o7STTegSOHdnJNN7s5EUvhoS7ShnTHDyOSd+8H+UdWODq6qSv67PjC8Zc5JRT8+oLAMCr0SIXw7g==
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-7.1.1.tgz#1aba6693b0f255258a049d621329329322aad558"
+  integrity sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==
 
 node-emoji@^2.1.3:
   version "2.1.3"
@@ -5164,14 +5223,6 @@ nuxi@^3.11.1, nuxi@^3.12.0:
   integrity sha512-6vRdiXTw9SajEQOUi6Ze/XaIXzy1q/sD5UqHQSv3yqTu7Pot5S7fEihNXV8LpcgLz+9HzjVt70r7jYe7R99c2w==
   optionalDependencies:
     fsevents "~2.3.3"
-
-nuxt-primevue@0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/nuxt-primevue/-/nuxt-primevue-0.3.1.tgz#2d56890b89545860db7dd615d9c3930a83e32392"
-  integrity sha512-wTFvUbniEhntFamnRP4znMqU9a4lYr7eXvA7FW5nGX51YCV3nJzXZlCML4l6kEL0pyJsSV4DTb0Qo61nZnn9JQ==
-  dependencies:
-    "@nuxt/kit" "^3.7.3"
-    primevue "~3.49.1"
 
 nuxt-viewport@^2.1.4:
   version "2.1.5"
@@ -5726,15 +5777,13 @@ primeicons@^7.0.0:
   resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-7.0.0.tgz#6b25c3fdcb29bb745a3035bdc1ed5902f4a419cf"
   integrity sha512-jK3Et9UzwzTsd6tzl2RmwrVY/b8raJ3QZLzoDACj+oTJ0oX7L9Hy+XnVwgo4QVKlKpnP/Ur13SXV/pVh4LzaDw==
 
-primevue@^3.52.0:
-  version "3.53.0"
-  resolved "https://registry.yarnpkg.com/primevue/-/primevue-3.53.0.tgz#5b94a2d1511e0fe3a7bac39bfb04b7871d6ff7d3"
-  integrity sha512-mRqTPGGZX+3AQokaCCjxLVSNEjGEA7LaPdBT4qSpGEdMstK6vhUBCxgLH7IPjHudbaSi4Xo3CIO62pXQxbz8dQ==
-
-primevue@~3.49.1:
-  version "3.49.1"
-  resolved "https://registry.yarnpkg.com/primevue/-/primevue-3.49.1.tgz#a5997975f3d6aae46b439448d6136742f065ccad"
-  integrity sha512-OmUTqbKbPB63Zqf7uA49cipDi+Qh+/13AYJPwgvsVsI4QmAKIkeibBwkOgj1CNIFlopfF79YmyBshFUAPqlw9A==
+primevue@4.0.0, primevue@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/primevue/-/primevue-4.0.0.tgz#f845daab943d3fe3a93d4efa3c31aa0b41bdf210"
+  integrity sha512-2PFmmJqyXpOcKOdF+gbps5fpSXfoXZp2LwX+hya/b5SDseMt3UNboyEgVI6B+DNbJRrib35EbDiMw+7RIANQ1w==
+  dependencies:
+    "@primevue/core" "4.0.0"
+    "@primevue/icons" "4.0.0"
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
@@ -6017,7 +6066,7 @@ resolve-from@^5.0.0:
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-5.0.0.tgz#c35225843df8f776df21c57557bc087e9dfdfc69"
   integrity sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==
 
-resolve@^1.22.1:
+resolve@^1.22.1, resolve@^1.22.8:
   version "1.22.8"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.22.8.tgz#b6c87a9f2aa06dfab52e3d70ac8cde321fa5a48d"
   integrity sha512-oKWePCxqpd6FlLvGV1VU0x7bkPmmCNolxzjMf4NczoDnQcIWrAF+cPtZn5i6n+RfD2d9i0tzpKnG6Yk168yIyw==
@@ -6888,6 +6937,22 @@ universalify@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.1.tgz#168efc2180964e6386d061e094df61afe239b18d"
   integrity sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==
+
+unplugin-vue-components@0.27.0:
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.27.0.tgz#f504c5d526d7f2b779003a76070b18d84e40fc54"
+  integrity sha512-77eTEy23sQ0UpzGWnZ9I2mY3cnmXwklz4ITcn3JfxjCoX643ghImkiZ4nFm58sxbdVcc4Fo/o4LIoFnlqEqsSg==
+  dependencies:
+    "@antfu/utils" "^0.7.7"
+    "@rollup/pluginutils" "^5.1.0"
+    chokidar "^3.6.0"
+    debug "^4.3.4"
+    fast-glob "^3.3.2"
+    local-pkg "^0.5.0"
+    magic-string "^0.30.10"
+    minimatch "^9.0.4"
+    resolve "^1.22.8"
+    unplugin "^1.10.1"
 
 unplugin-vue-router@^0.10.0:
   version "0.10.0"

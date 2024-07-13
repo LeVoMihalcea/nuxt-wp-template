@@ -1,7 +1,7 @@
 {
   "name": "nuxt-app",
   "private": true,
-  "version": "1.0.1",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "build": "nuxt build",
@@ -14,12 +14,12 @@
     "bump": "yarn version --patch"
   },
   "devDependencies": {
-    "@nuxtjs/google-fonts": "^3.1.3",
+    "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/i18n": "^8.0.0",
+    "@primevue/nuxt-module": "^4.0.0",
     "@types/diacritics": "^1",
     "less": "^4.2.0",
     "nuxt": "^3.11.2",
-    "nuxt-primevue": "0.3.1",
     "nuxt-viewport": "^2.1.4",
     "vue": "^3.4.14",
     "vue-router": "^4.2.5"
@@ -28,13 +28,14 @@
     "@nuxt/content": "^2.12.1",
     "@nuxt/image": "^1.3.0",
     "@nuxt/image-edge": "^1.3.0-28493895.369b747",
-    "@nuxt/kit": "^3.12.3",
     "@nuxtjs/robots": "^3.0.0",
+    "@primevue/themes": "^4.0.0",
     "commander": "12.0.0",
+    "diacritics": "^1.3.0",
     "nuxi": "^3.11.1",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
-    "primevue": "^3.52.0",
+    "primevue": "^4.0.0",
     "sharp": "^0.33.2"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"

@@ -1,42 +1,86 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import pkg from './package.json'
+import Aura from '@primevue/themes/aura';
 
 export default defineNuxtConfig({
-    devtools: {enabled: true},
+    compatibilityDate: '2024-07-12',
+
+    devtools: {
+        enabled: true
+    },
 
     app: {
         head: {
             charset: 'utf-8',
-            viewport: 'width=device-width, initial-scale=1',
+            viewport: 'width=device-width, initial-scale=1'
         }
     },
 
-    modules: [
-        'nuxt-primevue',
-        '@nuxtjs/i18n',
-        ['@nuxtjs/robots', { configPath: "~/robots.config" }],
-        "@nuxt/image",
-        "@nuxt/image-edge",
-        '@nuxt/content',
-        'nuxt-viewport'
-    ],
-    primevue: {},
     css: [
-        'primevue/resources/themes/aura-dark-blue/theme.css',
         'primeicons/primeicons.css',
-        'primeflex/primeflex.css',
+        'primeflex/primeflex.css'
     ],
+
+    modules: [
+        '@nuxtjs/i18n',
+        ['@nuxtjs/robots', {configPath: "~/robots.config"}],
+        ['@nuxtjs/google-fonts', {
+            families: {
+                Audiowide: true
+            }
+        }],
+        '@nuxt/image',
+        '@nuxt/image-edge',
+        '@nuxt/content',
+        'nuxt-viewport',
+        '@primevue/nuxt-module',
+    ],
+
     runtimeConfig: {
         public: {
-            clientVersion: pkg.version,
-            wordpressUrl: 'http://192.168.0.124:8060/graphql'
+            clientVersion: pkg.version
         }
     },
+
+    primevue: {
+        options: {
+            ripple: true,
+            inputVariant: 'filled',
+            theme: {
+                preset: Aura,
+                options: {
+                    prefix: 'p',
+                    darkModeSelector: 'system',
+                    cssLayer: false
+                }
+            }
+        }
+    },
+
+    vite: {
+        server: {
+            proxy: {
+                '/api': {
+                    target: 'http://localhost:8060/wp-json/wp/v2',
+                    changeOrigin: true,
+                    rewrite: (path: string) => {
+                        let replaced = path.replace(/^\/api/, '');
+                        console.log(path, "==>", replaced);
+                        return replaced;
+                    }
+                },
+                '/graphql': {
+                    target: 'http://localhost:8060/graphql',
+                    changeOrigin: true
+                }
+            }
+        }
+    },
+
     i18n: {
         defaultLocale: 'ro',
-        // locales: ['en', 'ro'],
         locales: ['ro'],
         strategy: 'prefix_and_default',
-        vueI18n: './i18n.config.ts',
-    },
+        vueI18n: './i18n.config.ts'
+    }
 })
