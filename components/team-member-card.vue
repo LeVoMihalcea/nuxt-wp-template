@@ -17,10 +17,10 @@ const props = defineProps({
                  class="profile-picture flex justify-content-center border-circle border-1 border-primary"/>
         </div>
 
-        <div class="">
-            <p class="description mt-3 mb-0 mr-1 ml-1 md:text-base text-xs">{{ title }}</p>
-            <h1 class="uppercase my-0 mr-1 ml-1 text-left md:text-base text-xs">{{ remove(name) }}</h1>
-            <p class="mt-0 mb-0 ml-1 md:text-base text-xs">{{ department }}</p>
+        <div class="flex flex-column justify-content-around ml-3">
+            <p class="text-color-secondary mt-3 mb-0 md:text-base text-xs">{{ title }}</p>
+            <h1 class="uppercase my-0 md:text-2xl">{{ remove(name) }}</h1>
+            <p class="mt-0 mb-0 md:text-base text-xs">{{ department }}</p>
         </div>
     </div>
 </template>
@@ -31,20 +31,11 @@ const props = defineProps({
     border: solid 3px #041936;
 }
 
-.description {
-    color: #BBD1EA;
-}
-
 .profile-picture {
     object-fit: cover;
     object-position: top;
     width: 10rem;
     height: 10rem;
     border-radius: 700px;
-}
-
-.social-media-icon {
-    margin: 0.5rem;
-    vertical-align: middle;
 }
 </style>
