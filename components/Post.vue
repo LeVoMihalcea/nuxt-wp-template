@@ -9,7 +9,7 @@
         <div class="p-3">
             <div class="title text-lg mb-4 font-semibold">{{ post.title.rendered }}</div>
             <div class="flex justify-content-between align-items-center h-2rem text-color-secondary">
-                <div>{{ post.excerpt.rendered }}</div>
+                <div v-html="post.excerpt.rendered"/>
             </div>
         </div>
     </div>
