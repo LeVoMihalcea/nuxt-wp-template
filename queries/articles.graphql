@@ -1,0 +1,22 @@
+query fetchArticles {
+    staffCategories {
+        nodes {
+            id
+            name
+            staff {
+                nodes {
+                    title
+                    featuredImage {
+                        node {
+                            uri
+                        }
+                    }
+                    staffFieldGroup {
+                        department
+                        title
+                    }
+                }
+            }
+        }
+    }
+}

@@ -34,12 +34,32 @@ export default defineNuxtConfig({
         '@nuxt/content',
         'nuxt-viewport',
         '@primevue/nuxt-module',
+        'nuxt-graphql-request'
     ],
 
     runtimeConfig: {
         public: {
             clientVersion: pkg.version
         }
+    },
+
+    build: {
+        transpile: ['nuxt-graphql-request'],
+    },
+
+    graphql: {
+        clients: {
+            default: {
+                endpoint: 'http://localhost:8060/graphql',
+                options: {},
+            },
+        },
+
+        options: {
+            method: 'get', // Default to `POST`
+        },
+
+        includeNodeModules: true,
     },
 
     primevue: {
@@ -69,10 +89,10 @@ export default defineNuxtConfig({
                         return replaced;
                     }
                 },
-                '/graphql': {
-                    target: 'http://localhost:8060/graphql',
-                    changeOrigin: true
-                }
+                // '/graphql': {
+                //     target: 'http://localhost:8060/graphql',
+                //     changeOrigin: true
+                // }
             }
         }
     },

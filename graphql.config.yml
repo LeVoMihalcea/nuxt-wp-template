@@ -1,0 +1,9 @@
+schema: ./queries/schema.graphql
+documents: 'queries/*.gql'
+generates:
+
+extensions:
+  endpoints:
+    default:
+      url: "http://localhost:8060/graphql"
+      introspect: true
