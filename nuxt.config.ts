@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import pkg from './package.json'
-import Aura from '@primevue/themes/aura';
+
+import {MAE} from './themes/mae'
 
 export default defineNuxtConfig({
     compatibilityDate: '2024-07-12',
@@ -63,17 +64,8 @@ export default defineNuxtConfig({
     },
 
     primevue: {
-        options: {
-            ripple: true,
-            inputVariant: 'filled',
-            theme: {
-                preset: Aura,
-                options: {
-                    prefix: 'p',
-                    darkModeSelector: 'system',
-                    cssLayer: false
-                }
-            }
+        importTheme: {
+            from: '~/themes/mae.js'
         }
     },
 
