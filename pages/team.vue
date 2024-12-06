@@ -1,12 +1,13 @@
 <template>
   <h1>Team</h1>
-  <div v-for="category of data.staffCategories?.nodes">
+  <div v-for="category of data.staffCategories?.nodes"
+    class="" >
     <h1> {{ category.name }} </h1>
-    <div class="grid">
+    <div class="grid bg-white">
       <team-member-card v-for="staff of category.staff?.nodes"
-                        class="col-12 md:col-6"
+                        class="col-12 md:col-3 align-items-center"
                         :name="staff.title ?? 'fallback-name'"
-                        :picture="'http://localhost:8060' + staff.featuredImage?.node.uri"
+                        :picture="staff.featuredImage?.node.sourceUrl"
                         :department="staff.staffFieldGroup?.department ?? ''"
                         :title="staff.staffFieldGroup?.title ?? ''"
       />

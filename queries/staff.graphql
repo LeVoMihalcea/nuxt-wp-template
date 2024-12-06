@@ -8,7 +8,7 @@ query fetchStaff {
                     title
                     featuredImage {
                         node {
-                            uri
+                            sourceUrl
                         }
                     }
                     staffFieldGroup {
