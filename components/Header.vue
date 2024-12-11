@@ -1,10 +1,11 @@
 <script setup lang="ts">
     import type {MenuItem} from 'primevue/menuitem';
+    import Menubar from 'primevue/menubar';
 
     const {locale, t} = useI18n();
     let localePath = useLocalePath();
 
-    const items = ref<MenuItem[]>([]);
+    const items = ref<MenuItem[] | undefined>([]);
 
     watch(() => locale.value, () => {
         updateItems();
@@ -17,20 +18,25 @@
                 url: localePath('/'),
             },
             {
-                label: t('team'),
-                url: localePath('/team'),
-            },
-            {
                 label: t('about'),
                 url: localePath('/about'),
+
             },
             {
-                label: t('articles'),
-                url: localePath('/articles'),
+                label: t('humanResources'),
+                url: localePath('/human-resources'),
             },
             {
-                label: t('gallery'),
-                url: "https://www.flickr.com/photos/200576225@N02/albums",
+                label: t('research'),
+                url: localePath('/research'),
+            },
+            {
+                label: t('forStudents'),
+                url: localePath('/for-students'),
+            },
+            {
+                label: t('contact'),
+                url: localePath('/contact'),
             },
         ];
     };
@@ -40,22 +46,27 @@
 
 <template>
     <header>
-        <Menubar :model="items">
+        <Menubar :model="items" class="md:h-5rem md:pr-8 flex flex-row justify-content-between menubar">
+            <template #start>
+                <nuxt-img src="icon.svg" class="h-2rem"/>
+            </template>
+            <template #item="{ item, props, hasSubmenu }">
+                <a :href="item.url">{{ item.label }}</a>
+            </template>
         </Menubar>
     </header>
 </template>
 
 <style scoped>
     .p-menubar {
-        background: none;
-        border: none;
-        flex-direction: row-reverse;
-        position: relative;
+        background: linear-gradient(to right, color-mix(in srgb, var(--dark-blue), transparent 0%), color-mix(in srgb, var(--dark-blue), transparent 20%));
     }
 
-    /* todo(leo): re-enable deep selector once design is done */
-    .p-menubar-root-list{
-        background: #041936;
+    :deep(.p-menubar-root-list) {
+        background: var(--dark-blue);
     }
 
+    a {
+        text-decoration: none;
+    }
 </style>

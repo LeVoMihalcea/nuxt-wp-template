@@ -18,7 +18,7 @@ const props = defineProps({
         </div>
 
         <div class="flex flex-column align-items-center">
-            <p class="text-color-secondary md:text-base text-xs">{{ title }}</p>
+            <p class="accent md:text-base text-xs">{{ title }}</p>
             <h1 class="text-primary uppercase md:text-2xl">{{ remove(name) }}</h1>
         </div>
     </div>

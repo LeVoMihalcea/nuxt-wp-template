@@ -1,7 +1,7 @@
 <template>
-    <div id="app">
-        <Header/>
-        <main class="fadein animation-duration-500">
+    <div id="app" class="animation-duration-500 fadein">
+        <Header class="absolute w-full"/>
+        <main>
             <slot/>
         </main>
         <Footer/>

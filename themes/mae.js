@@ -1,27 +1,45 @@
-
-import { definePreset } from '@primevue/themes';
+import {definePreset, palette} from '@primevue/themes';
 import Aura from '@primevue/themes/aura';
 
-const MAE = definePreset(Aura, {
+const CustomPreset = definePreset(Aura, {
     semantic: {
-        primary: {
-            50: '{indigo.50}',
-            100: '{indigo.100}',
-            200: '{indigo.200}',
-            300: '{indigo.300}',
-            400: '{indigo.400}',
-            500: '{indigo.500}',
-            600: '{indigo.600}',
-            700: '{indigo.700}',
-            800: '{indigo.800}',
-            900: '{indigo.900}',
-            950: '{indigo.950}'
+        primary: palette('#D42126'),
+        blue: palette('var(--dark-blue)'),
+        blueContrast: palette('var(--blue-contrast)')
+    },
+    components: {
+        menubar: {
+            gap: "40px",
+            background: "{blue.500}",
+            border: {
+                radius: "0px",
+                color: "transparent",
+            },
+            item: {
+                color: 'black',
+                padding: '10px',
+                active: {
+                    background: '{blue.500}'
+                },
+                focus: {
+                    background: '{blue.300}'
+                }
+            },
+            mobile: {
+                button: {
+                    color: "{white.color}",
+                    hover: {
+                        color: "{white.color}",
+                        background: "{white.color}",
+                    }
+                }
+            }
         }
-    }
+    },
 });
 
 export default {
-    preset: MAE,
+    preset: CustomPreset,
     options: {
         darkModeSelector: '.p-dark'
     }

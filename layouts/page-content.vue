@@ -10,7 +10,7 @@
 
 <style scoped>
     section {
-        margin: 5% auto;
+        margin: auto;
         max-width: 1600px;
     }
 </style>

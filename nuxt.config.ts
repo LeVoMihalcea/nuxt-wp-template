@@ -1,7 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import pkg from './package.json'
-
-import {MAE} from './themes/mae'
+import CustomPreset from "./themes/mae";
 
 export default defineNuxtConfig({
     compatibilityDate: '2024-07-12',
@@ -19,7 +18,7 @@ export default defineNuxtConfig({
 
     css: [
         'primeicons/primeicons.css',
-        'primeflex/primeflex.css'
+        'primeflex/primeflex.css',
     ],
 
     modules: [
@@ -55,17 +54,23 @@ export default defineNuxtConfig({
                 options: {},
             },
         },
-
         options: {
             method: 'get', // Default to `POST`
         },
-
         includeNodeModules: true,
     },
 
     primevue: {
-        importTheme: {
-            from: '~/themes/mae.js'
+        importTheme: { from: '~/themes/mae.js' },
+        options: {
+            theme: {
+                preset: CustomPreset,
+                options: {
+
+                    darkModeSelector: '.dark-mode',
+                    cssLayer: false
+                }
+            }
         }
     },
 
