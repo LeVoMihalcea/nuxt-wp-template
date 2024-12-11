@@ -24,7 +24,18 @@
 
     :root {
         --dark-blue: #031021;
+        --light-blue: #3B84C2;
+        --primary-color: var(--dark-blue);
         --blue-contrast: #13263F;
+        --accent: #D42126;
+    }
+
+    .accent {
+        color: var(--accent);
+    }
+
+    .primary-light{
+        color: var(--light-blue);
     }
 
 </style>
