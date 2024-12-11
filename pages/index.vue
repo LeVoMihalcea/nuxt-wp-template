@@ -7,15 +7,12 @@
 
 <template>
     <hero/>
-    <page-content>
-        <what-awaits-you/>
-    </page-content>
+    <what-awaits-you/>
     <page-content>
         <why-be-a-student/>
     </page-content>
 </template>
 
 <style scoped>
-
 
 </style>
