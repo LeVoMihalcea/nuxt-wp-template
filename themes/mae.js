@@ -1,19 +1,35 @@
-import { definePreset, palette } from '@primevue/themes';
+import {definePreset, palette} from '@primevue/themes';
 import Aura from '@primevue/themes/aura';
+
+console.log(palette('#031021'))
 
 const CustomPreset = definePreset(Aura, {
     semantic: {
-        primary: palette('#D42126'),
-        blue: palette('var(--dark-blue)'),
-        blueContrast: palette('var(--blue-contrast)')
+        primary: palette('#031021'),
+        accent: palette('#D42126'),
+        blueContrast: palette('#13263F'),
+        blueLight: palette('#3B84C2'),
     },
     components: {
         button: {
-            link: {
-                active: {
-                    color: '{primary.500}'
-                }
-            }
+            labelFontWeight: 'bold',
+            paddingX: '3.0rem',
+            paddingY: '1rem',
+            colorScheme: {
+                light: {
+                    root: {
+                        primary: {
+                            color: '{neutral.50}',
+                            background: '{accent.500}',
+                            borderColor: '{accent.500}',
+
+                            hoverColor: '{neutral.50}',
+                            hoverBackground: '{accent.500}',
+                            hoverBorderColor: '{accent.500}',
+                        },
+                    },
+                },
+            },
         },
         menubar: {
             gap: "40px",
@@ -23,7 +39,7 @@ const CustomPreset = definePreset(Aura, {
             },
             item: {
                 focus: {
-                    background: '{transparent}', // Optional: adjust focus background
+                    background: '{transparent}',
                 }
             },
         }
