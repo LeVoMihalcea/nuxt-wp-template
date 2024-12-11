@@ -18,6 +18,9 @@ export default defineI18nConfig(() => ({
             p1WhatAwaitsYou: 'Lorem ipsum dolor sit amet consectetur. Adipiscing pretium sit sed quisque. Lorem lorem amet velit vehicula ac. A commodo tellus tortor est bibendum risus enim odio. Morbi pulvinar gravida tellus aliquam odio.',
             p2WhatAwaitsYou: 'Lorem ipsum dolor sit amet consectetur. Adipiscing pretium sit sed quisque. Lorem lorem amet velit vehicula ac. A commodo tellus tortor est bibendum risus enim odio. Morbi pulvinar gravida tellus aliquam odio.',
             p3WhatAwaitsYou: 'Lorem ipsum dolor sit amet consectetur. Adipiscing pretium sit sed quisque. Lorem lorem amet velit vehicula ac. A commodo tellus tortor est bibendum risus enim odio. Morbi pulvinar gravida tellus aliquam odio.',
+            whyBeAStudent: 'DE CE SA FII STUDENT LA',
+            fieQuestion: 'FIE?',
+            enrollNow: 'Inscrie-te acum!'
         }
     }
 }));
