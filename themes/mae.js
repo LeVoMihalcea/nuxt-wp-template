@@ -1,4 +1,4 @@
-import {definePreset, palette} from '@primevue/themes';
+import { definePreset, palette } from '@primevue/themes';
 import Aura from '@primevue/themes/aura';
 
 const CustomPreset = definePreset(Aura, {
@@ -8,32 +8,24 @@ const CustomPreset = definePreset(Aura, {
         blueContrast: palette('var(--blue-contrast)')
     },
     components: {
+        button: {
+            link: {
+                active: {
+                    color: '{primary.500}'
+                }
+            }
+        },
         menubar: {
             gap: "40px",
-            background: "{blue.500}",
             border: {
                 radius: "0px",
                 color: "transparent",
             },
             item: {
-                color: 'black',
-                padding: '10px',
-                active: {
-                    background: '{blue.500}'
-                },
                 focus: {
-                    background: '{blue.300}'
+                    background: '{transparent}', // Optional: adjust focus background
                 }
             },
-            mobile: {
-                button: {
-                    color: "{white.color}",
-                    hover: {
-                        color: "{white.color}",
-                        background: "{white.color}",
-                    }
-                }
-            }
         }
     },
 });
@@ -44,4 +36,3 @@ export default {
         darkModeSelector: '.p-dark'
     }
 };
-

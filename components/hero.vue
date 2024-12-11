@@ -17,13 +17,10 @@
 <style scoped>
     header {
         background-image: url('public/hero/img.png');
+        min-height: 600px;
     }
 
     h1 {
         color: var(--primary-color);
-    }
-
-    .min-h-screen-50 {
-        min-height: 50vh;
     }
 </style>
