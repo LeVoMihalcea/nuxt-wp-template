@@ -5,6 +5,7 @@
     import WhatWePrepared from "~/components/index/what-we-prepared.vue";
     import WhyBeAStudent from "~/components/index/why-be-a-student.vue";
     import Newsletter from "~/components/index/newsletter.vue";
+    import News from "~/components/index/news.vue";
 </script>
 
 
@@ -16,6 +17,9 @@
         <what-we-prepared/>
     </page-content>
     <newsletter/>
+    <page-content>
+        <news/>
+    </page-content>
 </template>
 
 <style scoped>

@@ -30,6 +30,7 @@
         --primary-color: var(--dark-blue);
         --blue-contrast: #13263F;
         --accent: #D42126;
+        --text-color-secondary: #565656;
     }
 
     .accent {

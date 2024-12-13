@@ -1,40 +1,66 @@
 <script setup lang="ts">
-    interface Card {
-        title: string;
-        imageUrl: string;
-    }
-
-    const props = defineProps<Card>();
+    const props = defineProps({
+        title: String,
+        imageUrl: String,
+        date: Date,
+        description: String,
+        secondary: Boolean
+    });
 </script>
 
 <template>
-    <div class="card">
-        <div class="card-image" :style="{ backgroundImage: `url(${imageUrl})` }">
-            <div class="card-overlay">
-                <h3 class="card-title">{{ title }}</h3>
+    <div>
+        <div v-if="!secondary" class="card animated">
+            <div class="card-image full-height" :style="{ backgroundImage: `url(${imageUrl})` }">
+                <div class="card-overlay">
+                    <h3 class="card-title">{{ title }}</h3>
+                </div>
+            </div>
+        </div>
+        <div v-else class="card">
+            <div class="full-height flex flex-column justify-content-between">
+                <nuxt-img class="w-full border-round-lg" :src="imageUrl"/>
+                <div class="flex flex-column justify-content-start">
+                    <p class="accent mt-0">09.11.1999</p>
+                    <h1 class="mt-0">{{ title }}</h1>
+                </div>
+                <p class="m-0 text-color-secondary">
+                    {{ description ?? $t('loremIpsum.short') }}
+                </p>
+                <div class="flex gap-4 mt-1 text-color-secondary">
+                    <Button :label="$t('news.findOut')" icon="pi pi-arrow-up-right" iconPos="right" variant="text"/>
+                </div>
             </div>
         </div>
     </div>
+
 </template>
 
 <style scoped>
     .card {
-        width: 100%;
         border-radius: 8px;
         overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
     }
 
-    .card:hover {
+    .full-height {
+        height: 500px;
+    }
+
+    :deep(.p-card-body) {
+        padding-bottom: 0;
+        height: 200px;
+        justify-content: space-between;
+    }
+
+    .animated:hover {
         transform: translateY(-5px);
+        transition: transform 0.3s ease;
     }
 
     .card-image {
         position: relative;
         background-size: cover;
         background-position: center;
-        height: 300px;
     }
 
     .card-overlay {

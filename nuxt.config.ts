@@ -81,9 +81,7 @@ export default defineNuxtConfig({
                     target: 'http://localhost:8060/wp-json/wp/v2',
                     changeOrigin: true,
                     rewrite: (path: string) => {
-                        let replaced = path.replace(/^\/api/, '');
-                        console.log(path, "==>", replaced);
-                        return replaced;
+                        return path.replace(/^\/api/, '');
                     }
                 },
                 // '/graphql': {

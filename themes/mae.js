@@ -1,8 +1,6 @@
 import {definePreset, palette} from '@primevue/themes';
 import Aura from '@primevue/themes/aura';
 
-console.log(palette('#031021'))
-
 const CustomPreset = definePreset(Aura, {
     semantic: {
         primary: palette('#031021'),
