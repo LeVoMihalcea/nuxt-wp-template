@@ -13,7 +13,6 @@ const CustomPreset = definePreset(Aura, {
     components: {
         button: {
             labelFontWeight: 'bold',
-            paddingX: '3.0rem',
             paddingY: '1rem',
             colorScheme: {
                 light: {
@@ -32,7 +31,7 @@ const CustomPreset = definePreset(Aura, {
             },
         },
         menubar: {
-            gap: "40px",
+            gap: "0px",
             border: {
                 radius: "0px",
                 color: "transparent",

@@ -2,31 +2,48 @@
 </script>
 
 <template>
-    <div class="container">
-        <div class="grid lg:px-8 text-white font-light">
-            <div class="col col-12 lg:col-4 border-right-1 my-6 px-4">
-                <h1 class="text-5xl mb-0 font-light">01</h1>
-                <p>{{ $t("p1WhatAwaitsYou") }}</p>
+    <div class="container text-center m-4 md:m-8">
+        <div class="flex flex-column md:flex-row font-light">
+            <nuxt-img src="simple-logo.svg" class="logo"/>
+
+            <div class="md:mx-8 z-1">
+                <h1>
+                    {{$t('h1WhatAwaitsYou')}}</h1>
+                <p class="text-lg md:mx-6">
+                    {{ $t("p1WhatAwaitsYou") }}
+                </p>
             </div>
-            <div class="col col-12 lg:col-4 border-right-1 my-6 px-4">
-                <h1 class="text-5xl mb-0 font-light">02</h1>
-                <p>{{ $t("p2WhatAwaitsYou") }}</p>
+
+            <div class="md:mx-8 z-1">
+                <h1>
+                    {{$t('h2WhatAwaitsYou')}}</h1>
+                <p class="text-lg md:mx-6">
+                    {{ $t("p2WhatAwaitsYou") }}
+                </p>
             </div>
-            <div class="col col-12 lg:col-4 my-6 px-4">
-                <h1 class="text-5xl mb-0 font-light">03</h1>
-                <p>{{ $t("p3WhatAwaitsYou") }}</p>
+
+            <div class="md:mx-8 z-1">
+                <h1>
+                    {{$t('h3WhatAwaitsYou')}}</h1>
+                <p class="text-lg md:mx-6">
+                    {{ $t("p3WhatAwaitsYou") }}
+                </p>
             </div>
         </div>
     </div>
 </template>
 
 <style scoped>
-    .container {
-        background-color: var(--blue-contrast);
+    h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 5rem;
+        color: var(--accent);
     }
 
-    .grid {
-        max-width: 1500px;
-        margin: 0 auto;
+    .logo {
+        position: absolute;
+        transform: translate(-30%, -15%);
+        height: 40%;
+        overflow: hidden;
     }
 </style>

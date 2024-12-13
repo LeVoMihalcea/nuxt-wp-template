@@ -4,7 +4,7 @@
 
 <template>
     <div class="container">
-        <two-columns-responsive>
+        <two-columns-responsive reverse-if-on-mobile>
             <template #first>
                 <div class="text-4xl w-12 md:w-6 font-bold">
                     <h1 class="font-normal">
@@ -29,15 +29,30 @@
             </template>
 
             <template #second>
-                <div class="w-full hidden md:flex">
-                    <nuxt-img src="why-model.png"/>
+                <div class="w-full relative">
+<!--                    <nuxt-img src="ying-yang.svg" class="w-full"/> todo: re-enable this-->
+                    <nuxt-img src="why-model.png" class="why-model w-full"/>
                 </div>
             </template>
-
         </two-columns-responsive>
     </div>
-
 </template>
 
 <style scoped>
+    .mobile {
+        transform: translateY(-7.4%) translateX(6.8%);
+    }
+
+    .desktop{
+        transform: translateY(-25%) translateX(20%) !important;
+    }
+
+    img {
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.5));
+    }
+
+    .why-model {
+        //position: absolute;
+        //right: 0;
+    }
 </style>
