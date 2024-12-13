@@ -48,7 +48,7 @@
     <header>
         <Menubar :model="items" class="md:h-5rem md:pr-8 flex flex-row justify-content-between menubar">
             <template #start>
-                <nuxt-img src="icon.svg" class="w-12 lg:ml-7 ml-1 mt-1"/>
+                <nuxt-img src="logo.svg" class="w-12 lg:ml-7 ml-1 mt-1"/>
             </template>
             <template #item="{ item, props, hasSubmenu }">
                 <a :href="item.url" class="hover:bg-red-50">

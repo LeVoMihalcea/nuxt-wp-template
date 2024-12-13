@@ -45,5 +45,6 @@
         transform: translate(-30%, -15%);
         height: 40%;
         overflow: hidden;
+        z-index: -1;
     }
 </style>

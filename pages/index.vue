@@ -9,9 +9,7 @@
 <template>
     <hero/>
     <what-awaits-you/>
-    <page-content>
-        <why-be-a-student/>
-    </page-content>
+    <why-be-a-student/>
     <page-content>
         <what-we-prepared/>
     </page-content>
