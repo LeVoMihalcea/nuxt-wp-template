@@ -16,6 +16,8 @@
     body {
         padding: 0;
         margin: 0;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
     }
 
     h1, h2, h3, h4, h5, h6 {

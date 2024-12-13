@@ -1,8 +1,10 @@
 <script setup lang="ts">
-    import Hero from "~/components/hero.vue";
-    import WhatAwaitsYou from "~/components/what-awaits-you.vue";
+    import Hero from "~/components/index/hero.vue";
+    import WhatAwaitsYou from "~/components/index/what-awaits-you.vue";
     import PageContent from "~/layouts/page-content.vue";
-    import WhatWePrepared from "~/components/what-we-prepared.vue";
+    import WhatWePrepared from "~/components/index/what-we-prepared.vue";
+    import WhyBeAStudent from "~/components/index/why-be-a-student.vue";
+    import Newsletter from "~/components/index/newsletter.vue";
 </script>
 
 
@@ -13,6 +15,7 @@
     <page-content>
         <what-we-prepared/>
     </page-content>
+    <newsletter/>
 </template>
 
 <style scoped>
