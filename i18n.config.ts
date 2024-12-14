@@ -60,6 +60,13 @@ export default defineI18nConfig(() => ({
                 medium: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non mauris in tortor euismod sagittis. Donec libero arcu, efficitur id commodo ut, ullamcorper id nulla. Nunc vulputate mauris est, sed.',
                 long: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus consectetur laoreet. Morbi leo ex, mollis in pretium non, tincidunt ut nibh. Etiam elementum vitae tellus eu vehicula. Suspendisse ultricies lectus odio, id consequat augue congue ac. Nullam iaculis, nulla.',
                 xl: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis venenatis dolor. Morbi quis congue lectus, vel varius nisi. Curabitur interdum odio urna, non dignissim dui aliquet sed. Ut lobortis aliquam diam, sed dictum nunc tempus quis. Aliquam eget augue sed tellus mollis semper in a tellus. Cras auctor, mi a auctor molestie, diam lacus luctus nisi, porttitor aliquam mauris leo sed augue. Suspendisse.'
+            },
+            story: {
+                hero: {
+                    title: 'POVESTEA NOSTRĂ',
+                    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non mauris in tortor euismod sagittis. Donec libero arcu, efficitur id commodo ut, ullamcorper id nulla. Nunc vulputate mauris est, sed.',
+                    contactUs: 'Contactează-ne'
+                }
             }
         }
     }
