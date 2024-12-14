@@ -13,7 +13,7 @@
             </template>
 
             <template #second>
-                <div class="gradient text-white -m-4 md:-m-2 p-8">
+                <div class="gradient text-white p-8">
                     <div class="text-4xl w-12 font-bold">
                         <h1 class="font-normal">
                             {{ $t('newsletter.headline') }}

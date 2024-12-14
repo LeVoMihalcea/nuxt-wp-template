@@ -30,7 +30,7 @@
                 <prepared-card :image-url="card.imageUrl" :title="card.title" />
             </div>
         </div>
-        <nuxt-img src="simple-logo.svg" class="logo hidden md:block"/>
+<!--        <nuxt-img src="simple-logo.svg" class="logo hidden md:block"/>-->
     </div>
 </template>
 

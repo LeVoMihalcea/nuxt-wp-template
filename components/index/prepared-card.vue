@@ -18,17 +18,19 @@
             </div>
         </div>
         <div v-else class="card">
-            <div class="full-height flex flex-column justify-content-between">
+            <div class="flex flex-column justify-content-between">
                 <nuxt-img class="w-full border-round-lg" :src="imageUrl"/>
-                <div class="flex flex-column justify-content-start">
-                    <p class="accent mt-0">09.11.1999</p>
-                    <h1 class="mt-0">{{ title }}</h1>
-                </div>
-                <p class="m-0 text-color-secondary">
-                    {{ description ?? $t('loremIpsum.short') }}
-                </p>
-                <div class="flex gap-4 mt-1 text-color-secondary">
-                    <Button :label="$t('news.findOut')" icon="pi pi-arrow-up-right" iconPos="right" variant="text"/>
+                <div class="p-2">
+                    <div class="flex flex-column justify-content-start">
+                        <p class="accent mt-0">09.11.1999</p>
+                        <h1 class="mt-0">{{ title }}</h1>
+                    </div>
+                    <p class="m-0 text-color-secondary">
+                        {{ description ?? $t('loremIpsum.short') }}
+                    </p>
+                    <div class="flex gap-4 mt-1 text-color-secondary">
+                        <Button :label="$t('news.findOut')" icon="pi pi-arrow-up-right" iconPos="right" variant="text"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,7 +45,9 @@
     }
 
     .full-height {
-        height: 500px;
+        max-height: 300px;
+        height: 250px;
+        width: 100%;
     }
 
     :deep(.p-card-body) {

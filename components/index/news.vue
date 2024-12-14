@@ -22,7 +22,7 @@
                            :title="card.title"
                            :image-url="card.imageUrl"
                            :secondary="index !== 0 && !onMobile"
-                           class="w-full"
+                           class="w-full m-2"
             />
         </div>
     </div>
@@ -39,7 +39,7 @@
     }
 
     .background-text {
-        top: 4200px;
+        top: 3600px;
         z-index: -1;
         left: 0;
         position: absolute;

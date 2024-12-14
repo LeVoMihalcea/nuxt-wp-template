@@ -14,28 +14,28 @@
     const updateItems = () => {
         items.value = [
             {
-                label: t('home'),
+                label: t('pages.home'),
                 url: localePath('/'),
             },
             {
-                label: t('about'),
+                label: t('pages.about'),
                 url: localePath('/about'),
 
             },
             {
-                label: t('humanResources'),
+                label: t('pages.humanResources'),
                 url: localePath('/human-resources'),
             },
             {
-                label: t('research'),
+                label: t('pages.research'),
                 url: localePath('/research'),
             },
             {
-                label: t('forStudents'),
+                label: t('pages.forStudents'),
                 url: localePath('/for-students'),
             },
             {
-                label: t('contact'),
+                label: t('pages.contact'),
                 url: localePath('/contact'),
             },
         ];
