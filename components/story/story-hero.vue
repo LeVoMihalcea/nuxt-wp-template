@@ -2,8 +2,8 @@
     <header class="story-hero p-8 text-white">
         <div class="flex flex-column align-items-center pt-8">
             <h1 class="title pt-8 font-light">{{ $t('story.hero.title') }}</h1>
-            <p class="subtitle w-6 text-center opacity-70">{{ $t('story.hero.subtitle') }}</p>
-            <Button :label="$t('story.hero.contactUs')" class="p-button-rounded p-button-primary w-3 mt-4"/>
+            <p class="subtitle md:w-6 text-center opacity-70">{{ $t('story.hero.subtitle') }}</p>
+            <Button :label="$t('story.hero.contactUs')" class="p-button-rounded p-button-primary md:w-3 mt-4"/>
         </div>
     </header>
 </template>

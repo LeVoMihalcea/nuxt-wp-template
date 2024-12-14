@@ -67,6 +67,12 @@ export default defineI18nConfig(() => ({
                     subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus consectetur laoreet. Morbi leo ex, mollis in pretium non, tincidunt ut nibh. Etiam elementum vitae tellus eu vehicula. Suspendisse ultricies lectus odio, id consequat augue congue ac. Nullam iaculis, nulla.',
                     contactUs: 'Contactează-ne'
                 }
+            },
+            whoWeAre: {
+                title: 'CINE SUNTEM SI CE FACEM?',
+                subtitle1: 'În anul 1953, Institutul de Mecanică se transformă în Institutul Politehnic din Cluj. În 1992 una dintre cele 7 facultăți ale Universității Tehnice din Cluj-Napoca, este Facultatea de Electrotehnică. Începând cu 2005 facultatea își modifică numele, devenind Facultatea de Inginerie Electrică.',
+                subtitle2: 'Departamentul de Mașini și Acționări Electrice este continuatorul unor catedre cu tradiţie ale Facultăţii de Electrotehnică din Cluj: Catedra de Acționări Electrice și Catedra de Maşini Electrice, care au oferit cercetării şi învăţământului superior tehnic românesc valori recunoscute în ţară şi peste hotare.',
+                subtitle3: 'Dintre personalităţile marcante, deschizătoare de drumuri în domeniul învăţământului superior electrotehnic, se remarca Profesorii Karoly Biro, Vasile Iancu, Maria Imecs, Arpad Kelemen si Ioan Adrian Viorel care au condus cele două catedre, de la înființare, până în anii ‘90',
             }
         }
     }
