@@ -79,7 +79,7 @@
             </div>
         </div>
 
-        <p>&copy; {{ $t("copyright") }}</p>
+        <p class="text-white">{{ $t("footer.copyright") }}</p>
         <p class="text-color-secondary">v{{ version }}</p>
     </footer>
 </template>

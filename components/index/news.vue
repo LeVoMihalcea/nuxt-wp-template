@@ -21,23 +21,16 @@
             <prepared-card v-for="(card, index) in cards"
                            :title="card.title"
                            :image-url="card.imageUrl"
+                           :class="{'w-8': index === 0}"
+                           :tall="index === 0"
                            :secondary="index !== 0 && !onMobile"
-                           class="w-full m-2"
+                           class="m-2"
             />
         </div>
     </div>
 </template>
 
 <style scoped>
-    .logo {
-        position: absolute;
-        right: -100px;
-        transform: translateY(-200px);
-        scale: 1.5;
-        overflow: hidden;
-        z-index: -1;
-    }
-
     .background-text {
         top: 3600px;
         z-index: -1;

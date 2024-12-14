@@ -50,9 +50,9 @@
             <template #start>
                 <nuxt-img src="logo.svg" class="w-12 lg:ml-7 ml-1 mt-1"/>
             </template>
-            <template #item="{ item, props, hasSubmenu }">
-                <a :href="item.url" class="hover:bg-red-50">
-                    <Button :label="item.label" variant="link" class="text-white"/>
+            <template #item="{ item }">
+                <a :href="item.url">
+                    <Button :label="item.label as string" variant="link" class="text-white"/>
                 </a>
             </template>
         </Menubar>

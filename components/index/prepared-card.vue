@@ -4,14 +4,15 @@
         imageUrl: String,
         date: Date,
         description: String,
-        secondary: Boolean
+        secondary: Boolean,
+        tall: Boolean,
     });
 </script>
 
 <template>
     <div>
         <div v-if="!secondary" class="card animated">
-            <div class="card-image full-height" :style="{ backgroundImage: `url(${imageUrl})` }">
+            <div class="card-image full-height" :class="{tall}" :style="{ backgroundImage: `url(${imageUrl})` }">
                 <div class="card-overlay">
                     <h3 class="card-title">{{ title }}</h3>
                 </div>
@@ -48,6 +49,11 @@
         max-height: 300px;
         height: 250px;
         width: 100%;
+    }
+
+    .tall{
+        max-height: 400px !important;
+        height: 400px !important;
     }
 
     :deep(.p-card-body) {

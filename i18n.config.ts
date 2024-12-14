@@ -19,7 +19,7 @@ export default defineI18nConfig(() => ({
                 liabilitySituations: 'Situațiile de Limitare a Răspunderii'
             },
             footer: {
-                copyright: 'Copywright: Leo Mihalcea',
+                copyright: 'Copyright (c) 2024 Departamentul de Masini si Actionari Electrice @UTCN ',
                 menu: "Meniu",
                 legalDocs: "Documente Legale",
                 contact: 'CONTACT'
