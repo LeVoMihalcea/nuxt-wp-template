@@ -1,0 +1,19 @@
+query fetchArticles {
+    specializations {
+        edges {
+            node {
+                id
+                title
+                specializationFieldGroup {
+                    level
+                }
+                featuredImage {
+                    node {
+                        sourceUrl
+                    }
+                },
+                content
+            }
+        }
+    }
+}

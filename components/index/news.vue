@@ -33,10 +33,5 @@
 <style scoped>
     .background-text {
         top: 3600px;
-        z-index: -1;
-        left: 0;
-        position: absolute;
-        color: #eeeeee;
-        font-size: 11rem;
     }
 </style>

@@ -10,8 +10,6 @@ const CustomPreset = definePreset(Aura, {
     },
     components: {
         button: {
-            labelFontWeight: 'bold',
-            paddingY: '1rem',
             colorScheme: {
                 light: {
                     root: {
@@ -24,6 +22,13 @@ const CustomPreset = definePreset(Aura, {
                             hoverBackground: '{accent.500}',
                             hoverBorderColor: '{accent.500}',
                         },
+                        text:{
+                            primary: {
+                                hover: {
+                                    background: '{accent.500}',
+                                }
+                            }
+                        }
                     },
                 },
             },
@@ -32,7 +37,7 @@ const CustomPreset = definePreset(Aura, {
             gap: "0px",
             border: {
                 radius: "0px",
-                color: "transparent",
+                color: "{transparent}",
             },
             item: {
                 focus: {

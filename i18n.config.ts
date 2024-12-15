@@ -19,7 +19,7 @@ export default defineI18nConfig(() => ({
                 liabilitySituations: 'Situațiile de Limitare a Răspunderii'
             },
             footer: {
-                copyright: 'Copyright (c) 2024 Departamentul de Masini si Actionari Electrice @UTCN ',
+                copyright: 'Copyright (c) 2024 Departamentul de Masini si Actionari Electrice',
                 menu: "Meniu",
                 legalDocs: "Documente Legale",
                 contact: 'CONTACT'
@@ -73,6 +73,15 @@ export default defineI18nConfig(() => ({
                 subtitle1: 'În anul 1953, Institutul de Mecanică se transformă în Institutul Politehnic din Cluj. În 1992 una dintre cele 7 facultăți ale Universității Tehnice din Cluj-Napoca, este Facultatea de Electrotehnică. Începând cu 2005 facultatea își modifică numele, devenind Facultatea de Inginerie Electrică.',
                 subtitle2: 'Departamentul de Mașini și Acționări Electrice este continuatorul unor catedre cu tradiţie ale Facultăţii de Electrotehnică din Cluj: Catedra de Acționări Electrice și Catedra de Maşini Electrice, care au oferit cercetării şi învăţământului superior tehnic românesc valori recunoscute în ţară şi peste hotare.',
                 subtitle3: 'Dintre personalităţile marcante, deschizătoare de drumuri în domeniul învăţământului superior electrotehnic, se remarca Profesorii Karoly Biro, Vasile Iancu, Maria Imecs, Arpad Kelemen si Ioan Adrian Viorel care au condus cele două catedre, de la înființare, până în anii ‘90',
+            },
+            specializations: {
+                header: 'SPECIALIZARI',
+                subtitle: 'Departamentul de Mașini si Acționări Electrice coordonează activitatea a trei specializări la învățământul de licență și o specializare la forma de învățământ master.'
+            },
+            testimonials: {
+                header: "CE SPUN STUDENTII ȘI ABSOLVENTII NOSTRII",
+                subtitle: "Departamentul de Mașini și Acționări Electrice, precum și catedrele precursoare au pregatit, de-a lungul timpului, promoţii de ingineri, cadre didactice universitare şi cercetători valoroşi, absolventi ai unei şcoli de prestigiu, recunoscută pe plan internațional: peste 100 doctor-ingineri, formaţi de către cadrele didactice proprii.",
+                backgroundText: "TESTIMONIALE",
             }
         }
     }
