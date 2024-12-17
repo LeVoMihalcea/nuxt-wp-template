@@ -82,6 +82,18 @@ export default defineI18nConfig(() => ({
                 header: "CE SPUN STUDENTII ȘI ABSOLVENTII NOSTRII",
                 subtitle: "Departamentul de Mașini și Acționări Electrice, precum și catedrele precursoare au pregatit, de-a lungul timpului, promoţii de ingineri, cadre didactice universitare şi cercetători valoroşi, absolventi ai unei şcoli de prestigiu, recunoscută pe plan internațional: peste 100 doctor-ingineri, formaţi de către cadrele didactice proprii.",
                 backgroundText: "TESTIMONIALE",
+            },
+            team: {
+                hero: {
+                    title: 'ECHIPA NOASTRĂ DE PROFESIONIȘTI',
+                    subtitle: 'Lorem ipsum dolor sit amet consectetur. Adipiscing pretium sit sed quisque. Lorem lorem amet velit vehicula ac.',
+                    button: 'Contactează-ne',
+                }
+            },
+            teamSection: {
+                header: 'O ECHIPA DE PROFESIONISTI',
+                subtitle: 'In departament își desfășoară activitatea 12 conducători de doctorat, departamentul având o tradiție remarcabilă în domeniul îndrumării activității doctorale.',
+                button: 'Cunoaște colectivul'
             }
         }
     }

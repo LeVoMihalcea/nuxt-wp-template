@@ -9,6 +9,8 @@
         <testimonials/>
     </page-content>
 
+    <team-section/>
+
     <page-content>
         <news/>
     </page-content>
@@ -21,4 +23,5 @@
     import Departments from "~/components/story/departments.vue";
     import News from "~/components/index/news.vue";
     import Testimonials from "~/components/story/testimonials.vue";
+    import TeamSection from "~/components/story/team-section.vue";
 </script>

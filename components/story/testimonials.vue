@@ -51,6 +51,8 @@
                           :numScroll="1"
                           :show-indicators="false"
                           class="mt-8"
+                          :autoplay-interval="10000"
+                          circular
                 >
                     <template #item="slotProps">
                         <div class="p-4 flex flex-column text-center">

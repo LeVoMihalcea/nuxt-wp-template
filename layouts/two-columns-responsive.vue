@@ -12,10 +12,10 @@
 
 <template>
     <section class="grid">
-        <div class="col-12 md:col-6">
+        <div class="col-12 md:col-6 p-0 m-0 h-full">
             <slot :name="!reverse ? 'first' : 'second'" />
         </div>
-        <div class="col-12 md:col-6">
+        <div class="col-12 md:col-6 p-0 m-0 h-full">
             <slot :name="!reverse ? 'second' : 'first'" />
         </div>
     </section>

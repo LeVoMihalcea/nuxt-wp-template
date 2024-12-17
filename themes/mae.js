@@ -44,6 +44,15 @@ const CustomPreset = definePreset(Aura, {
                     background: '{transparent}',
                 }
             },
+        },
+        dialog:{
+            background: '{blueContrast.500}',
+            border:{
+                color: '{transparent}',
+            },
+            content:{
+                padding: '0px',
+            }
         }
     },
 });
