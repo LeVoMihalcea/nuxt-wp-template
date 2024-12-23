@@ -1,4 +1,15 @@
 <script setup>
+    useSeoMeta({
+        title: "MAE - UTCN",
+        // ogTitle: "Solis UTCN - Solar Racing Team",
+        // description:
+        //     "Welcome to Solis UTCN! Discover Solis-EV UTCN, where we push the boundaries of solar racing challenges and innovative electric vehicle technologies",
+        // ogDescription:
+        //     "Welcome to Solis UTCN! Discover Solis-EV UTCN, where we push the boundaries of solar racing challenges and innovative electric vehicle technologies",
+        // twitterCard: "summary_large_image",
+        // robots: "index, follow",
+    });
+
 </script>
 
 <template>

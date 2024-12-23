@@ -1,6 +1,6 @@
 <template>
     <header class="bg-cover bg-no-repeat py-8 pl-4 md:pl-8 w-full text-white">
-        <h1 class="md:text-6xl font-bold md:w-6 mb-3 mt-6">{{ $t('hero.title1') }}</h1>
+        <h1 class="md:text-6xl font-bold md:w-6 mb-3 mt-8 pt-8">{{ $t('hero.title1') }}</h1>
         <h1 class="md:text-6xl font-bold md:w-6 my-3">{{ $t('hero.title2') }}</h1>
         <h1 class="md:text-6xl font-bold md:w-6 mt-3">{{ $t('hero.title3') }}</h1>
         <h4 class="font-light md:w-4">{{ $t('hero.subtitle') }}</h4>
@@ -18,6 +18,6 @@
     header {
         background-image: url('public/hero/img.png');
         background-position: center right;
-        min-height: 600px;
+        min-height: 800px;
     }
 </style>

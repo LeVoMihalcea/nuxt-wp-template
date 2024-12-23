@@ -23,7 +23,7 @@
                 <nuxt-img class="w-full border-round-lg" :src="imageUrl"/>
                 <div class="p-2">
                     <div class="flex flex-column justify-content-start">
-                        <p class="accent mt-0">09.11.1999</p>
+                        <p class="accent mt-0">09.11.2024</p>
                         <h1 class="mt-0">{{ title }}</h1>
                     </div>
                     <p class="m-0 text-color-secondary">

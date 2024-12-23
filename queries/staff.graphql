@@ -1,5 +1,5 @@
 query fetchStaff {
-    staffCategories {
+    staffCategories(where: {orderby: NAME}) {
         nodes {
             id
             name
