@@ -17,12 +17,11 @@
 
 <template>
     <div class="container flex flex-column">
-        <div v-if="props.picture">
-            <img :src="props.picture" alt="profile picture"
-                 class="profile-picture flex justify-content-center"/>
+        <div v-if="props.picture" class="w-full profile-picture">
+            <img :src="props.picture" alt="profile picture" class="w-full"/>
         </div>
 
-        <div class="name flex flex-column justify-content-evenly text-white text-center">
+        <div class="name flex flex-column justify-content-evenly text-white text-center w-full">
             <h3 class="md:text-lg my-0">{{ capitalizeLastWord(name) }}</h3>
             <p class="opacity-70 font-light md:text-base my-0 uppercase">{{ title }}</p>
         </div>
@@ -31,18 +30,21 @@
 
 <style scoped>
     .profile-picture {
-        background-size: auto;
-        background: url('public/simple-logo-transparent.svg') center;
+        background: linear-gradient(
+            to bottom,
+            color-mix(in srgb, #3B68A3, transparent 96%) 0%,
+            color-mix(in srgb, #0B264A, transparent 23%) 90%
+        ), url(public/simple-logo.svg) center, no-repeat;
+        background-size: 180%;
+        overflow: hidden;
+
         position: relative;
-        object-fit: cover;
+        height: 250px;
         object-position: top;
-        width: 15rem;
-        height: 15rem;
     }
 
     .name {
         background-color: var(--blue-contrast);
-        width: 15rem;
         height: 6rem;
     }
 </style>
