@@ -1,11 +1,10 @@
 <template>
-    <header class="story-hero p-8 text-white">
-        <div class="flex flex-column align-items-center pt-8">
-            <h1 class="title pt-8 font-light text-6xl text-center md:text-8xl md:w-6">{{ $t('team.hero.title') }}</h1>
-            <p class="subtitle md:w-6 text-center opacity-70">{{ $t('team.hero.subtitle') }}</p>
-            <Button :label="$t('team.hero.button')" class="p-button-rounded p-button-primary md:w-3 mt-4"/>
-        </div>
-    </header>
+    <generic-hero
+        :title="$t('team.hero.title')"
+        :subtitle="$t('team.hero.subtitle')"
+        :button="$t('team.hero.button')"
+        background-image="/hero/hero-about.png"
+    />
 </template>
 
 <script setup>

@@ -94,6 +94,11 @@ export default defineI18nConfig(() => ({
                 header: 'O ECHIPA DE PROFESIONISTI',
                 subtitle: 'In departament își desfășoară activitatea 12 conducători de doctorat, departamentul având o tradiție remarcabilă în domeniul îndrumării activității doctorale.',
                 button: 'Cunoaște colectivul'
+            },
+            research: {
+                title: 'Laboratoare',
+                subtitle: '@:loremIpsum.medium',
+                button: 'Contactează-ne',
             }
         }
     }
