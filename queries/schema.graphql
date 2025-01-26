@@ -12732,6 +12732,11 @@ type StaffFieldGroup implements StaffFieldGroup_Fields & AcfFieldGroup & AcfFiel
   """
   department: String
 
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;StaffFieldGroup&quot; Field Group
+  """
+  description: String
+
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")
 
@@ -12749,6 +12754,11 @@ interface StaffFieldGroup_Fields {
   Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;StaffFieldGroup&quot; Field Group
   """
   department: String
+
+  """
+  Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;StaffFieldGroup&quot; Field Group
+  """
+  description: String
 
   """The name of the field group"""
   fieldGroupName: String @deprecated(reason: "Use __typename instead")

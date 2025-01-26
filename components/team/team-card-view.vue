@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import {useStaff} from "~/composables/useTeam";
+    import {useStaff} from "~/composables/useStaff";
     import type {TeamMember} from "~/components/team/team-member-card.vue";
     import TeamMemberModalCard from "~/components/team/team-member-modal-card.vue";
 
@@ -19,7 +19,7 @@
 <template>
     <div>
         <Dialog v-model:visible="modalVisible"
-                class="w-full md:w-8"
+                class="w-11 md:w-8"
                 :show-header="false"
                 modal dismissable-mask
         >
@@ -27,6 +27,8 @@
                 :name="modalPayload.title"
                 :title="modalPayload.staffFieldGroup?.title"
                 :picture="modalPayload.featuredImage.node.sourceUrl"
+                :content="modalPayload.content"
+                :description="modalPayload.staffFieldGroup?.description"
             />
 
         </Dialog>

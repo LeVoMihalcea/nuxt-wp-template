@@ -38,6 +38,7 @@
 
     :root {
         --dark-blue: #031021;
+        --primary: var(--dark-blue);
         --light-blue: #3B84C2;
         --primary-color: var(--dark-blue);
         --blue-contrast: #13263F;

@@ -13,6 +13,7 @@ export const useSpecializations = (): Specialization[] => {
 
     if (data.value && data.value.specializations?.edges) {
         let specializations = data.value.specializations.edges.map((edge: any) => {
+            console.log(edge);
             return {
                 name: edge.node.title,
                 level: edge.node.specializationFieldGroup.level,

@@ -1,5 +1,6 @@
 <script setup lang="ts">
     export type TeamMember = {
+        id?: string,
         name: string;
         title: string;
         department?: string;

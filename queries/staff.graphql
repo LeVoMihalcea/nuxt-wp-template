@@ -14,7 +14,9 @@ query fetchStaff {
                     staffFieldGroup {
                         department
                         title
+                        description
                     }
+                    content
                 }
             }
         }
