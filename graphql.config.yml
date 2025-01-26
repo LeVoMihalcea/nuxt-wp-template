@@ -4,6 +4,9 @@ generates:
 
 extensions:
   endpoints:
-    default:
+    development:
       url: "http://localhost:8060/graphql"
+      introspect: true
+    prod:
+      url: "https://emd.utcluj.ro/graphql"
       introspect: true
