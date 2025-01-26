@@ -1,0 +1,104 @@
+{
+  "messages": {
+    "ro": {
+      "pages": {
+        "home": "Acasă",
+        "about": "Despre",
+        "team": "Echipa",
+        "articles": "Articole",
+        "gallery": "Galerie",
+        "humanResources": "Resurse Umane",
+        "research": "Cercetare",
+        "forStudents": "Pentru studenți",
+        "contact": "Contact",
+        "cookiesPolicy": "Politica Cookies",
+        "dataPolicy": "Politica de Prelucrare a Datelor cu Caracter Personal",
+        "toc": "Termenii și Condițiile de Utilizare a Site-ului",
+        "websiteTerms": "Termenii și Condițiile de Utilizare a Site-ului",
+        "liabilitySituations": "Situațiile de Limitare a Răspunderii"
+      },
+      "footer": {
+        "copyright": "Copyright (c) 2024 Departamentul de Masini si Actionari Electrice",
+        "menu": "Meniu",
+        "legalDocs": "Documente Legale",
+        "contact": "CONTACT"
+      },
+      "hero": {
+        "title1": "DEPARTAMENTUL",
+        "title2": "MASINI SI ACTIONARI",
+        "title3": "ELECTRICE",
+        "subtitle": "Lorem ipsum dolor sit amet consectetur. Adipiscing pretium sit sed quisque. Lorem lorem amet velit vehicula ac."
+      },
+      "whatAwaitsYou": {
+        "h1": "+70",
+        "p1": "ani de experiență în educație și cercetare în domeniul electrotehnicii",
+        "h2": "3.000",
+        "p2": "ingineri absolvenți pregătiți pentru cariere de succes în industrie și cercetare",
+        "h3": "+100",
+        "p3": "doctori ingineri formați în cadrul departamentului, contribuind la dezvoltarea tehnologică"
+      },
+      "student": {
+        "title": "DE CE SA FII STUDENT LA",
+        "fieQuestion": "FIE?",
+        "enrollNow": "Înscrie-te acum!"
+      },
+      "newsletter": {
+        "headline": "FII LA CURENT!",
+        "button": "Trimite",
+        "email": {
+          "label": "Adresa de e-mail"
+        }
+      },
+      "news": {
+        "articles": "ARTICOLE",
+        "news": "NOUTATI",
+        "findOut": "Descoperă"
+      },
+      "loremIpsum": {
+        "short": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "medium": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non mauris in tortor euismod sagittis. Donec libero arcu, efficitur id commodo ut, ullamcorper id nulla. Nunc vulputate mauris est, sed.",
+        "long": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus consectetur laoreet. Morbi leo ex, mollis in pretium non, tincidunt ut nibh. Etiam elementum vitae tellus eu vehicula. Suspendisse ultricies lectus odio, id consequat augue congue ac. Nullam iaculis, nulla.",
+        "xl": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis venenatis dolor. Morbi quis congue lectus, vel varius nisi. Curabitur interdum odio urna, non dignissim dui aliquet sed. Ut lobortis aliquam diam, sed dictum nunc tempus quis. Aliquam eget augue sed tellus mollis semper in a tellus. Cras auctor, mi a auctor molestie, diam lacus luctus nisi, porttitor aliquam mauris leo sed augue. Suspendisse."
+      },
+      "story": {
+        "hero": {
+          "title": "POVESTEA NOSTRĂ",
+          "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus consectetur laoreet. Morbi leo ex, mollis in pretium non, tincidunt ut nibh. Etiam elementum vitae tellus eu vehicula. Suspendisse ultricies lectus odio, id consequat augue congue ac. Nullam iaculis, nulla.",
+          "contactUs": "Contactează-ne"
+        }
+      },
+      "whoWeAre": {
+        "title": "CINE SUNTEM SI CE FACEM?",
+        "subtitle1": "În anul 1953, Institutul de Mecanică se transformă în Institutul Politehnic din Cluj. În 1992 una dintre cele 7 facultăți ale Universității Tehnice din Cluj-Napoca, este Facultatea de Electrotehnică. Începând cu 2005 facultatea își modifică numele, devenind Facultatea de Inginerie Electrică.",
+        "subtitle2": "Departamentul de Mașini și Acționări Electrice este continuatorul unor catedre cu tradiţie ale Facultăţii de Electrotehnică din Cluj: Catedra de Acționări Electrice și Catedra de Maşini Electrice, care au oferit cercetării şi învăţământului superior tehnic românesc valori recunoscute în ţară şi peste hotare.",
+        "subtitle3": "Dintre personalităţile marcante, deschizătoare de drumuri în domeniul învăţământului superior electrotehnic, se remarca Profesorii Karoly Biro, Vasile Iancu, Maria Imecs, Arpad Kelemen si Ioan Adrian Viorel care au condus cele două catedre, de la înființare, până în anii ‘90"
+      },
+      "specializations": {
+        "header": "SPECIALIZARI",
+        "subtitle": "Departamentul de Mașini si Acționări Electrice coordonează activitatea a trei specializări la învățământul de licență și o specializare la forma de învățământ master."
+      },
+      "testimonials": {
+        "header": "CE SPUN STUDENTII ȘI ABSOLVENTII NOSTRII",
+        "subtitle": "Departamentul de Mașini și Acționări Electrice, precum și catedrele precursoare au pregatit, de-a lungul timpului, promoţii de ingineri, cadre didactice universitare şi cercetători valoroşi, absolventi ai unei şcoli de prestigiu, recunoscută pe plan internațional: peste 100 doctor-ingineri, formaţi de către cadrele didactice proprii.",
+        "backgroundText": "TESTIMONIALE"
+      },
+      "team": {
+        "hero": {
+          "title": "ECHIPA NOASTRĂ DE PROFESIONIȘTI",
+          "subtitle": "Lorem ipsum dolor sit amet consectetur. Adipiscing pretium sit sed quisque. Lorem lorem amet velit vehicula ac.",
+          "button": "Contactează-ne"
+        }
+      },
+      "teamSection": {
+        "header": "O ECHIPA DE PROFESIONISTI",
+        "subtitle": "In departament își desfășoară activitatea 12 conducători de doctorat, departamentul având o tradiție remarcabilă în domeniul îndrumării activității doctorale.",
+        "button": "Cunoaște colectivul"
+      },
+      "research": {
+        "title": "Laboratoare",
+        "subtitle": "@:loremIpsum.medium",
+        "button": "Contactează-ne"
+      }
+    }
+  }
+}
