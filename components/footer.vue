@@ -10,7 +10,7 @@
     <footer>
         <div class="grid md:w-10 text-white mt-6">
             <div class="follow-us col-12 lg:text-left md:col-5 text-center">
-                <img src="../public/logo.svg" loading="lazy">
+                <nuxt-img src="../public/logo.svg" loading="lazy"/>
 
                 <p class="text-color-secondary">{{ $t('loremIpsum.short') }}</p>
 

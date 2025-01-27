@@ -26,7 +26,7 @@
 
         <div class="content flex flex-column justify-content-between ">
             <h1 class="custom-underline">
-                <img :src="levelIconMap[specialization.level[0]]" alt="graduation cap"
+                <nuxt-img :src="levelIconMap[specialization.level[0]]" alt="graduation cap"
                      class="h-4rem vertical-align-middle"/>
                 {{ specialization.level[1] }}
             </h1>
