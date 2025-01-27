@@ -4,7 +4,6 @@ import CustomPreset from "./themes/mae";
 
 export default defineNuxtConfig({
     compatibilityDate: '2024-07-12',
-
     devtools: {
         enabled: true
     },
@@ -13,14 +12,12 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1'
-        }
+        },
     },
-
     css: [
         'primeicons/primeicons.css',
         'primeflex/primeflex.css',
     ],
-
     modules: [
         '@nuxtjs/i18n',
         ['@nuxtjs/robots', {configPath: "~/robots.config"}],
@@ -36,17 +33,14 @@ export default defineNuxtConfig({
         '@primevue/nuxt-module',
         'nuxt-graphql-request'
     ],
-
     runtimeConfig: {
         public: {
             clientVersion: pkg.version
         }
     },
-
     build: {
         transpile: ['nuxt-graphql-request'],
     },
-
     graphql: {
         clients: {
             default: {
@@ -55,47 +49,26 @@ export default defineNuxtConfig({
             },
         },
         options: {
-            method: 'get', // Default to `POST`
+            method: 'get',
         },
         includeNodeModules: true,
     },
-
     primevue: {
         importTheme: { from: '~/themes/mae.js' },
         options: {
             theme: {
                 preset: CustomPreset,
                 options: {
-
                     darkModeSelector: '.dark-mode',
                     cssLayer: false
                 }
             }
         }
     },
-
-    vite: {
-        server: {
-            proxy: {
-                '/api': {
-                    target: 'http://localhost:8060/wp-json/wp/v2',
-                    changeOrigin: true,
-                    rewrite: (path: string) => {
-                        return path.replace(/^\/api/, '');
-                    }
-                },
-                // '/graphql': {
-                //     target: 'http://localhost:8060/graphql',
-                //     changeOrigin: true
-                // }
-            }
-        }
-    },
-
     i18n: {
         defaultLocale: 'ro',
         locales: ['ro'],
-        strategy: 'prefix_and_default',
+        strategy: 'no_prefix',
         vueI18n: './i18n.config.ts'
     }
 })
