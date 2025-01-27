@@ -6,6 +6,8 @@ export const useStaff = () => {
 
     const { data, error } = useAsyncData('fetchStaff', async () => {
         return await $graphql.default.request(fetchStaffQuery);
+    }, {
+        server: false
     });
 
     return { data, error };

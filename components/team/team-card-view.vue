@@ -8,7 +8,7 @@
     //todo(leo): make this type safe
     const modalPayload = ref<TeamMember | null | any>(null);
 
-    const nonZeroCategories = computed(() => (data.value as any).staffCategories.nodes.filter((c: any) => c.staff.nodes.length).reverse());
+    const nonZeroCategories = computed(() => (data.value as any)?.staffCategories.nodes.filter((c: any) => c.staff.nodes.length).reverse());
 
     function changeModalPayload(staff: TeamMember) {
         modalPayload.value = staff;
@@ -32,23 +32,30 @@
             />
 
         </Dialog>
-        <div v-for="(category, index) of nonZeroCategories"
-             :class="{blue: index % 2 === 1, 'text-white': index % 2 === 1}" class="text-center py-8">
 
-            <!--        <h1 class="background-text w-full z-0 hidden md:inline-block"> {{ category.name }} </h1>-->
-            <h1 class="uppercase text-xl md:text-7xl"> {{ category.name }} </h1>
+        <div v-if="!data" class="placeholder">
 
-            <div class="grid w-full md:w-6 m-auto z-1">
-                <team-member-card v-for="staff of category.staff?.nodes"
-                                  class="align-items-center col-6 md:col-3 mb-8"
-                                  :class="{'text-white': index % 2 === 1}"
-                                  :name="staff.title ?? 'fallback-name'"
-                                  :picture="staff.featuredImage?.node.sourceUrl"
-                                  :department="staff.staffFieldGroup?.department ?? ''"
-                                  :title="staff.staffFieldGroup?.title ?? ''"
-                                  @click="() => changeModalPayload(staff)"
-                />
-            </div>
+        </div>
+        <div v-else>
+            <client-only>
+                <div v-for="(category, index) of nonZeroCategories"
+                     :class="{blue: index % 2 === 1, 'text-white': index % 2 === 1}" class="text-center py-8">
+
+                    <!--        <h1 class="background-text w-full z-0 hidden md:inline-block"> {{ category.name }} </h1>-->
+                    <h1 class="uppercase text-xl md:text-7xl"> {{ category.name }} </h1>
+                    <div class="grid w-full md:w-6 m-auto z-1">
+                        <team-member-card v-for="staff of category.staff?.nodes"
+                                          class="align-items-center col-6 md:col-3 mb-8"
+                                          :class="{'text-white': index % 2 === 1}"
+                                          :name="staff.title ?? 'fallback-name'"
+                                          :picture="staff.featuredImage?.node.sourceUrl"
+                                          :department="staff.staffFieldGroup?.department ?? ''"
+                                          :title="staff.staffFieldGroup?.title ?? ''"
+                                          @click="() => changeModalPayload(staff)"
+                        />
+                    </div>
+                </div>
+            </client-only>
         </div>
     </div>
 </template>
@@ -56,5 +63,9 @@
 <style scoped>
     .blue {
         background-color: var(--dark-blue);
+    }
+
+    .placeholder {
+        min-height: 1000px;
     }
 </style>
