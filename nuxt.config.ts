@@ -44,7 +44,7 @@ export default defineNuxtConfig({
     graphql: {
         clients: {
             default: {
-                endpoint: 'http://localhost:8060/graphql',
+                endpoint: 'https://emd.utcluj.ro/graphql',
                 options: {},
             },
         },
