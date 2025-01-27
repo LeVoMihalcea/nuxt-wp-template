@@ -1,10 +1,12 @@
 <script setup lang="ts">
-    import SpecializationCard, {type Specialization} from "~/components/story/specialization-card.vue";
-    import {useSpecializations} from "~/composables/useSpecializations";
+    import SpecializationCard from "~/components/story/specialization-card.vue";
+    import { useSpecializations } from "~/composables/useSpecializations";
+    import { ref } from "vue";
+    import { useI18n } from "vue-i18n";
 
-    const {t} = useI18n();
+    const { t } = useI18n();
 
-    const specializations: Specialization[] = useSpecializations();
+    const { specializations, loading, error } = useSpecializations();
 
     const responsiveOptions = ref([
         {
@@ -15,8 +17,6 @@
     ]);
 
     const specializationCountThreshold = 4;
-    const shouldShowNavigators = specializations.length > specializationCountThreshold;
-
 </script>
 
 <template>
@@ -26,17 +26,32 @@
             <p class="text-lg">{{ t('specializations.subtitle') }}</p>
         </div>
 
-        <Carousel :value="specializations"
-                  :num-visible="specializationCountThreshold"
-                  :num-scroll="1"
-                  :responsive-options="responsiveOptions"
-                  :show-indicators="shouldShowNavigators"
-                  :show-navigators="shouldShowNavigators"
-        >
-            <template #item="slotProps">
-                <specialization-card :specialization="slotProps.data"/>
+        <client-only>
+            <template v-if="loading">
+                <div class="loading text-center py-4">
+                    {{ t('loading') }}
+                </div>
             </template>
-        </Carousel>
+
+            <template v-else-if="error">
+                <div class="error text-center py-4">
+                    {{ t('errorMessage') }}
+                </div>
+            </template>
+
+            <Carousel v-else
+                      :value="specializations"
+                      :num-visible="specializationCountThreshold"
+                      :num-scroll="1"
+                      :responsive-options="responsiveOptions"
+                      :show-indicators="specializations.length > specializationCountThreshold"
+                      :show-navigators="specializations.length > specializationCountThreshold"
+            >
+                <template #item="slotProps">
+                    <specialization-card :specialization="slotProps.data" />
+                </template>
+            </Carousel>
+        </client-only>
     </div>
 </template>
 
@@ -45,7 +60,7 @@
         background-color: var(--blue-contrast);
     }
 
-    .background-text{
+    .background-text {
         top: 1600px;
     }
 
