@@ -55,6 +55,9 @@
                     <Button :label="item.label as string" variant="link" class="text-white"/>
                 </a>
             </template>
+            <template #end>
+                <language-switch/>
+            </template>
         </Menubar>
     </header>
 </template>

@@ -1,5 +1,5 @@
-query fetchPosts {
-    posts(where: {orderby: {field: DATE, order: DESC}, }) {
+query fetchPosts($language: LanguageCodeFilterEnum!) {
+    posts(where: {orderby: {field: DATE, order: DESC}, language: $language}) {
         nodes {
             content
             title

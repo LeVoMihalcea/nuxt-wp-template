@@ -1,3 +1,3 @@
-import messages from './translations.json';
+const messages = useTranslations();
 
 export default defineI18nConfig(() => messages);

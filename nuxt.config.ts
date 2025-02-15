@@ -59,7 +59,7 @@ export default defineNuxtConfig({
         includeNodeModules: true,
     },
     primevue: {
-        importTheme: { from: '~/themes/mae.js' },
+        importTheme: {from: '~/themes/mae.js'},
         options: {
             theme: {
                 preset: CustomPreset,
@@ -72,8 +72,8 @@ export default defineNuxtConfig({
     },
     i18n: {
         defaultLocale: 'ro',
-        locales: ['ro'],
+        locales: ['ro', 'en'],
         strategy: 'no_prefix',
         vueI18n: './i18n.config.ts'
-    }
+    },
 })
