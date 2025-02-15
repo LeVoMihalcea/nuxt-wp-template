@@ -1,0 +1,81 @@
+name: 🌿 Deploy 🌿
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "Dry run"
+        required: true
+        default: "false"
+      version-bump-type:
+        required: true
+        default: "patch"
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: 👀 Checking out
+        uses: actions/checkout@v4
+
+      - name: 🤖 Automated Version Bump
+        uses: phips28/gh-action-bump-version@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          version-type: ${{ inputs.version-bump-type }}
+
+      - name: 🧑‍💻 Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: 🧶 Setting up Yarn
+        run: yarn
+
+      - name: 💪 Site Generation
+        run: npx nuxi generate
+
+      - name: 🔼 Expose Generated Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: output
+          path: .output/public
+
+  deploy:
+    needs: generate
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📒 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔽 Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: output
+          path: download
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: emd.utcluj.ro
+          username: emd
+          password: ${{ secrets.MAE_FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: download/
+          server-dir: public/preview/
+          dry-run: ${{ inputs.dry-run }}
+
+      - name: ❌ Delete Artifact
+        uses: GeekyEggo/delete-artifact@v5.0.0
+        with:
+          name: output
