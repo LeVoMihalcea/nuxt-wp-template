@@ -2,7 +2,7 @@ name: 🌿 Deploy 🌿
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   workflow_dispatch:
     inputs:
       dry-run:
@@ -12,6 +12,7 @@ on:
       version-bump-type:
         required: true
         default: "patch"
+        description: "which SemVer number to bump"
 
 jobs:
   generate:
