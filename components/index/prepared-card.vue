@@ -6,6 +6,7 @@
         description: String,
         secondary: Boolean,
         tall: Boolean,
+        url: String,
     });
 </script>
 
@@ -30,7 +31,9 @@
                         {{ description ?? $t('loremIpsum.short') }}
                     </p>
                     <div class="flex gap-4 mt-1 text-color-secondary">
+                        <nuxt-link :to="url">
                         <Button :label="$t('news.findOut')" icon="pi pi-arrow-up-right" iconPos="right" variant="text"/>
+                        </nuxt-link>
                     </div>
                 </div>
             </div>
@@ -49,6 +52,10 @@
         max-height: 300px;
         height: 250px;
         width: 100%;
+    }
+
+    img {
+        max-width: 400px;
     }
 
     .tall{

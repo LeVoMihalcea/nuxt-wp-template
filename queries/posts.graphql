@@ -1,0 +1,15 @@
+query fetchPosts {
+    posts(where: {orderby: {field: DATE, order: DESC}, }) {
+        nodes {
+            content
+            title
+            id
+            date
+            featuredImage {
+                node {
+                    mediaItemUrl
+                }
+            }
+        }
+    }
+}
