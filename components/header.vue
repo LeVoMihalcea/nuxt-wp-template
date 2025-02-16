@@ -4,6 +4,7 @@
 
     const {locale, t} = useI18n();
     let localePath = useLocalePath();
+    const baseUrl = "/preview";
 
     const items = ref<MenuItem[] | undefined>([]);
 
@@ -15,28 +16,28 @@
         items.value = [
             {
                 label: t('pages.home'),
-                url: localePath('/'),
+                url: localePath(baseUrl + '/'),
             },
             {
                 label: t('pages.about'),
-                url: localePath('/about'),
+                url: localePath(baseUrl + '/about'),
 
             },
             {
                 label: t('pages.humanResources'),
-                url: localePath('/human-resources'),
+                url: localePath(baseUrl + '/human-resources'),
             },
             {
                 label: t('pages.research'),
-                url: localePath('/research'),
+                url: localePath(baseUrl + '/research'),
             },
             {
                 label: t('pages.forStudents'),
-                url: localePath('/for-students'),
+                url: localePath(baseUrl + '/for-students'),
             },
             {
                 label: t('pages.contact'),
-                url: localePath('/contact'),
+                url: localePath(baseUrl + '/contact'),
             },
         ];
     };
