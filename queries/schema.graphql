@@ -916,6 +916,14 @@ interface PostFormatConnectionPageInfo {
     startCursor: String
 }
 
+"Interface representing fields of the ACF &quot;Postfieldgroup&quot; Field Group"
+interface Postfieldgroup_Fields {
+    "Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Postfieldgroup&quot; Field Group"
+    description: String
+    "The name of the field group"
+    fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
 "Nodes that can be seen in a preview (unpublished) state."
 interface Previewable {
     "Whether the object is a node in the preview state"
@@ -1304,6 +1312,12 @@ interface WPPageInfo {
     hasPreviousPage: Boolean!
     "When paginating backwards, the cursor to continue."
     startCursor: String
+}
+
+"Provides access to fields of the &quot;Postfieldgroup&quot; ACF Field Group via the &quot;postfieldgroup&quot; field"
+interface WithAcfPostfieldgroup {
+    "Fields of the Postfieldgroup ACF Field Group"
+    postfieldgroup: Postfieldgroup
 }
 
 "Provides access to fields of the &quot;SpecializationFieldGroup&quot; ACF Field Group via the &quot;specializationFieldGroup&quot; field"
@@ -3157,7 +3171,7 @@ type Plugin implements Node {
 }
 
 "The post type"
-type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable {
+type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfPostfieldgroup {
     "The ancestors of the content node."
     ancestors(
         "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
@@ -3316,6 +3330,8 @@ type Post implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node 
     ): PostToPostFormatConnection
     "The id field matches the WP_Post-&gt;ID field."
     postId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
+    "Fields of the Postfieldgroup ACF Field Group"
+    postfieldgroup: Postfieldgroup
     "Connection between the Post type and the post type"
     preview: PostToPreviewConnectionEdge
     "The database id of the preview node"
@@ -3820,6 +3836,14 @@ type PostTypeLabelDetails {
     viewItem: String
     "Label for viewing post type archives."
     viewItems: String
+}
+
+"The &quot;Postfieldgroup&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;."
+type Postfieldgroup implements AcfFieldGroup & AcfFieldGroupFields & Postfieldgroup_Fields {
+    "Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Postfieldgroup&quot; Field Group"
+    description: String
+    "The name of the field group"
+    fieldGroupName: String @deprecated(reason: "Use __typename instead")
 }
 
 "The reading setting type"

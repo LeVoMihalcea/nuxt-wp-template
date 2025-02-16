@@ -1,12 +1,9 @@
 <script setup lang="ts">
     import PreparedCard from "~/components/index/prepared-card.vue";
-    import { useNews } from "~/composables/useNews";
-    import type { Post } from "~/types/Post";
+    import {useNews} from "~/composables/useNews";
+    import type {Post} from "~/types/Post";
 
-    const { $viewport } = useNuxtApp();
-    const onMobile = !$viewport.isGreaterOrEquals("tablet");
-
-    const cards: Ref<Post[] | null> = ref<Post[] | null>(null);
+    const cards: Ref<Post[] | null> = ref<Post[]>([]);
 
     const news = useNews();
 
@@ -16,26 +13,30 @@
         }
     });
 
-    const lastThreeArticles = computed(() => cards.value?.slice(0, 3));
+    const lastThreeArticles: Post[] = computed(() => {
+        try {
+            return cards.value.slice(0, 3)
+        } catch (e) {
+        }
+    });
 </script>
 
 <template>
     <div class="container p-2 md:p-8">
         <h1 class="background-text hidden md:block">{{ $t('news.articles') }}</h1>
         <h2 class="text-6xl font-normal mb-4">{{ $t('news.news') }}</h2>
-        <div v-if="cards" class="flex md:flex-row flex-column justify-content-center">
+        <div v-if="cards" class="flex md:flex-row flex-column align-items-stretch">
             <div v-for="(card, index) in lastThreeArticles">
                 <prepared-card
                     :title="card.title"
                     :image-url="card.imageUrl"
-                    :class="{'w-8': index === 0}"
-                    :tall="index === 0"
-                    :secondary="index !== 0 && !onMobile"
+                    :date="card.date"
+                    :description="card.excerpt"
                     :url="`/posts/${card.id}`"
-                    class="m-2 w-full"
+                    :secondary="index !== 0 && $viewport.isGreaterOrEquals('tablet')"
+                    class="m-2"
                 />
             </div>
-
         </div>
     </div>
 </template>

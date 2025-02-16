@@ -9,7 +9,7 @@
 </script>
 
 <template>
-    <div>
+    <div class="mt-6">
         <page-content>
             <div v-if="post">
                 <h1>{{ post.title }}</h1>
@@ -22,3 +22,10 @@
         </page-content>
     </div>
 </template>
+
+<style scoped>
+    :deep(img) {
+        width: 100%;
+        height: unset !important;
+    }
+</style>

@@ -1,7 +1,10 @@
+import {pos} from "ipx";
+
 export type Post = {
     id: string;
     title: string;
     content: string;
+    excerpt: string;
     date: string;
     imageUrl: string;
 }
@@ -10,6 +13,9 @@ interface PostGraphQL {
     id: string;
     title: string;
     content: string;
+    postfieldgroup: {
+        description: string;
+    };
     date: string;
     featuredImage: {
         node: {
@@ -33,13 +39,13 @@ export const mapPostGraphQLToPostDTO = (post: PostGraphQL): Post => {
         id: post.id,
         title: post.title,
         content: post.content ?? "",
-        date: post.date,
-        imageUrl: post.featuredImage?.node.mediaItemUrl
+        excerpt: post.postfieldgroup?.description ?? "",
+        date: new Date(post.date).toLocaleDateString(),
+        imageUrl: post.featuredImage?.node.mediaItemUrl,
     }
 };
 
 export const mapPost = (apiResponse: PostGraphQLResponse): Post => {
-    console.log("mapping post", apiResponse);
     return mapPostGraphQLToPostDTO(apiResponse.post)
 }
 
