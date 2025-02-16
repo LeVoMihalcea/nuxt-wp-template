@@ -23,8 +23,8 @@
         </div>
 
         <div class="name flex flex-column justify-content-evenly text-white text-center w-full">
-            <h3 class="md:text-lg my-0">{{ capitalizeLastWord(name) }}</h3>
-            <p class="opacity-70 font-light md:text-base my-0 uppercase">{{ title }}</p>
+            <h3 class="xl:text-lg my-0">{{ capitalizeLastWord(name) }}</h3>
+            <p class="opacity-70 font-light xl:text-base my-0 uppercase">{{ title }}</p>
         </div>
     </div>
 </template>

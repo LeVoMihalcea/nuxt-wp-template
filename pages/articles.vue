@@ -1,7 +1,7 @@
 <template>
     <h1>Articles</h1>
     <div class="grid">
-        <div class="col-12 md:col-6 lg:col-4" v-for="post in data">
+        <div class="col-12 xl:col-6 xl:col-4" v-for="post in data">
             <Post :post="post"></Post>
         </div>
     </div>

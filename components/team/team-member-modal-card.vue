@@ -14,13 +14,13 @@
     <div class="container flex flex-column w-full h-full -p-8 text-white">
         <div class="flex flex-row justify-content-evenly">
             <nuxt-img :src="picture" alt="profile picture" class="profile-picture w-5"/>
-            <div class="name-box flex flex-column justify-content-start align-items-center w-full md:p-8 p-4 font-light">
-                <h1 class="md:text-6xl my-0 uppercase text-center font-light">{{ name }}</h1>
+            <div class="name-box flex flex-column justify-content-start align-items-center w-full xl:p-8 p-4 font-light">
+                <h1 class="xl:text-6xl my-0 uppercase text-center font-light">{{ name }}</h1>
                 <h4 class="uppercase mt-0 text-black-alpha-90 font-light">{{ title }}</h4>
                 <div v-html="description" class="description"/>
             </div>
         </div>
-        <div class="md:px-8 px-2 py-4" v-html="content"/>
+        <div class="xl:px-8 px-2 py-4" v-html="content"/>
     </div>
 </template>
 

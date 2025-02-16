@@ -1,7 +1,7 @@
 <template>
     <two-columns-responsive>
         <template #first>
-            <div class="md:w-8">
+            <div class="xl:w-8">
                 <h1 class="text-6xl">{{ $t('whoWeAre.title') }}</h1>
                 <p class="text-lg mt-3 text-color-secondary">{{ $t('whoWeAre.subtitle1') }}</p>
                 <p class="text-lg mt-3 text-color-secondary">{{ $t('whoWeAre.subtitle2') }}</p>

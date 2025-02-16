@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <section class="page-content md:p-8 p-3">
+    <section class="page-content xl:p-8 p-3">
         <slot></slot>
     </section>
 </template>

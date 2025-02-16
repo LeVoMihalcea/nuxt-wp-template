@@ -8,8 +8,8 @@
 
 <template>
     <footer>
-        <div class="grid md:w-10 text-white mt-6">
-            <div class="follow-us col-12 lg:text-left md:col-5 text-center">
+        <div class="grid xl:w-10 text-white mt-6">
+            <div class="follow-us col-12 xl:text-left xl:col-5 text-center">
                 <nuxt-img src="../public/logo.svg" loading="lazy"/>
 
                 <p class="text-color-secondary">{{ $t('loremIpsum.short') }}</p>
@@ -20,7 +20,7 @@
                 <p>Barițiu 26-28, sala 27 Cluj-Napoca</p>
             </div>
 
-            <div class="menu col-12 lg:text-left md:col-3 text-center">
+            <div class="menu col-12 xl:text-left xl:col-3 text-center">
                 <p class="font-bold accent opacity-50">{{ $t("footer.menu") }}</p>
                 <p>
                     <nuxt-link-locale to="/" class="no-underline text-white" :prefetch="false">{{ $t("pages.home") }}
@@ -53,7 +53,7 @@
                 </p>
             </div>
 
-            <div class="docs col-12 lg:text-left md:col-3 text-center">
+            <div class="docs col-12 xl:text-left xl:col-3 text-center">
                 <p class="font-bold accent opacity-50">{{ $t("footer.legalDocs") }}</p>
                 <p>
                     <nuxt-link-locale :to="{ path: '/legal-page/cookie-policy' }"

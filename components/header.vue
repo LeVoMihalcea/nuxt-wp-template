@@ -46,19 +46,17 @@
 
 <template>
     <header>
-        <Menubar :model="items" class="md:h-5rem md:pr-8 flex flex-row justify-content-between menubar">
+        <Menubar :model="items" class="xl:h-5rem xl:pr-8 flex flex-row justify-content-between menubar">
             <template #start>
                 <nuxt-link to="/">
-                    <nuxt-img src="logo.svg" class="logo w-12 lg:ml-5 ml-1 mt-1"/>
+                    <nuxt-img src="logo.svg" class="logo w-12 xl:ml-5 ml-1 mt-1"/>
                 </nuxt-link>
+                <language-switch v-if="useRoute().fullPath === '/'" class="ml-8"/>
             </template>
             <template #item="{ item }">
                 <a :href="item.url">
                     <Button :label="item.label as string" variant="link" class="text-white"/>
                 </a>
-            </template>
-            <template #end>
-                <language-switch v-if="useRoute().fullPath === '/'"/>
             </template>
         </Menubar>
     </header>

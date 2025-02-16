@@ -13,10 +13,10 @@
 </script>
 
 <template>
-    <div class="container p-2 md:p-8">
-        <h1 class="background-text hidden md:block">OPORTUNITĂȚI.</h1>
+    <div class="container p-2 xl:p-8">
+        <h1 class="background-text hidden xl:block">OPORTUNITĂȚI.</h1>
         <h2 class="text-6xl font-normal mb-4">CE ȚI-AM PREGĂTIT</h2>
-        <p class="mb-6 w-full md:w-6">
+        <p class="mb-6 w-full xl:w-6">
             Lorem ipsum dolor sit amet consectetur. Mauris id ut id arcu cursus tortor morbi tortor eget. Feugiat bibendum
             diam quam lacus adipiscing arcu at neque. Pellentesque maecenas ipsum velit sit molestie.
         </p>
@@ -25,12 +25,12 @@
             <div
                 v-for="(card, index) in cards"
                 :key="index"
-                class="col-12 md:col-4"
+                class="col-12 xl:col-4"
             >
                 <prepared-card :image-url="card.imageUrl" :title="card.title" />
             </div>
         </div>
-<!--        <nuxt-img src="simple-logo.svg" class="logo hidden md:block"/>-->
+<!--        <nuxt-img src="simple-logo.svg" class="logo hidden xl:block"/>-->
     </div>
 </template>
 

@@ -19,7 +19,7 @@
 <template>
     <div>
         <Dialog v-model:visible="modalVisible"
-                class="w-11 md:w-8"
+                class="w-11 xl:w-8"
                 :show-header="false"
                 modal dismissable-mask
         >
@@ -41,11 +41,11 @@
                 <div v-for="(category, index) of nonZeroCategories"
                      :class="{blue: index % 2 === 1, 'text-white': index % 2 === 1}" class="text-center py-8">
 
-                    <!--        <h1 class="background-text w-full z-0 hidden md:inline-block"> {{ category.name }} </h1>-->
-                    <h1 class="uppercase text-xl md:text-7xl"> {{ category.name }} </h1>
-                    <div class="grid w-full md:w-6 m-auto z-1">
+                    <!--        <h1 class="background-text w-full z-0 hidden xl:inline-block"> {{ category.name }} </h1>-->
+                    <h1 class="uppercase text-xl xl:text-7xl"> {{ category.name }} </h1>
+                    <div class="grid w-full xl:w-6 m-auto z-1">
                         <team-member-card v-for="staff of category.staff?.nodes"
-                                          class="align-items-center col-6 md:col-3 mb-8"
+                                          class="align-items-center col-6 xl:col-3 mb-8"
                                           :class="{'text-white': index % 2 === 1}"
                                           :name="staff.title ?? 'fallback-name'"
                                           :picture="staff.featuredImage?.node.sourceUrl"

@@ -7,7 +7,7 @@
         <two-columns-responsive reverse-if-on-mobile>
             <template #first>
                 <div class="gradient text-white p-8">
-                    <div class="text-4xl w-12 md:w-6 font-bold">
+                    <div class="text-4xl w-12 xl:w-6 font-bold">
                         <h1 class="font-normal">
                             {{ $t('student.title') }}
                             <span class="underline accent">{{ $t('student.fieQuestion') }}</span>
@@ -26,7 +26,7 @@
                     <h3 class="primary-light"><span class="pi pi-verified"/> Competențe tehnice solide</h3>
                     <p class="pl-3">{{$t('loremIpsum.short')}}</p>
 
-                    <Button class="md:ml-3 mt-4 w-12 md:w-6" secondary rounded :label="$t('student.enrollNow')"/>
+                    <Button class="xl:ml-3 mt-4 w-12 xl:w-6" secondary rounded :label="$t('student.enrollNow')"/>
                 </div>
             </template>
 
