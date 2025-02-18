@@ -1,0 +1,12 @@
+query fetchTestimonials($language: LanguageCodeFilterEnum!) {
+    testimonials(where: {orderby: {field: DATE, order: DESC}, language: $language}) {
+        nodes {
+            id
+            title
+            testimonialFieldGroup {
+                autor
+                rol
+            }
+        }
+    }
+}

@@ -1194,6 +1194,46 @@ interface TermNodeConnectionPageInfo {
     startCursor: String
 }
 
+"Connection to Testimonial Nodes"
+interface TestimonialConnection {
+    "A list of edges (relational context) between RootQuery and connected Testimonial Nodes"
+    edges: [TestimonialConnectionEdge!]!
+    "A list of connected Testimonial Nodes"
+    nodes: [Testimonial!]!
+    "Information about pagination in a connection."
+    pageInfo: TestimonialConnectionPageInfo!
+}
+
+"Edge between a Node and a connected Testimonial"
+interface TestimonialConnectionEdge {
+    "Opaque reference to the nodes position in the connection. Value can be used with pagination args."
+    cursor: String
+    "The connected Testimonial Node"
+    node: Testimonial!
+}
+
+"Page Info on the connected TestimonialConnectionEdge"
+interface TestimonialConnectionPageInfo {
+    "When paginating forwards, the cursor to continue."
+    endCursor: String
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+    "When paginating backwards, the cursor to continue."
+    startCursor: String
+}
+
+"Interface representing fields of the ACF &quot;TestimonialFieldGroup&quot; Field Group"
+interface TestimonialFieldGroup_Fields {
+    "Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TestimonialFieldGroup&quot; Field Group"
+    autor: String
+    "The name of the field group"
+    fieldGroupName: String @deprecated(reason: "Use __typename instead")
+    "Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TestimonialFieldGroup&quot; Field Group"
+    rol: String
+}
+
 "Connection to Theme Nodes"
 interface ThemeConnection {
     "A list of edges (relational context) between RootQuery and connected Theme Nodes"
@@ -1332,8 +1372,14 @@ interface WithAcfStaffFieldGroup {
     staffFieldGroup: StaffFieldGroup
 }
 
+"Provides access to fields of the &quot;TestimonialFieldGroup&quot; ACF Field Group via the &quot;testimonialFieldGroup&quot; field"
+interface WithAcfTestimonialFieldGroup {
+    "Fields of the TestimonialFieldGroup ACF Field Group"
+    testimonialFieldGroup: TestimonialFieldGroup
+}
+
 "Deprecated in favor of MenuItemLinkeable Interface"
-union MenuItemObjectUnion = Category | Page | Post | PostFormat | Specialization | Staff | StaffCategory | Tag
+union MenuItemObjectUnion = Category | Page | Post | PostFormat | Specialization | Staff | StaffCategory | Tag | Testimonial
 
 "Avatars are profile images for users. WordPress by default uses the Gravatar service to host and fetch avatars from."
 type Avatar {
@@ -2101,6 +2147,14 @@ type CreateTagPayload {
     tag: Tag
 }
 
+"The payload for the createTestimonial mutation."
+type CreateTestimonialPayload {
+    "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The Post object mutation type."
+    testimonial: Testimonial
+}
+
 "The payload for the createUser mutation."
 type CreateUserPayload {
     "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -2213,6 +2267,16 @@ type DeleteTagPayload {
     deletedId: ID
     "The deleted term object"
     tag: Tag
+}
+
+"The payload for the deleteTestimonial mutation."
+type DeleteTestimonialPayload {
+    "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The ID of the deleted object"
+    deletedId: ID
+    "The object before it was deleted"
+    testimonial: Testimonial
 }
 
 "The payload for the deleteUser mutation."
@@ -3936,6 +4000,11 @@ type RootMutation {
         "Input for the createTag mutation"
         input: CreateTagInput!
     ): CreateTagPayload
+    "The createTestimonial mutation"
+    createTestimonial(
+        "Input for the createTestimonial mutation"
+        input: CreateTestimonialInput!
+    ): CreateTestimonialPayload
     "The createUser mutation"
     createUser(
         "Input for the createUser mutation"
@@ -3991,6 +4060,11 @@ type RootMutation {
         "Input for the deleteTag mutation"
         input: DeleteTagInput!
     ): DeleteTagPayload
+    "The deleteTestimonial mutation"
+    deleteTestimonial(
+        "Input for the deleteTestimonial mutation"
+        input: DeleteTestimonialInput!
+    ): DeleteTestimonialPayload
     "The deleteUser mutation"
     deleteUser(
         "Input for the deleteUser mutation"
@@ -4076,6 +4150,11 @@ type RootMutation {
         "Input for the updateTag mutation"
         input: UpdateTagInput!
     ): UpdateTagPayload
+    "The updateTestimonial mutation"
+    updateTestimonial(
+        "Input for the updateTestimonial mutation"
+        input: UpdateTestimonialInput!
+    ): UpdateTestimonialPayload
     "The updateUser mutation"
     updateUser(
         "Input for the updateUser mutation"
@@ -4545,6 +4624,39 @@ type RootQuery {
         "Arguments for filtering the connection"
         where: RootQueryToTermNodeConnectionWhereArgs
     ): RootQueryToTermNodeConnection
+    "An object of the Testimonial Type. "
+    testimonial(
+        "Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the \"asPreview\" argument is not explicitly provided as an argument."
+        asPreview: Boolean,
+        "The globally unique identifier of the object."
+        id: ID!,
+        "Type of unique identifier to fetch by. Default is Global ID"
+        idType: TestimonialIdType
+    ): Testimonial
+    "A Testimonial object"
+    testimonialBy(
+        "Get the Testimonial object by its global ID"
+        id: ID,
+        "Get the Testimonial by its slug (only available for non-hierarchical types)"
+        slug: String,
+        "Get the Testimonial by its database ID"
+        testimonialId: Int,
+        "Get the Testimonial by its uri"
+        uri: String
+    ): Testimonial @deprecated(reason: "Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)")
+    "Connection between the RootQuery type and the Testimonial type"
+    testimonials(
+        "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
+        after: String,
+        "Cursor used along with the \"last\" argument to reference where in the dataset to get data"
+        before: String,
+        "The number of items to return after the referenced \"after\" cursor"
+        first: Int,
+        "The number of items to return before the referenced \"before\" cursor"
+        last: Int,
+        "Arguments for filtering the connection"
+        where: RootQueryToTestimonialConnectionWhereArgs
+    ): RootQueryToTestimonialConnection
     "A Theme object"
     theme(
         "The globally unique identifier of the theme."
@@ -5195,6 +5307,36 @@ type RootQueryToTermNodeConnectionEdge implements Edge & TermNodeConnectionEdge 
 
 "Page Info on the &quot;RootQueryToTermNodeConnection&quot;"
 type RootQueryToTermNodeConnectionPageInfo implements PageInfo & TermNodeConnectionPageInfo & WPPageInfo {
+    "When paginating forwards, the cursor to continue."
+    endCursor: String
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+    "When paginating backwards, the cursor to continue."
+    startCursor: String
+}
+
+"Connection between the RootQuery type and the Testimonial type"
+type RootQueryToTestimonialConnection implements Connection & TestimonialConnection {
+    "Edges for the RootQueryToTestimonialConnection connection"
+    edges: [RootQueryToTestimonialConnectionEdge!]!
+    "The nodes of the connection, without the edges"
+    nodes: [Testimonial!]!
+    "Information about pagination in a connection."
+    pageInfo: RootQueryToTestimonialConnectionPageInfo!
+}
+
+"An edge in a connection"
+type RootQueryToTestimonialConnectionEdge implements Edge & TestimonialConnectionEdge {
+    "A cursor for use in pagination"
+    cursor: String
+    "The item at the end of the edge"
+    node: Testimonial!
+}
+
+"Page Info on the &quot;RootQueryToTestimonialConnection&quot;"
+type RootQueryToTestimonialConnectionPageInfo implements PageInfo & TestimonialConnectionPageInfo & WPPageInfo {
     "When paginating forwards, the cursor to continue."
     endCursor: String
     "When paginating forwards, are there more items?"
@@ -6316,6 +6458,176 @@ type TermNodeToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStyleshee
     startCursor: String
 }
 
+"The Testimonial type"
+type Testimonial implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfTestimonialFieldGroup {
+    "The ancestors of the content node."
+    ancestors(
+        "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
+        after: String,
+        "Cursor used along with the \"last\" argument to reference where in the dataset to get data"
+        before: String,
+        "The number of items to return after the referenced \"after\" cursor"
+        first: Int,
+        "The number of items to return before the referenced \"before\" cursor"
+        last: Int
+    ): TestimonialToTestimonialConnection @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+    "Connection between the ContentNode type and the ContentType type"
+    contentType: ContentNodeToContentTypeConnectionEdge
+    "The name of the Content Type the node belongs to"
+    contentTypeName: String!
+    "The unique identifier stored in the database"
+    databaseId: Int!
+    "Post publishing date."
+    date: String
+    "The publishing date set in GMT."
+    dateGmt: String
+    "The desired slug of the post"
+    desiredSlug: String
+    "If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds"
+    editingLockedBy: ContentNodeToEditLockConnectionEdge
+    "The RSS enclosure for the object"
+    enclosure: String
+    "Connection between the ContentNode type and the EnqueuedScript type"
+    enqueuedScripts(
+        "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
+        after: String,
+        "Cursor used along with the \"last\" argument to reference where in the dataset to get data"
+        before: String,
+        "The number of items to return after the referenced \"after\" cursor"
+        first: Int,
+        "The number of items to return before the referenced \"before\" cursor"
+        last: Int
+    ): ContentNodeToEnqueuedScriptConnection
+    "Connection between the ContentNode type and the EnqueuedStylesheet type"
+    enqueuedStylesheets(
+        "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
+        after: String,
+        "Cursor used along with the \"last\" argument to reference where in the dataset to get data"
+        before: String,
+        "The number of items to return after the referenced \"after\" cursor"
+        first: Int,
+        "The number of items to return before the referenced \"before\" cursor"
+        last: Int
+    ): ContentNodeToEnqueuedStylesheetConnection
+    "The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table."
+    guid: String
+    "Whether the testimonials object is password protected."
+    hasPassword: Boolean
+    "The globally unique identifier of the testimonials object."
+    id: ID!
+    "Whether the node is a Comment"
+    isComment: Boolean!
+    "Whether the node is a Content Node"
+    isContentNode: Boolean!
+    "Whether the node represents the front page."
+    isFrontPage: Boolean!
+    "Whether  the node represents the blog page."
+    isPostsPage: Boolean!
+    "Whether the object is a node in the preview state"
+    isPreview: Boolean
+    "Whether the object is restricted from the current viewer"
+    isRestricted: Boolean
+    "Whether the node is a Term"
+    isTermNode: Boolean!
+    "Polylang language"
+    language: Language
+    "The user that most recently edited the node"
+    lastEditedBy: ContentNodeToEditLastConnectionEdge
+    "The permalink of the post"
+    link: String
+    "The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time."
+    modified: String
+    "The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT."
+    modifiedGmt: String
+    "The parent of the content node."
+    parent: TestimonialToParentConnectionEdge @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+    "The password for the testimonials object."
+    password: String
+    "Connection between the Testimonial type and the Testimonial type"
+    preview: TestimonialToPreviewConnectionEdge
+    "The database id of the preview node"
+    previewRevisionDatabaseId: Int
+    "Whether the object is a node in the preview state"
+    previewRevisionId: ID
+    "The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table."
+    slug: String
+    "The current status of the object"
+    status: String
+    "The template assigned to the node"
+    template: ContentTemplate
+    "Fields of the TestimonialFieldGroup ACF Field Group"
+    testimonialFieldGroup: TestimonialFieldGroup
+    "The id field matches the WP_Post-&gt;ID field."
+    testimonialId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
+    "The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made."
+    title(
+        "Format of the field output"
+        format: PostObjectFieldFormatEnum
+    ): String
+    "Get specific translation version of this object"
+    translation(language: LanguageCodeEnum!): Testimonial
+    "List all translated versions of this post"
+    translations: [Testimonial]
+    "The unique resource identifier path"
+    uri: String
+}
+
+"The &quot;TestimonialFieldGroup&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;."
+type TestimonialFieldGroup implements AcfFieldGroup & AcfFieldGroupFields & TestimonialFieldGroup_Fields {
+    "Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TestimonialFieldGroup&quot; Field Group"
+    autor: String
+    "The name of the field group"
+    fieldGroupName: String @deprecated(reason: "Use __typename instead")
+    "Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;TestimonialFieldGroup&quot; Field Group"
+    rol: String
+}
+
+"Connection between the Testimonial type and the Testimonial type"
+type TestimonialToParentConnectionEdge implements Edge & OneToOneConnection & TestimonialConnectionEdge {
+    "Opaque reference to the nodes position in the connection. Value can be used with pagination args."
+    cursor: String
+    "The node of the connection, without the edges"
+    node: Testimonial! @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+}
+
+"Connection between the Testimonial type and the Testimonial type"
+type TestimonialToPreviewConnectionEdge implements Edge & OneToOneConnection & TestimonialConnectionEdge {
+    "Opaque reference to the nodes position in the connection. Value can be used with pagination args."
+    cursor: String
+    "The node of the connection, without the edges"
+    node: Testimonial!
+}
+
+"Connection between the Testimonial type and the Testimonial type"
+type TestimonialToTestimonialConnection implements Connection & TestimonialConnection {
+    "Edges for the TestimonialToTestimonialConnection connection"
+    edges: [TestimonialToTestimonialConnectionEdge!]!
+    "The nodes of the connection, without the edges"
+    nodes: [Testimonial!]!
+    "Information about pagination in a connection."
+    pageInfo: TestimonialToTestimonialConnectionPageInfo!
+}
+
+"An edge in a connection"
+type TestimonialToTestimonialConnectionEdge implements Edge & TestimonialConnectionEdge {
+    "A cursor for use in pagination"
+    cursor: String @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+    "The item at the end of the edge"
+    node: Testimonial! @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+}
+
+"Page Info on the &quot;TestimonialToTestimonialConnection&quot;"
+type TestimonialToTestimonialConnectionPageInfo implements PageInfo & TestimonialConnectionPageInfo & WPPageInfo {
+    "When paginating forwards, the cursor to continue."
+    endCursor: String
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+    "When paginating backwards, the cursor to continue."
+    startCursor: String
+}
+
 "A theme object"
 type Theme implements Node {
     "Name of the theme author(s), could also be a company name. This field is equivalent to WP_Theme-&gt;get( &quot;Author&quot; )."
@@ -6438,6 +6750,14 @@ type UpdateTagPayload {
     clientMutationId: String
     "The created post_tag"
     tag: Tag
+}
+
+"The payload for the updateTestimonial mutation."
+type UpdateTestimonialPayload {
+    "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The Post object mutation type."
+    testimonial: Testimonial
 }
 
 "The payload for the updateUser mutation."
@@ -6979,6 +7299,8 @@ enum ContentTypeEnum {
     SPECIALIZATION
     "The Type of Content object"
     STAFF
+    "The Type of Content object"
+    TESTIMONIALS
 }
 
 "The Type of Identifier used to fetch a single Content Type node. To be used along with the \"id\" field. Default is \"ID\"."
@@ -7559,6 +7881,18 @@ enum TermObjectsConnectionOrderbyEnum {
     TERM_ID
     "Order the connection by term order."
     TERM_ORDER
+}
+
+"The Type of Identifier used to fetch a single resource. Default is ID."
+enum TestimonialIdType {
+    "Identify a resource by the Database ID."
+    DATABASE_ID
+    "Identify a resource by the (hashed) Global ID."
+    ID
+    "Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier."
+    SLUG
+    "Identify a resource by the URI."
+    URI
 }
 
 "The Type of Identifier used to fetch a single User node. To be used along with the \"id\" field. Default is \"ID\"."
@@ -8172,6 +8506,25 @@ input CreateTagInput {
     slug: String
 }
 
+"Input for the createTestimonial mutation."
+input CreateTestimonialInput {
+    "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, \"2017\" as the input will use current date with timestamp 20:17 "
+    date: String
+    language: LanguageCodeEnum
+    "A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types."
+    menuOrder: Int
+    "The password used to protect the content of the object"
+    password: String
+    "The slug of the object"
+    slug: String
+    "The status of the object"
+    status: PostStatusEnum
+    "The title of the object"
+    title: String
+}
+
 "Input for the createUser mutation."
 input CreateUserInput {
     "User's AOL IM account."
@@ -8350,6 +8703,18 @@ input DeleteTagInput {
     clientMutationId: String
     "The ID of the tag to delete"
     id: ID!
+}
+
+"Input for the deleteTestimonial mutation."
+input DeleteTestimonialInput {
+    "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "Whether the object should be force deleted instead of being moved to the trash"
+    forceDelete: Boolean
+    "The ID of the Testimonial to delete"
+    id: ID!
+    "Override the edit lock when another user is editing the post"
+    ignoreEditLock: Boolean
 }
 
 "Input for the deleteUser mutation."
@@ -9837,6 +10202,48 @@ input RootQueryToTermNodeConnectionWhereArgs {
     updateTermMetaCache: Boolean
 }
 
+"Arguments for filtering the RootQueryToTestimonialConnection connection"
+input RootQueryToTestimonialConnectionWhereArgs {
+    "Filter the connection based on dates"
+    dateQuery: DateQueryInput
+    "True for objects with passwords; False for objects without passwords; null for all objects with or without passwords"
+    hasPassword: Boolean
+    "Specific database ID of the object"
+    id: Int
+    "Array of IDs for the objects to retrieve"
+    in: [ID]
+    "Filter by Testimonials by language code (Polylang)"
+    language: LanguageCodeFilterEnum
+    "Filter Testimonials by one or more languages (Polylang)"
+    languages: [LanguageCodeEnum!]
+    "Get objects with a specific mimeType property"
+    mimeType: MimeTypeEnum
+    "Slug / post_name of the object"
+    name: String
+    "Specify objects to retrieve. Use slugs"
+    nameIn: [String]
+    "Specify IDs NOT to retrieve. If this is used in the same query as \"in\", it will be ignored"
+    notIn: [ID]
+    "What parameter to use to order the objects by."
+    orderby: [PostObjectsConnectionOrderbyInput]
+    "Use ID to return only children. Use 0 to return only top-level items"
+    parent: ID
+    "Specify objects whose parent is in an array"
+    parentIn: [ID]
+    "Specify posts whose parent is not in an array"
+    parentNotIn: [ID]
+    "Show posts with a specific password."
+    password: String
+    "Show Posts based on a keyword search"
+    search: String
+    "Retrieve posts where post status is in an array."
+    stati: [PostStatusEnum]
+    "Show posts with a specific status."
+    status: PostStatusEnum
+    "Title of the object"
+    title: String
+}
+
 "Arguments for filtering the RootQueryToUserConnection connection"
 input RootQueryToUserConnectionWhereArgs {
     "Array of userIds to exclude."
@@ -10474,6 +10881,29 @@ input UpdateTagInput {
     name: String
     "If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name."
     slug: String
+}
+
+"Input for the updateTestimonial mutation."
+input UpdateTestimonialInput {
+    "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, \"2017\" as the input will use current date with timestamp 20:17 "
+    date: String
+    "The ID of the Testimonial object"
+    id: ID!
+    "Override the edit lock when another user is editing the post"
+    ignoreEditLock: Boolean
+    language: LanguageCodeEnum
+    "A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types."
+    menuOrder: Int
+    "The password used to protect the content of the object"
+    password: String
+    "The slug of the object"
+    slug: String
+    "The status of the object"
+    status: PostStatusEnum
+    "The title of the object"
+    title: String
 }
 
 "Input for the updateUser mutation."
