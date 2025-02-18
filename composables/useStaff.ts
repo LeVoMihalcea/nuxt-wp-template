@@ -1,7 +1,5 @@
-import {useAsyncData} from '#app';
 import fetchStaffQuery from '~/queries/staff.graphql';
 import {useI18n} from "vue-i18n";
-import {watchEffect} from "vue";
 import {useLazyAsyncData} from "#imports";
 
 export const useStaff = () => {
@@ -14,12 +12,13 @@ export const useStaff = () => {
         async () => {
             return await $graphql.default.request(fetchStaffQuery, variables.value);
         },
-        {server: false
-    });
+        {server: false}
+    );
 
-    watchEffect(() => {
+    watch(locale, () => {
+        variables.value.language = locale.value.toUpperCase();
         refresh().then();
-    });
+    })
 
     return {data, error};
 };

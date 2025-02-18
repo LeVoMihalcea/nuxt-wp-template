@@ -1,6 +1,5 @@
-import { useNuxtApp } from "#app";
-import { useLazyAsyncData } from "#imports";
-import { watchEffect } from "vue";
+import {useNuxtApp} from "#app";
+import {useLazyAsyncData} from "#imports";
 import type {DocumentNode} from "graphql";
 
 export function useGraphQL<Response, Entity = Response>(
@@ -8,11 +7,11 @@ export function useGraphQL<Response, Entity = Response>(
     query: DocumentNode,
     variables: Ref<Record<string, any>>,
     mapFn?: (data: Response) => Entity,
-    options: { server?: boolean } = { server: false }
+    options: { server?: boolean } = {server: false}
 ) {
-    const { $graphql } = useNuxtApp();
+    const {$graphql} = useNuxtApp();
 
-    const { data, error, status, refresh } = useLazyAsyncData<Entity>(
+    const {data, error, status, refresh} = useLazyAsyncData<Entity>(
         key,
         async (): Promise<Entity> => {
             const response = await $graphql.default.request<Response>(query, variables.value);
@@ -21,9 +20,9 @@ export function useGraphQL<Response, Entity = Response>(
         options
     );
 
-    watchEffect(() => {
+    watch(variables.value, () => {
         refresh().then();
-    });
+    })
 
-    return { data, error, status, refresh };
+    return {data, error, status, refresh};
 }

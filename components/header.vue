@@ -25,7 +25,7 @@
             },
             {
                 label: t('pages.humanResources'),
-                url: localePath(baseUrl + '/human-resources'),
+                url: localePath(baseUrl + '/staff'),
             },
             {
                 label: t('pages.research'),
@@ -52,7 +52,9 @@
                 <nuxt-link to="/">
                     <nuxt-img src="logo.svg" class="logo w-12 xl:ml-5 ml-1 mt-1"/>
                 </nuxt-link>
-                <language-switch v-if="useRoute().fullPath === '/'" class="ml-8"/>
+                <language-switch
+                    class="ml-8"/>
+<!--                    v-if="useRoute().fullPath === '/'" -->
             </template>
             <template #item="{ item }">
                 <a :href="item.url">

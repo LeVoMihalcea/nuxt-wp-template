@@ -3,6 +3,8 @@
     import type {TeamMember} from "~/components/team/team-member-card.vue";
     import TeamMemberModalCard from "~/components/team/team-member-modal-card.vue";
 
+    const {locale} = useI18n();
+
     const {data, error} = useStaff();
     const modalVisible = ref(false);
     //todo(leo): make this type safe
@@ -18,6 +20,7 @@
 
 <template>
     <div>
+        {{locale}}
         <Dialog v-model:visible="modalVisible"
                 class="w-11 xl:w-8"
                 :show-header="false"
