@@ -1,5 +1,5 @@
-query fetchStaff {
-    staffCategories(where: {orderby: NAME}) {
+query fetchStaff($language: LanguageCodeFilterEnum!) {
+    staffCategories(where: {orderby: NAME, language: $language}) {
         nodes {
             id
             name

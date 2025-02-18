@@ -26,7 +26,7 @@
             <team-member-modal-card
                 :name="modalPayload.title"
                 :title="modalPayload.staffFieldGroup?.title"
-                :picture="modalPayload.featuredImage.node.sourceUrl"
+                :picture="modalPayload.featuredImage?.node.sourceUrl ?? 'default-picture.svg'"
                 :content="modalPayload.content"
                 :description="modalPayload.staffFieldGroup?.description"
             />
@@ -48,7 +48,7 @@
                                           class="align-items-center col-6 xl:col-3 mb-8"
                                           :class="{'text-white': index % 2 === 1}"
                                           :name="staff.title ?? 'fallback-name'"
-                                          :picture="staff.featuredImage?.node.sourceUrl"
+                                          :picture="staff.featuredImage?.node.sourceUrl ?? 'default-picture.svg'"
                                           :department="staff.staffFieldGroup?.department ?? ''"
                                           :title="staff.staffFieldGroup?.title ?? ''"
                                           @click="() => changeModalPayload(staff)"

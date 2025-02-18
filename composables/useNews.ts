@@ -1,45 +1,33 @@
 import {useAsyncData} from "#app";
-import fetchNewsQuery from "~/queries/posts.graphql";
 import fetchArticleQuery from "~/queries/post.graphql";
-import type {Post, PostGraphQLResponse, PostsGraphQLResponse} from "~/types/Post";
-import {mapPost, mapPosts} from "~/types/Post";
+import fetchNewsQuery from "~/queries/posts.graphql";
+import {mapPost, mapPosts, type Post, type PostGraphQLResponse, type PostsGraphQLResponse} from "~/types/Post";
+import {useGraphQL} from "~/composables/useGraphQL";
 
 export const useNews = () => {
-    const {$graphql} = useNuxtApp();
     const {locale} = useI18n();
+    const variables = ref({language: locale.value.toUpperCase()});
 
-    const {data, error, status, refresh} = useLazyAsyncData<Post[]>(
-        "fetchNews",
-        async (): Promise<Post[]> => {
-            const response: PostsGraphQLResponse = await $graphql.default.request(fetchNewsQuery, {language: locale.value.toUpperCase()});
-            return mapPosts(response);
-        },
-        {server: false}
-    );
+    const {data, error, status, refresh} = useGraphQL<PostsGraphQLResponse, Post[]>(
+        'fetchPosts',
+        fetchNewsQuery,
+        variables,
+        mapPosts
+    )
 
-    watchEffect(() => {
-        refresh().then();
-    })
-
-    return {data, error, status};
+    return {data, error, status, refresh};
 };
 
 export const useSingleArticle = (id: string) => {
-    const {$graphql} = useNuxtApp();
     const {locale} = useI18n();
+    const variables = ref({language: locale.value.toUpperCase(), id});
 
-    const {data, error, status, refresh} = useAsyncData<Post>(
-        "fetchNews",
-        async (): Promise<Post> => {
-            const response: PostGraphQLResponse = await $graphql.default.request(fetchArticleQuery, {id, language: locale.value});
-            return mapPost(response);
-        },
-        {server: false}
-    );
+    const {data, error, status, refresh} = useGraphQL<PostGraphQLResponse, Post>(
+        'fetchPost',
+        fetchArticleQuery,
+        variables,
+        mapPost
+    )
 
-    watchEffect(() => {
-        refresh().then();
-    })
-
-    return {data, error, status};
+    return {data, error, status, refresh};
 };
