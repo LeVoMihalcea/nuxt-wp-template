@@ -13,11 +13,10 @@
         }
     });
 
-    const lastThreeArticles: Post[] = computed(() => {
+    const lastThreeArticles: Ref<Post[] | undefined> = computed(() => {
         try {
-            return cards.value.slice(0, 3)
-        } catch (e) {
-        }
+            return cards.value?.slice(0, 3)
+        } catch (e) {}
     });
 </script>
 
