@@ -32,7 +32,7 @@
                     </nuxt-link-locale>
                 </p>
                 <p>
-                    <nuxt-link-locale to="/human-resources" class="no-underline text-white" :prefetch="false">
+                    <nuxt-link-locale to="/staff" class="no-underline text-white" :prefetch="false">
                         {{ $t("pages.humanResources") }}
                     </nuxt-link-locale>
                 </p>
