@@ -20,7 +20,6 @@
 
 <template>
     <div>
-        {{locale}}
         <Dialog v-model:visible="modalVisible"
                 class="w-11 xl:w-8"
                 :show-header="false"

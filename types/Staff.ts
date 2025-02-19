@@ -56,7 +56,7 @@ export const mapStaffGraphQLToStaffDTO = (staff: StaffGraphQL): Staff => {
     let mapped = {
         id: staff.id,
         name: staff.name,
-        imageUrl: staff.staff.nodes?.featuredImage.node.sourceUrl ?? "default-picture.png",
+        imageUrl: staff.staff.nodes?.featuredImage.node.sourceUrl,
         title: staff.staff.nodes.staffFieldGroup.title,
         department: staff.staff.nodes.staffFieldGroup.department,
         description: staff.staff.nodes.staffFieldGroup.description,

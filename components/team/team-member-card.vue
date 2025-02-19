@@ -19,7 +19,8 @@
 <template>
     <div class="container flex flex-column">
         <div v-if="props.picture" class="w-full profile-picture">
-            <nuxt-img :src="props.picture" alt="profile picture" class="w-full"/>
+            <nuxt-img v-if="props.picture" :src="props.picture" alt="profile picture" class="w-full"/>
+            <nuxt-img v-else src="default-picture.svg" alt="profile picture" class="w-full"/>
         </div>
 
         <div class="name flex flex-column justify-content-evenly text-white text-center w-full">
