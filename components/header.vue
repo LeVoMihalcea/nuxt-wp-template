@@ -33,7 +33,20 @@
             },
             {
                 label: t('pages.forStudents'),
-                url: localePath(baseUrl + '/for-students'),
+                items: [
+                    {
+                        label: t('pages.research'),
+                        url: localePath(baseUrl + '/specializations'),
+                    },
+                    {
+                        label: t('pages.extra-curriculum'),
+                        url: localePath(baseUrl + '/extra-curriculum'),
+                    },
+                    {
+                        label: t('pages.annoucements'),
+                        url: localePath(baseUrl + '/announcements'),
+                    },
+                ]
             },
             {
                 label: t('pages.contact'),
