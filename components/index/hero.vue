@@ -6,10 +6,13 @@
         <h4 class="font-light xl:w-4">{{ $t('hero.subtitle') }}</h4>
 
         <searchbar/>
+        <social-media-zone class="w-full lg:w-1 mt-3"/>
     </header>
 </template>
 
 <script setup>
+    import SocialMediaZone from "~/components/social-media-zone.vue";
+
     const {t: $t} = useI18n();
     const searchQuery = ref("");
 </script>
