@@ -1,4 +1,6 @@
 <script setup lang="ts">
+    import SocialMediaZone from "~/components/social-media-zone.vue";
+
     const props = defineProps({
         title: {
             type: String,
@@ -19,7 +21,7 @@
 </script>
 
 <template>
-    <header class="story-hero p-8 text-white"
+    <header class="story-hero p-8 text-white "
         :style="{'background-image': `url(${props.backgroundImage})`}"
     >
         <div class="flex flex-column align-items-center pt-8">
@@ -27,6 +29,7 @@
             <h2 class="subtitle xl:w-6 text-center opacity-70 font-light">{{ subtitle }}</h2>
             <Button :label="button" @click="buttonCallback" class="p-button-rounded p-button-primary xl:w-3 mt-4"/>
         </div>
+        <social-media-zone :vertical="true" class="w-full lg:w-1 mt-3 absolute bottom-auto lg:top-50 right-0"/>
     </header>
 </template>
 
