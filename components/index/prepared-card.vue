@@ -22,7 +22,7 @@
             </div>
             <div v-else class="card">
                 <div class="flex flex-column justify-content-between">
-                    <nuxt-img class="w-full h-auto border-round-lg bg-cover" :src="imageUrl"/>
+                    <img class="w-full h-auto border-round-lg bg-cover" :src="imageUrl"/>
                     <div class="pt-2">
                         <div class="flex flex-column justify-content-start">
                             <p class="accent mt-0">

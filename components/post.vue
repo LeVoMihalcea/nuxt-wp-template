@@ -2,7 +2,7 @@
     <div class="border-1 border-primary border-round m-2 mt-6">
         <div class="mb-3">
             <div class="relative mx-auto" v-if="post._embedded['wp:featuredmedia']">
-                <nuxt-img :src="post._embedded['wp:featuredmedia'][0]?.link" class="w-full border-round"
+                <img :src="post._embedded['wp:featuredmedia'][0]?.link" class="w-full border-round"
                           alt="Blog post cover image"/>
             </div>
         </div>

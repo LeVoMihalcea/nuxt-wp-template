@@ -50,7 +50,7 @@
         <Menubar :model="items" class="xl:h-5rem xl:pr-8 flex flex-row justify-content-between menubar">
             <template #start>
                 <nuxt-link to="/">
-                    <nuxt-img src="logo.svg" class="logo w-12 xl:ml-5 ml-1 mt-1"/>
+                    <img src="../public/logo.svg" class="logo w-12 xl:ml-5 ml-1 mt-1"/>
                 </nuxt-link>
                 <language-switch
                     class="ml-8"/>

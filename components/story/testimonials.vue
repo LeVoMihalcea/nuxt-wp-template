@@ -4,7 +4,7 @@
 
     const {t} = useI18n();
 
-    const testimonials = useTestimonials().data.value;
+    const testimonials = useTestimonials().data;
 </script>
 
 <template>
@@ -19,7 +19,6 @@
             </template>
             <template #second>
                 <div class="flex flex-column h-full justify-content-center">
-                    {{ testimonials }}
                     <Carousel :value="testimonials"
                               :numVisible="1"
                               :numScroll="1"
