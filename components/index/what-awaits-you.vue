@@ -4,7 +4,7 @@
 <template>
     <div class="container text-center m-4 xl:m-8">
         <div class="flex flex-column xl:flex-row font-light">
-            <nuxt-img src="simple-logo.svg" class="logo"/>
+            <img src="../../public/simple-logo.svg" class="logo"/>
 
             <div class="xl:mx-8 z-1">
                 <h1>

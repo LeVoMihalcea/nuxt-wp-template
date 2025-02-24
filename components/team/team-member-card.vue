@@ -19,7 +19,7 @@
 <template>
     <div class="container flex flex-column">
         <div v-if="props.picture" class="w-full profile-picture">
-            <nuxt-img v-if="props.picture" :src="props.picture" alt="profile picture" class="w-full"/>
+            <img v-if="props.picture" :src="props.picture" alt="profile picture" class="w-full"/>
             <img v-else src="../../public/default-picture.svg" alt="profile picture" class="w-full translate-y-100"/>
         </div>
 

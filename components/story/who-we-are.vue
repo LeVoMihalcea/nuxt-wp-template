@@ -11,7 +11,7 @@
 
         <template #second>
             <div class="flex flex-row justify-content-center">
-            <nuxt-img src="who-we-are/img.png" class="w-8"/>
+            <img src="../../public/who-we-are/img.png" class="w-8"/>
             </div>
         </template>
     </two-columns-responsive>
