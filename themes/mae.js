@@ -42,8 +42,17 @@ const CustomPreset = definePreset(Aura, {
             item: {
                 focus: {
                     background: '{transparent}',
-                }
+                },
+                active: {
+                    background: '{transparent}',
+                },
             },
+            submenu: {
+                background: '{primary.500}',
+                border: {
+                    color: '{primary.500}',
+                }
+            }
         },
         dialog:{
             background: '{blueContrast.500}',
