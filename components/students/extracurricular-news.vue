@@ -6,6 +6,7 @@ import PreparedCard from "~/components/index/prepared-card.vue";
 <template>
   <h1>{{ $t('extracurricular-news.title') }}</h1>
   <prepared-card
+      :secondary="true"
       :date="$t('extracurricular-news.date')"
       :title="$t('extracurricular-news.title')"
       :description="$t('extracurricular-news.text')"
