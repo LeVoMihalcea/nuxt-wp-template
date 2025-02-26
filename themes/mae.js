@@ -40,10 +40,13 @@ const CustomPreset = definePreset(Aura, {
                 color: "{transparent}",
             },
             item: {
+                color: "white",
                 focus: {
+                    color: "{accent.500}",
                     background: '{transparent}',
                 },
                 active: {
+                    color: "{accent.500}",
                     background: '{transparent}',
                 },
             },
