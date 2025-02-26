@@ -1,4 +1,4 @@
-query fetchPosts {
+query fetchSocialMedia {
     allSocialMedia(where: {orderby: {field: TITLE, order: ASC}}) {
         nodes {
             title

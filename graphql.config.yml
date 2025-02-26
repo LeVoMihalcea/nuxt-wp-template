@@ -1,5 +1,5 @@
-schema: ./queries/schema.graphql
-documents: 'queries/*.gql'
+schema: ./graphql/schema.graphql
+documents: 'graphql/*.gql'
 generates:
 
 extensions:

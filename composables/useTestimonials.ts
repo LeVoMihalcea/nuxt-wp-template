@@ -1,5 +1,5 @@
 import {mapTestimonials, type Testimonial, type TestimonialsGraphQLResponse} from "~/types/Testimonial";
-import fetchTestimonialsQuery from '~/queries/testimonials.graphql'
+import fetchTestimonialsQuery from '~/graphql/queries/testimonials.graphql'
 
 export const useTestimonials = () => {
     const {locale} = useI18n();

@@ -1,5 +1,5 @@
 import type {Specialization, SpecializationsGraphQLResponse} from "~/types/Specialization";
-import fetchSpecializationsQuery from "~/queries/specializations.graphql";
+import fetchSpecializationsQuery from "~/graphql/queries/specializations.graphql";
 import {mapSpecializations} from "~/types/Specialization";
 
 export const useSpecializations = () => {
@@ -12,6 +12,8 @@ export const useSpecializations = () => {
         variables,
         mapSpecializations
     )
+
+
 
     return {data, error, status, refresh}    
 };

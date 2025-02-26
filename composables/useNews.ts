@@ -1,6 +1,6 @@
 import {useAsyncData} from "#app";
-import fetchArticleQuery from "~/queries/post.graphql";
-import fetchNewsQuery from "~/queries/posts.graphql";
+import fetchArticleQuery from "~/graphql/queries/post.graphql";
+import fetchNewsQuery from "~/graphql/queries/posts.graphql";
 import {mapPost, mapPosts, type Post, type PostGraphQLResponse, type PostsGraphQLResponse} from "~/types/Post";
 import {useGraphQL} from "~/composables/useGraphQL";
 
@@ -9,7 +9,7 @@ export const useNews = () => {
     const variables = ref({language: locale.value.toUpperCase()});
 
     const {data, error, status, refresh} = useGraphQL<PostsGraphQLResponse, Post[]>(
-        'fetchPosts',
+        'useNews',
         fetchNewsQuery,
         variables,
         mapPosts
