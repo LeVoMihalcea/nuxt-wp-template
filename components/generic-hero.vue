@@ -24,7 +24,7 @@
     <header class="story-hero p-8 text-white "
         :style="{'background-image': `url(${props.backgroundImage})`}"
     >
-        <div class="flex flex-column align-items-center pt-8">
+        <div v-if="button" class="flex flex-column align-items-center pt-8">
             <h1 class="title pt-8 font-light uppercase text-2xl lg:text-6xl text-center">{{ title }}</h1>
             <h2 class="subtitle xl:w-6 text-center opacity-70 font-light">{{ subtitle }}</h2>
             <Button :label="button" @click="buttonCallback" class="p-button-rounded p-button-primary xl:w-3 mt-4"/>

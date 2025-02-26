@@ -9,7 +9,8 @@
 </script>
 
 <template>
-    <div class="mt-6">
+    <div class="container fadein animation-duration-500">
+        <generic-hero :background-image="post?.imageUrl"/>
         <page-content>
             <div v-if="post">
                 <h1>{{ post.title }}</h1>

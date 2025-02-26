@@ -23,7 +23,7 @@
             </div>
             <div v-else class="card">
                 <div class="flex flex-column justify-content-between">
-                    <img class="w-full h-auto border-round-lg bg-cover" :src="imageUrl"/>
+                    <img class="article-image w-full border-round-lg" :src="imageUrl"/>
                     <div class="pt-2">
                         <div class="flex flex-column justify-content-start">
                             <p class="accent mt-0">
@@ -48,6 +48,12 @@
         border-radius: 8px;
         overflow: hidden;
         margin: 0 auto;
+    }
+
+    .article-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
     }
 
     .line {
