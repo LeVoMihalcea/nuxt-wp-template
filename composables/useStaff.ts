@@ -1,4 +1,4 @@
-import fetchStaffQuery from '~/queries/staff.graphql';
+import fetchStaffQuery from '~/graphql/queries/staff.graphql';
 import {useI18n} from "vue-i18n";
 import {useLazyAsyncData} from "#imports";
 

@@ -1,12 +1,12 @@
 <script setup lang="ts">
     import SpecializationCard from "~/components/story/specialization-card.vue";
-    import { useSpecializations } from "~/composables/useSpecializations";
-    import { ref } from "vue";
-    import { useI18n } from "vue-i18n";
+    import {useSpecializations} from "~/composables/useSpecializations";
+    import {ref} from "vue";
+    import {useI18n} from "vue-i18n";
 
-    const { t } = useI18n();
+    const {t} = useI18n();
 
-    const { specializations, loading, error } = useSpecializations();
+    const specializations = useSpecializations().data;
 
     const responsiveOptions = ref([
         {
@@ -15,6 +15,8 @@
             numScroll: 1,
         },
     ]);
+
+    const showIndicators: Ref<Boolean> = computed<Boolean>(() => specializations?.length && specializations.length > specializationCountThreshold);
 
     const specializationCountThreshold = 4;
 </script>
@@ -27,28 +29,16 @@
         </div>
 
         <client-only>
-            <template v-if="loading">
-                <div class="loading text-center py-4">
-                    {{ t('loading') }}
-                </div>
-            </template>
-
-            <template v-else-if="error">
-                <div class="error text-center py-4">
-                    {{ t('errorMessage') }}
-                </div>
-            </template>
-
-            <Carousel v-else
-                      :value="specializations"
-                      :num-visible="specializationCountThreshold"
-                      :num-scroll="1"
-                      :responsive-options="responsiveOptions"
-                      :show-indicators="specializations.length > specializationCountThreshold"
-                      :show-navigators="specializations.length > specializationCountThreshold"
+            <Carousel
+                :value="specializations"
+                :num-visible="specializationCountThreshold"
+                :num-scroll="1"
+                :responsive-options="responsiveOptions"
+                :show-indicators="!!showIndicators"
+                :show-navigators="!!showIndicators"
             >
                 <template #item="slotProps">
-                    <specialization-card :specialization="slotProps.data" />
+                    <specialization-card :specialization="slotProps.data"/>
                 </template>
             </Carousel>
         </client-only>

@@ -1,0 +1,24 @@
+query fetchStaff($language: LanguageCodeFilterEnum!) {
+    staffCategories(where: {orderby: NAME, language: $language}) {
+        nodes {
+            id
+            name
+            staff {
+                nodes {
+                    title
+                    featuredImage {
+                        node {
+                            sourceUrl
+                        }
+                    }
+                    staffFieldGroup {
+                        department
+                        title
+                        description
+                    }
+                    content
+                }
+            }
+        }
+    }
+}

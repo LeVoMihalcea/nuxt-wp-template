@@ -1,5 +1,5 @@
 import {mapSocialMedias, type SocialMedia, type SocialMediasGraphQLResponse} from "~/types/SocialMedia";
-import fetchSocialMediasQuery from '~/queries/social-media.graphql'
+import fetchSocialMediasQuery from '~/graphql/queries/social-media.graphql'
 
 export const useSocialMedias = () => {
     const {locale} = useI18n();
