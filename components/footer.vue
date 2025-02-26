@@ -41,11 +41,12 @@
                         {{ $t("pages.research") }}
                     </nuxt-link-locale>
                 </p>
-                <p>
-                    <nuxt-link-locale to="/for-students" class="no-underline text-white" :prefetch="false">
-                        {{ $t("pages.forStudents") }}
-                    </nuxt-link-locale>
-                </p>
+<!--                todo: replace with actual links-->
+<!--                <p>-->
+<!--                    <nuxt-link-locale to="/for-students" class="no-underline text-white" :prefetch="false">-->
+<!--                        {{ $t("pages.forStudents") }}-->
+<!--                    </nuxt-link-locale>-->
+<!--                </p>-->
                 <p>
                     <nuxt-link-locale to="/contact" class="no-underline text-white" :prefetch="false">
                         {{ $t("pages.contact") }}
