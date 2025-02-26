@@ -35,7 +35,7 @@
                 label: t('pages.forStudents'),
                 items: [
                     {
-                        label: t('pages.research'),
+                        label: t('pages.specializations'),
                         url: localePath(baseUrl + '/specializations'),
                     },
                     {
@@ -43,7 +43,7 @@
                         url: localePath(baseUrl + '/extra-curriculum'),
                     },
                     {
-                        label: t('pages.annoucements'),
+                        label: t('pages.announcements'),
                         url: localePath(baseUrl + '/announcements'),
                     },
                 ]

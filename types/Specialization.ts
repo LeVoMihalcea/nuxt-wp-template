@@ -1,24 +1,30 @@
 export type Specialization = {
+    id: string;
     title: string;
-    url: string;
-    iconUrl: string;
+    content: string;
+    excerpt: string;
+    imageUrl: string;
+    level: [string, string];
 }
 
 interface SpecializationGraphQL {
+    id: string;
     title: string;
+    content: string;
+    excerpt: string;
+    featuredImage: {
+        node: {
+            sourceUrl: string;
+        }
+    }
     specializationFieldGroup: {
-        url: string;
-        iconUrl: {
-            node: {
-                sourceUrl: string;
-            }
-        };
-    };
+        level: [string, string]
+    },
 }
 
 export type SpecializationsGraphQLResponse = {
-    allSpecialization: {
-        nodes: SpecializationGraphQL[];
+    specializations: {
+        edges: SpecializationGraphQL[];
     };
 }
 
@@ -28,9 +34,12 @@ export type SpecializationGraphQLResponse = {
 
 export const mapSpecializationGraphQLToSpecializationDTO = (specialization: SpecializationGraphQL): Specialization => {
     return {
+        id: specialization.id,
         title: specialization.title,
-        url: specialization.specializationFieldGroup.url,
-        iconUrl: specialization.specializationFieldGroup.iconUrl?.node.sourceUrl,
+        content: specialization.content,
+        excerpt: specialization.excerpt,
+        imageUrl: specialization.featuredImage.node.sourceUrl,
+        level: specialization.specializationFieldGroup.level,
     }
 };
 
@@ -40,5 +49,7 @@ export const mapSpecialization = (apiResponse: SpecializationGraphQLResponse): S
 
 
 export const mapSpecializations = (apiResponse: SpecializationsGraphQLResponse): Specialization[] => {
-    return apiResponse.allSpecialization.nodes.map((specialization: SpecializationGraphQL) => mapSpecializationGraphQLToSpecializationDTO(specialization));
+    return apiResponse.specializations.edges
+        .map((node: any) => node.node)
+        .map((specialization: SpecializationGraphQL) => mapSpecializationGraphQLToSpecializationDTO(specialization));
 };

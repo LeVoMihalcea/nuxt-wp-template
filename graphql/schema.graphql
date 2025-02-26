@@ -5802,7 +5802,7 @@ type SocialMediaToSocialMediaConnectionPageInfo implements PageInfo & SocialMedi
 }
 
 "The Specialization type"
-type Specialization implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfSpecializationFieldGroup {
+type Specialization implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfSpecializationFieldGroup {
     "The ancestors of the content node."
     ancestors(
         "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
@@ -5857,6 +5857,11 @@ type Specialization implements ContentNode & DatabaseIdentifier & MenuItemLinkab
         "The number of items to return before the referenced \"before\" cursor"
         last: Int
     ): ContentNodeToEnqueuedStylesheetConnection
+    "The excerpt of the post."
+    excerpt(
+        "Format of the field output"
+        format: PostObjectFieldFormatEnum
+    ): String
     "Connection between the NodeWithFeaturedImage type and the MediaItem type"
     featuredImage: NodeWithFeaturedImageToMediaItemConnectionEdge
     "The database identifier for the featured image node assigned to the content node"
@@ -8794,6 +8799,8 @@ input CreateSpecializationInput {
     content: String
     "The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, \"2017\" as the input will use current date with timestamp 20:17 "
     date: String
+    "The excerpt of the object"
+    excerpt: String
     language: LanguageCodeEnum
     "A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types."
     menuOrder: Int
@@ -11231,6 +11238,8 @@ input UpdateSpecializationInput {
     content: String
     "The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, \"2017\" as the input will use current date with timestamp 20:17 "
     date: String
+    "The excerpt of the object"
+    excerpt: String
     "The ID of the Specialization object"
     id: ID!
     "Override the edit lock when another user is editing the post"
