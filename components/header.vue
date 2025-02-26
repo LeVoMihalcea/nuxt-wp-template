@@ -2,7 +2,7 @@
     import type {MenuItem} from 'primevue/menuitem';
     import Menubar from 'primevue/menubar';
 
-    const {locale, t} = useI18n();
+    const {locale, availableLocales, t} = useI18n();
     let localePath = useLocalePath();
     const baseUrl = "/preview";
 
@@ -49,9 +49,13 @@
                 ]
             },
             {
-                label: t('pages.contact'),
-                url: localePath(baseUrl + '/contact'),
-            },
+                icon: 'pi pi-language',
+                items: availableLocales.map(loc => ({
+                    label: loc.toUpperCase(),
+                    command: () => locale.value = loc
+                }))
+            }
+
         ];
     };
 
@@ -65,14 +69,6 @@
                 <nuxt-link to="/">
                     <img src="../public/logo.svg" class="logo w-12 xl:ml-5 ml-1 mt-1"/>
                 </nuxt-link>
-                <language-switch
-                    class="ml-8"/>
-<!--                    v-if="useRoute().fullPath === '/'" -->
-            </template>
-            <template #item="{ item }">
-                <a :href="item.url">
-                    <Button :label="item.label as string" variant="link" class="text-white"/>
-                </a>
             </template>
         </Menubar>
     </header>
