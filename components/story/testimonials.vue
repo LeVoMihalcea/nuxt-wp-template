@@ -11,9 +11,9 @@
     <div class="mt-8">
         <two-columns-responsive>
             <template #first>
-                <div class="w-8">
-                    <h1 class="background-text w-full">{{ t('testimonials.backgroundText') }}</h1>
-                    <h1 class="text-7xl">{{ t('testimonials.header') }}</h1>
+                <div class="w-10">
+<!--                    <h1 class="background-text w-full">{{ t('testimonials.backgroundText') }}</h1>-->
+                    <h1 class="text-4xl lg:text-6xl">{{ t('testimonials.header') }}</h1>
                     <p class="text-lg font-light text-color-secondary">{{ t('testimonials.subtitle') }}</p>
                 </div>
             </template>

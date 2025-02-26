@@ -9,7 +9,7 @@
         <two-columns-responsive reverse-if-on-mobile>
             <template #first>
                 <div class="gradient text-white p-8">
-                    <div class="text-4xl w-12 font-bold">
+                    <div class="text-xl lg:text-4xl w-12 font-bold">
                         <h1 class="font-normal">
                             {{ $t('teamSection.header') }}
                         </h1>

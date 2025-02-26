@@ -80,9 +80,9 @@
         position: relative;
         background-size: cover;
         background-position: center;
-        width: 100%;
-        aspect-ratio: 4 / 3;
+        min-width: 600px;
         min-height: 200px;
+        height: 100%;
     }
 
     .card-overlay {
