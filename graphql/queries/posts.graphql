@@ -1,5 +1,9 @@
-query fetchPosts($language: LanguageCodeFilterEnum!) {
-    posts(where: {orderby: {field: DATE, order: DESC}, language: $language}) {
+query fetchPosts($language: LanguageCodeFilterEnum!, $first: Int, $after: String) {
+    posts(
+        first: $first,
+        after: $after
+        where: {orderby: {field: DATE, order: DESC}, language: $language}
+    ) {
         nodes {
             title
             id
