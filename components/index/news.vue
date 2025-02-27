@@ -31,7 +31,7 @@
                     :image-url="card.imageUrl"
                     :date="card.date"
                     :description="card.excerpt"
-                    :url="`/posts/${card.id}`"
+                    :url="`/post?id=${card.id}`"
                     :secondary="index !== 0 && $viewport.isGreaterOrEquals('tablet')"
                     class="m-2"
                 />

@@ -1,6 +1,6 @@
 <template>
     <div id="app" class="animation-duration-500 fadein flex flex-column min-h-screen justify-content-between">
-        <Header class="absolute w-full"/>
+        <Header class="w-full"/>
         <main>
             <slot/>
         </main>
