@@ -18,9 +18,4 @@
         display: flex;
         flex-direction: column;
     }
-
-    main {
-        max-width: 2560px;
-        margin: 0 auto;
-    }
 </style>
