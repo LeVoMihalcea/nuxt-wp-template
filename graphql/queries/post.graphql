@@ -1,6 +1,6 @@
 query fetchPost($id: ID!) {
-    post(id: $id, idType: ID) {
-        id
+    post(id: $id, idType: SLUG) {
+        slug
         title
         content
         date

@@ -6,7 +6,7 @@ query fetchPosts($language: LanguageCodeFilterEnum!, $first: Int, $after: String
     ) {
         nodes {
             title
-            id
+            slug
             date
             postfieldgroup {
                 description

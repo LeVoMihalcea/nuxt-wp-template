@@ -8,7 +8,7 @@ export type Post = {
 }
 
 interface PostGraphQL {
-    id: string;
+    slug: string;
     title: string;
     content: string;
     postfieldgroup: {
@@ -34,7 +34,7 @@ export type PostGraphQLResponse = {
 
 export const mapPostGraphQLToPostDTO = (post: PostGraphQL): Post => {
     return {
-        id: post.id,
+        id: post.slug,
         title: post.title,
         content: post.content ?? "",
         excerpt: post.postfieldgroup?.description ?? "",
