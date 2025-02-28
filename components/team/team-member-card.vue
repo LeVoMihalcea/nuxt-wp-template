@@ -1,13 +1,8 @@
 <script setup lang="ts">
-    export type TeamMember = {
-        id?: string,
-        name: string;
-        title: string;
-        department?: string;
-        picture?: string;
-    };
 
-    const props = defineProps<TeamMember>();
+    import type {Staff} from "~/types/Staff";
+
+    const props = defineProps<Staff>();
 
     function capitalizeLastWord(name: string) {
         const rest = name.substring(0, name.lastIndexOf(" ") + 1);
@@ -18,8 +13,8 @@
 
 <template>
     <div class="container flex flex-column">
-        <div v-if="props.picture" class="w-full profile-picture">
-            <img v-if="props.picture" :src="props.picture" alt="profile picture" class="avatar w-full"/>
+        <div v-if="props.imageUrl" class="w-full profile-picture">
+            <img v-if="props.imageUrl" :src="props.imageUrl" alt="profile picture" class="avatar w-full"/>
             <img v-else src="../../public/default-picture.svg" alt="profile picture" class="w-full translate-y-100"/>
         </div>
 

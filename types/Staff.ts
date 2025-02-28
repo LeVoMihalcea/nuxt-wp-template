@@ -4,8 +4,8 @@ export type Staff = {
     imageUrl: string;
     department: string;
     title: string;
-    description: string;
-    content: string;
+    description?: string;
+    content?: string;
 }
 
 export type StaffCategory = {
@@ -14,69 +14,71 @@ export type StaffCategory = {
     staff: Staff[];
 }
 
-interface StaffGraphQL {
-    id: string;
-    name: string;
-    staff: {
-        nodes: {
-            title: string;
-            featuredImage: {
-                node: {
-                    sourceUrl: string;
-                }
-            },
-            staffFieldGroup: {
-                department: string;
-                title: string;
-                description: string;
-            }
-            content: string;
+export type StaffGraphQL = {
+    slug: string;
+    title: string;
+    featuredImage: {
+        node: {
+            sourceUrl: string;
         }
+    },
+    staffFieldGroup: {
+        department: string;
+        title: string;
+        description: string;
     }
+    content: string;
+}
+
+export type SingleStaffGraphQLResponse = {
+    staff: StaffGraphQL;
 }
 
 export type StaffCategoryGraphQL = {
     id: string;
     name: string;
-    staff: StaffGraphQL[];
+    staff: {
+        nodes: StaffGraphQL[]
+    };
 }
 
-export type StaffGraphQLResponse = {
+export type StaffCategoriesGraphQLResponse = {
     staffCategories: {
         nodes: StaffCategoryGraphQL[];
     };
 }
 
-// export type StaffMemberGraphQLResponse = {
-//     staffMember: Staff
-// }
-
 export const mapStaffGraphQLToStaffDTO = (staff: StaffGraphQL): Staff => {
-    console.log(staff);
-    let mapped = {
-        id: staff.id,
-        name: staff.name,
-        imageUrl: staff.staff.nodes?.featuredImage.node.sourceUrl,
-        title: staff.staff.nodes.staffFieldGroup.title,
-        department: staff.staff.nodes.staffFieldGroup.department,
-        description: staff.staff.nodes.staffFieldGroup.description,
-        content: staff.staff.nodes.content
-    };
-    console.log("mapped", mapped)
-    return mapped
+    return {
+        id: staff.slug,
+        name: staff.title,
+        imageUrl: staff.featuredImage?.node.sourceUrl ?? "",
+        title: staff.staffFieldGroup.title ?? "",
+        department: staff.staffFieldGroup.department ?? "",
+        description: staff.staffFieldGroup.description ?? "",
+        content: staff.content ?? ""
+    }
 };
 
-// export const mapStaff = (apiResponse: StaffGraphQLResponse): Staff => {
-//     return mapStaffGraphQLToStaffDTO(apiResponse.staff)
-// }
+export const mapStaffCategory = (staffCategory: StaffCategoryGraphQL): StaffCategory => {
 
-export const mapStaffCategory = (staffCategory: StaffCategoryGraphQL) => {
-    if(staffCategory.staff.length === 0) return [];
-    return staffCategory.staff?.map((staff: StaffGraphQL) => mapStaffGraphQLToStaffDTO(staff));
+    let staff = staffCategory.staff?.nodes.map((staff: StaffGraphQL) => mapStaffGraphQLToStaffDTO(staff));
+
+    return {
+        id: staffCategory.id,
+        name: staffCategory.name,
+        staff: staff
+    } as StaffCategory;
+}
+
+export const mapSingleStaff = (staffGraphQL: SingleStaffGraphQLResponse): Staff => {
+    debugger
+    return mapStaffGraphQLToStaffDTO(staffGraphQL.staff);
 }
 
 
-export const mapStaff = (apiResponse: StaffGraphQLResponse): StaffCategory[] => {
-    console.log("mapStaff", apiResponse)
-    return apiResponse.staffCategories.nodes.map((staffCategory: StaffCategoryGraphQL) => mapStaffCategory(staffCategory));
+export const mapStaff = (apiResponse: StaffCategoriesGraphQLResponse): StaffCategory[] => {
+    return apiResponse.staffCategories.nodes
+        .filter((staffCategory: StaffCategoryGraphQL) => staffCategory.staff.nodes.length > 0)
+        .map((staffCategory: StaffCategoryGraphQL) => mapStaffCategory(staffCategory));
 };

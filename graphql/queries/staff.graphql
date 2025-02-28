@@ -1,10 +1,11 @@
 query fetchStaff($language: LanguageCodeFilterEnum!) {
-    staffCategories(where: {orderby: NAME, language: $language}) {
+    staffCategories(where: {orderby: COUNT, language: $language}) {
         nodes {
             id
             name
             staff {
                 nodes {
+                    slug
                     title
                     featuredImage {
                         node {

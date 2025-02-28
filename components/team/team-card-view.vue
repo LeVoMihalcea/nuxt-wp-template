@@ -1,21 +1,42 @@
 <script setup lang="ts">
-    import {useStaff} from "~/composables/useStaff";
-    import type {TeamMember} from "~/components/team/team-member-card.vue";
+    import {useSingleStaff, useStaff} from "~/composables/useStaff";
     import TeamMemberModalCard from "~/components/team/team-member-modal-card.vue";
+    import type {Staff} from "~/types/Staff";
+    import {watch} from "vue";
 
     const {locale} = useI18n();
-
-    const {data, error} = useStaff();
+    const route = useRoute();
+    const router = useRouter();
+    const {data, status} = useStaff();
     const modalVisible = ref(false);
-    //todo(leo): make this type safe
-    const modalPayload = ref<TeamMember | null | any>(null);
+    const modalPayload = ref<Staff | null>(null);
+    const id = ref<string>(route.query.id?.toString() ?? "");
+    const singleStaff = useSingleStaff(id).data;
 
-    const nonZeroCategories = computed(() => (data.value as any)?.staffCategories.nodes.filter((c: any) => c.staff.nodes.length).reverse());
+    watch(() => singleStaff.value, () => {
+        changeModalPayload(singleStaff.value!)
+    });
 
-    function changeModalPayload(staff: TeamMember) {
+    function changeModalPayload(staff: Staff) {
         modalPayload.value = staff;
         modalVisible.value = true;
+
+        router.replace({
+            path: route.path,
+            query: { ...toRaw(route.query), id: staff.id }
+        });
     }
+
+    function removeIdQueryParam() {
+        const newQuery = { ...toRaw(route.query) };
+        delete newQuery.id;
+
+        router.replace({
+            path: route.path,
+            query: newQuery
+        });
+    }
+
 </script>
 
 <template>
@@ -24,13 +45,14 @@
                 class="w-11 xl:w-8"
                 :show-header="false"
                 modal dismissable-mask
+                @after-hide="removeIdQueryParam"
         >
             <team-member-modal-card
-                :name="modalPayload.title"
-                :title="modalPayload.staffFieldGroup?.title"
-                :picture="modalPayload.featuredImage?.node.sourceUrl ?? 'default-picture.svg'"
-                :content="modalPayload.content"
-                :description="modalPayload.staffFieldGroup?.description"
+                :name="modalPayload?.name ?? ''"
+                :description="modalPayload?.description ?? ''"
+                :content="modalPayload?.content ?? ''"
+                :title="modalPayload?.title ?? ''"
+                :picture="modalPayload?.imageUrl ?? 'default-picture.svg'"
             />
 
         </Dialog>
@@ -39,25 +61,22 @@
 
         </div>
         <div v-else>
-            <client-only>
-                <div v-for="(category, index) of nonZeroCategories"
-                     :class="{blue: index % 2 === 1, 'text-white': index % 2 === 1}" class="text-center py-8">
-
-                    <!--        <h1 class="background-text w-full z-0 hidden xl:inline-block"> {{ category.name }} </h1>-->
-                    <h1 class="uppercase text-xl xl:text-7xl"> {{ category.name }} </h1>
-                    <div class="grid w-full xl:w-6 m-auto z-1">
-                        <team-member-card v-for="staff of category.staff?.nodes"
-                                          class="align-items-center col-6 xl:col-3 mb-8"
-                                          :class="{'text-white': index % 2 === 1}"
-                                          :name="staff.title ?? 'fallback-name'"
-                                          :picture="staff.featuredImage?.node.sourceUrl ?? 'default-picture.svg'"
-                                          :department="staff.staffFieldGroup?.department ?? ''"
-                                          :title="staff.staffFieldGroup?.title ?? ''"
-                                          @click="() => changeModalPayload(staff)"
-                        />
-                    </div>
+            <div v-for="(category, index) of data"
+                 :class="{blue: index % 2 === 1, 'text-white': index % 2 === 1}" class="text-center py-8">
+                <h1 class="uppercase text-xl xl:text-7xl"> {{ category.name }} </h1>
+                <div class="grid w-full xl:w-6 m-auto z-1">
+                    <team-member-card v-for="staff of category.staff"
+                                      class="align-items-center col-6 xl:col-3 mb-8"
+                                      :class="{'text-white': index % 2 === 1}"
+                                      :id="staff.id"
+                                      :name="staff.name"
+                                      :image-url="staff.imageUrl.length > 0 ? staff.imageUrl : 'default-picture.svg'"
+                                      :department="staff.department"
+                                      :title="staff.title"
+                                      @click="() => changeModalPayload(staff)"
+                    />
                 </div>
-            </client-only>
+            </div>
         </div>
     </div>
 </template>

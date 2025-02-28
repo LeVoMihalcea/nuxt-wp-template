@@ -1,24 +1,34 @@
 import fetchStaffQuery from '~/graphql/queries/staff.graphql';
+import fetchSingleStaffQuery from '~/graphql/queries/singleStaff.graphql';
 import {useI18n} from "vue-i18n";
-import {useLazyAsyncData} from "#imports";
+import type {SingleStaffGraphQLResponse, Staff, StaffCategoriesGraphQLResponse, StaffCategory} from "~/types/Staff";
+import {mapSingleStaff, mapStaff} from "~/types/Staff";
+import {useGraphQL} from "~/composables/useGraphQL";
 
 export const useStaff = () => {
-    const {$graphql} = useNuxtApp();
     const {locale} = useI18n();
     const variables = ref({language: locale.value.toUpperCase()});
 
-    const {data, error, refresh} = useLazyAsyncData(
-        'fetchStaff',
-        async () => {
-            return await $graphql.default.request(fetchStaffQuery, variables.value);
-        },
-        {server: false}
-    );
+    const {data, error, status, refresh} = useGraphQL<StaffCategoriesGraphQLResponse, StaffCategory[]>(
+        "fetchStaffs",
+        fetchStaffQuery,
+        variables,
+        mapStaff
+    )
 
-    watch(locale, () => {
-        variables.value.language = locale.value.toUpperCase();
-        refresh().then();
-    })
+    return {data, error, status, refresh}
+}
 
-    return {data, error};
+export const useSingleStaff = (id: Ref<string>) => {
+    const {locale} = useI18n();
+    const variables = ref({language: locale.value.toUpperCase(), id});
+
+    const {data, error, status, refresh} = useGraphQL<SingleStaffGraphQLResponse, Staff>(
+        'fetchSingleStaff',
+        fetchSingleStaffQuery,
+        variables,
+        mapSingleStaff
+    )
+
+    return {data, error, status, refresh};
 };
