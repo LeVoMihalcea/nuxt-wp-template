@@ -22,7 +22,7 @@
 
 <template>
     <header class="story-hero p-8 text-white "
-        :style="{'background-image': `url(${props.backgroundImage})`}"
+        :style="{'background-image': `url(./${props.backgroundImage})`}"
     >
         <div v-if="button" class="flex flex-column align-items-center pt-8">
             <h1 class="title pt-8 font-light uppercase text-2xl lg:text-6xl text-center">{{ title }}</h1>
