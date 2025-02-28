@@ -1,8 +1,13 @@
-import type {RouterConfig} from '@nuxt/schema';
+import type { RouterConfig } from '@nuxt/schema';
 
-// https://router.vuejs.org/api/#routeroptions
 export default <RouterConfig>{
     scrollBehavior: (to, from, savedPosition) => {
+        // If only the query params change, do not scroll
+        if (to.path === from.path && to.fullPath !== from.fullPath) {
+            return false;
+        }
+
+        // Smooth scroll to anchor if hash exists
         if (to.path !== from.path && to.hash) {
             return new Promise((resolve) => {
                 setTimeout(() => {
@@ -23,14 +28,7 @@ export default <RouterConfig>{
             };
         }
 
-        if (to === from) {
-            return {
-                left: 0,
-                top: 0,
-                behavior: 'smooth',
-            };
-        }
-
+        // Restore scroll position if navigating back/forward
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve({
