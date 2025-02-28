@@ -4,7 +4,7 @@
 
     const {locale, availableLocales, t} = useI18n();
     let localePath = useLocalePath();
-    const baseUrl = "/preview";
+    const baseUrl = useBaseURLPrefix();
 
     const items = ref<MenuItem[] | undefined>([]);
 

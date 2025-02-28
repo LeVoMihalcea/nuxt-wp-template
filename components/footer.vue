@@ -1,7 +1,4 @@
 <script setup lang="ts">
-    // import { baseURL } from '~/utils/config';
-
-    const baseURL = "";
     const config = useRuntimeConfig();
     const version = config.public["clientVersion"];
 </script>
