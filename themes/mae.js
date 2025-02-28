@@ -65,6 +65,9 @@ const CustomPreset = definePreset(Aura, {
             content:{
                 padding: '0px',
             }
+        },
+        chip: {
+            background: '{blueLight.500}'
         }
     },
 });

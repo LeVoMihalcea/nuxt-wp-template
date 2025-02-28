@@ -1,0 +1,17 @@
+query fetchLaboratories {
+    laboratories {
+        edges {
+            node {
+                slug
+                title
+                featuredImage {
+                    node {
+                        sourceUrl
+                    }
+                },
+                content
+                excerpt
+            }
+        }
+    }
+}

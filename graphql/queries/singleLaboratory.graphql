@@ -1,0 +1,16 @@
+query fetchLaboratory($id: ID!) {
+    laboratory(id: $id, idType: SLUG) {
+        slug
+        title
+        featuredImage {
+            node {
+                sourceUrl
+            }
+        },
+        labFieldGroup {
+            equipments
+        }
+        content
+        excerpt
+    }
+}

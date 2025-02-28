@@ -8,13 +8,14 @@
         tall: Boolean,
         url: String,
         button: String,
+        animated: Boolean
     });
 </script>
 
 <template>
     <div class="container h-full">
         <nuxt-link :to="url">
-            <div v-if="!secondary" class="card animated h-full">
+            <div v-if="!secondary" class="card h-full" :class="{animated}">
                 <div class="card-image full-height" :class="{tall}" :style="{ backgroundImage: `url(${imageUrl})` }">
                     <div class="card-overlay w-full">
                         <h3 class="font-normal w-6 xl:w-full text-xl xl:text-4xl">{{ title }}</h3>

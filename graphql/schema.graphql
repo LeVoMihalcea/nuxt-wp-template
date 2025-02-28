@@ -547,6 +547,44 @@ interface HierarchicalTermNode {
     uri: String
 }
 
+"Interface representing fields of the ACF &quot;LabFieldGroup&quot; Field Group"
+interface LabFieldGroup_Fields {
+    "Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;LabFieldGroup&quot; Field Group"
+    equipments: String
+    "The name of the field group"
+    fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"Connection to Laboratory Nodes"
+interface LaboratoryConnection {
+    "A list of edges (relational context) between RootQuery and connected Laboratory Nodes"
+    edges: [LaboratoryConnectionEdge!]!
+    "A list of connected Laboratory Nodes"
+    nodes: [Laboratory!]!
+    "Information about pagination in a connection."
+    pageInfo: LaboratoryConnectionPageInfo!
+}
+
+"Edge between a Node and a connected Laboratory"
+interface LaboratoryConnectionEdge {
+    "Opaque reference to the nodes position in the connection. Value can be used with pagination args."
+    cursor: String
+    "The connected Laboratory Node"
+    node: Laboratory!
+}
+
+"Page Info on the connected LaboratoryConnectionEdge"
+interface LaboratoryConnectionPageInfo {
+    "When paginating forwards, the cursor to continue."
+    endCursor: String
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+    "When paginating backwards, the cursor to continue."
+    startCursor: String
+}
+
 "Connection to mediaItem Nodes"
 interface MediaItemConnection {
     "A list of edges (relational context) between RootQuery and connected mediaItem Nodes"
@@ -1394,6 +1432,12 @@ interface WPPageInfo {
     startCursor: String
 }
 
+"Provides access to fields of the &quot;LabFieldGroup&quot; ACF Field Group via the &quot;labFieldGroup&quot; field"
+interface WithAcfLabFieldGroup {
+    "Fields of the LabFieldGroup ACF Field Group"
+    labFieldGroup: LabFieldGroup
+}
+
 "Provides access to fields of the &quot;Postfieldgroup&quot; ACF Field Group via the &quot;postfieldgroup&quot; field"
 interface WithAcfPostfieldgroup {
     "Fields of the Postfieldgroup ACF Field Group"
@@ -1425,7 +1469,7 @@ interface WithAcfTestimonialFieldGroup {
 }
 
 "Deprecated in favor of MenuItemLinkeable Interface"
-union MenuItemObjectUnion = Category | Page | Post | PostFormat | SocialMedia | Specialization | Staff | StaffCategory | Tag | Testimonial
+union MenuItemObjectUnion = Category | Laboratory | Page | Post | PostFormat | SocialMedia | Specialization | Staff | StaffCategory | Tag | Testimonial
 
 "Connection between the SocialMediaFieldGroup_Fields type and the MediaItem type"
 type AcfMediaItemConnectionEdge implements Edge & MediaItemConnectionEdge & OneToOneConnection {
@@ -2137,6 +2181,14 @@ type CreateCommentPayload {
     success: Boolean
 }
 
+"The payload for the createLaboratory mutation."
+type CreateLaboratoryPayload {
+    "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The Post object mutation type."
+    laboratory: Laboratory
+}
+
 "The payload for the createMediaItem mutation."
 type CreateMediaItemPayload {
     "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -2249,6 +2301,16 @@ type DeleteCommentPayload {
     comment: Comment
     "The deleted comment ID"
     deletedId: ID
+}
+
+"The payload for the deleteLaboratory mutation."
+type DeleteLaboratoryPayload {
+    "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The ID of the deleted object"
+    deletedId: ID
+    "The object before it was deleted"
+    laboratory: Laboratory
 }
 
 "The payload for the deleteMediaItem mutation."
@@ -2529,6 +2591,184 @@ type HierarchicalContentNodeToParentContentNodeConnectionEdge implements Content
     node: ContentNode!
 }
 
+"The &quot;LabFieldGroup&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;."
+type LabFieldGroup implements AcfFieldGroup & AcfFieldGroupFields & LabFieldGroup_Fields {
+    "Field of the &quot;textarea&quot; Field Type added to the schema as part of the &quot;LabFieldGroup&quot; Field Group"
+    equipments: String
+    "The name of the field group"
+    fieldGroupName: String @deprecated(reason: "Use __typename instead")
+}
+
+"The Laboratory type"
+type Laboratory implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfLabFieldGroup {
+    "The ancestors of the content node."
+    ancestors(
+        "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
+        after: String,
+        "Cursor used along with the \"last\" argument to reference where in the dataset to get data"
+        before: String,
+        "The number of items to return after the referenced \"after\" cursor"
+        first: Int,
+        "The number of items to return before the referenced \"before\" cursor"
+        last: Int
+    ): LaboratoryToLaboratoryConnection @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+    "The content of the post."
+    content(
+        "Format of the field output"
+        format: PostObjectFieldFormatEnum
+    ): String
+    "Connection between the ContentNode type and the ContentType type"
+    contentType: ContentNodeToContentTypeConnectionEdge
+    "The name of the Content Type the node belongs to"
+    contentTypeName: String!
+    "The unique identifier stored in the database"
+    databaseId: Int!
+    "Post publishing date."
+    date: String
+    "The publishing date set in GMT."
+    dateGmt: String
+    "The desired slug of the post"
+    desiredSlug: String
+    "If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds"
+    editingLockedBy: ContentNodeToEditLockConnectionEdge
+    "The RSS enclosure for the object"
+    enclosure: String
+    "Connection between the ContentNode type and the EnqueuedScript type"
+    enqueuedScripts(
+        "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
+        after: String,
+        "Cursor used along with the \"last\" argument to reference where in the dataset to get data"
+        before: String,
+        "The number of items to return after the referenced \"after\" cursor"
+        first: Int,
+        "The number of items to return before the referenced \"before\" cursor"
+        last: Int
+    ): ContentNodeToEnqueuedScriptConnection
+    "Connection between the ContentNode type and the EnqueuedStylesheet type"
+    enqueuedStylesheets(
+        "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
+        after: String,
+        "Cursor used along with the \"last\" argument to reference where in the dataset to get data"
+        before: String,
+        "The number of items to return after the referenced \"after\" cursor"
+        first: Int,
+        "The number of items to return before the referenced \"before\" cursor"
+        last: Int
+    ): ContentNodeToEnqueuedStylesheetConnection
+    "The excerpt of the post."
+    excerpt(
+        "Format of the field output"
+        format: PostObjectFieldFormatEnum
+    ): String
+    "Connection between the NodeWithFeaturedImage type and the MediaItem type"
+    featuredImage: NodeWithFeaturedImageToMediaItemConnectionEdge
+    "The database identifier for the featured image node assigned to the content node"
+    featuredImageDatabaseId: Int
+    "Globally unique ID of the featured image assigned to the node"
+    featuredImageId: ID
+    "The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table."
+    guid: String
+    "Whether the laboratory object is password protected."
+    hasPassword: Boolean
+    "The globally unique identifier of the laboratory object."
+    id: ID!
+    "Whether the node is a Comment"
+    isComment: Boolean!
+    "Whether the node is a Content Node"
+    isContentNode: Boolean!
+    "Whether the node represents the front page."
+    isFrontPage: Boolean!
+    "Whether  the node represents the blog page."
+    isPostsPage: Boolean!
+    "Whether the object is a node in the preview state"
+    isPreview: Boolean
+    "Whether the object is restricted from the current viewer"
+    isRestricted: Boolean
+    "Whether the node is a Term"
+    isTermNode: Boolean!
+    "Fields of the LabFieldGroup ACF Field Group"
+    labFieldGroup: LabFieldGroup
+    "The id field matches the WP_Post-&gt;ID field."
+    laboratoryId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
+    "The user that most recently edited the node"
+    lastEditedBy: ContentNodeToEditLastConnectionEdge
+    "The permalink of the post"
+    link: String
+    "The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time."
+    modified: String
+    "The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT."
+    modifiedGmt: String
+    "The parent of the content node."
+    parent: LaboratoryToParentConnectionEdge @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+    "The password for the laboratory object."
+    password: String
+    "Connection between the Laboratory type and the Laboratory type"
+    preview: LaboratoryToPreviewConnectionEdge
+    "The database id of the preview node"
+    previewRevisionDatabaseId: Int
+    "Whether the object is a node in the preview state"
+    previewRevisionId: ID
+    "The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table."
+    slug: String
+    "The current status of the object"
+    status: String
+    "The template assigned to the node"
+    template: ContentTemplate
+    "The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made."
+    title(
+        "Format of the field output"
+        format: PostObjectFieldFormatEnum
+    ): String
+    "The unique resource identifier path"
+    uri: String
+}
+
+"Connection between the Laboratory type and the Laboratory type"
+type LaboratoryToLaboratoryConnection implements Connection & LaboratoryConnection {
+    "Edges for the LaboratoryToLaboratoryConnection connection"
+    edges: [LaboratoryToLaboratoryConnectionEdge!]!
+    "The nodes of the connection, without the edges"
+    nodes: [Laboratory!]!
+    "Information about pagination in a connection."
+    pageInfo: LaboratoryToLaboratoryConnectionPageInfo!
+}
+
+"An edge in a connection"
+type LaboratoryToLaboratoryConnectionEdge implements Edge & LaboratoryConnectionEdge {
+    "A cursor for use in pagination"
+    cursor: String @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+    "The item at the end of the edge"
+    node: Laboratory! @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+}
+
+"Page Info on the &quot;LaboratoryToLaboratoryConnection&quot;"
+type LaboratoryToLaboratoryConnectionPageInfo implements LaboratoryConnectionPageInfo & PageInfo & WPPageInfo {
+    "When paginating forwards, the cursor to continue."
+    endCursor: String
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+    "When paginating backwards, the cursor to continue."
+    startCursor: String
+}
+
+"Connection between the Laboratory type and the Laboratory type"
+type LaboratoryToParentConnectionEdge implements Edge & LaboratoryConnectionEdge & OneToOneConnection {
+    "Opaque reference to the nodes position in the connection. Value can be used with pagination args."
+    cursor: String
+    "The node of the connection, without the edges"
+    node: Laboratory! @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+}
+
+"Connection between the Laboratory type and the Laboratory type"
+type LaboratoryToPreviewConnectionEdge implements Edge & LaboratoryConnectionEdge & OneToOneConnection {
+    "Opaque reference to the nodes position in the connection. Value can be used with pagination args."
+    cursor: String
+    "The node of the connection, without the edges"
+    node: Laboratory!
+}
+
 "Language (Polylang)"
 type Language {
     "Language code (Polylang)"
@@ -2702,6 +2942,8 @@ type MediaItem implements ContentNode & DatabaseIdentifier & HierarchicalContent
     isRestricted: Boolean
     "Whether the node is a Term"
     isTermNode: Boolean!
+    "Polylang language"
+    language: Language
     "The user that most recently edited the node"
     lastEditedBy: ContentNodeToEditLastConnectionEdge
     "The permalink of the post"
@@ -2758,6 +3000,10 @@ type MediaItem implements ContentNode & DatabaseIdentifier & HierarchicalContent
         "Format of the field output"
         format: PostObjectFieldFormatEnum
     ): String
+    "Get specific translation version of this object"
+    translation(language: LanguageCodeEnum!): MediaItem
+    "List all translated versions of this post"
+    translations: [MediaItem]
     "The unique resource identifier path"
     uri: String
 }
@@ -4032,6 +4278,11 @@ type RootMutation {
         "Input for the createComment mutation"
         input: CreateCommentInput!
     ): CreateCommentPayload
+    "The createLaboratory mutation"
+    createLaboratory(
+        "Input for the createLaboratory mutation"
+        input: CreateLaboratoryInput!
+    ): CreateLaboratoryPayload
     "The createMediaItem mutation"
     createMediaItem(
         "Input for the createMediaItem mutation"
@@ -4097,6 +4348,11 @@ type RootMutation {
         "Input for the deleteComment mutation"
         input: DeleteCommentInput!
     ): DeleteCommentPayload
+    "The deleteLaboratory mutation"
+    deleteLaboratory(
+        "Input for the deleteLaboratory mutation"
+        input: DeleteLaboratoryInput!
+    ): DeleteLaboratoryPayload
     "The deleteMediaItem mutation"
     deleteMediaItem(
         "Input for the deleteMediaItem mutation"
@@ -4187,6 +4443,11 @@ type RootMutation {
         "Input for the updateComment mutation"
         input: UpdateCommentInput!
     ): UpdateCommentPayload
+    "The updateLaboratory mutation"
+    updateLaboratory(
+        "Input for the updateLaboratory mutation"
+        input: UpdateLaboratoryInput!
+    ): UpdateLaboratoryPayload
     "The updateMediaItem mutation"
     updateMediaItem(
         "Input for the updateMediaItem mutation"
@@ -4367,6 +4628,39 @@ type RootQuery {
     discussionSettings: DiscussionSettings
     "Fields of the &#039;GeneralSettings&#039; settings group"
     generalSettings: GeneralSettings
+    "Connection between the RootQuery type and the Laboratory type"
+    laboratories(
+        "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
+        after: String,
+        "Cursor used along with the \"last\" argument to reference where in the dataset to get data"
+        before: String,
+        "The number of items to return after the referenced \"after\" cursor"
+        first: Int,
+        "The number of items to return before the referenced \"before\" cursor"
+        last: Int,
+        "Arguments for filtering the connection"
+        where: RootQueryToLaboratoryConnectionWhereArgs
+    ): RootQueryToLaboratoryConnection
+    "An object of the Laboratory Type. "
+    laboratory(
+        "Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the \"asPreview\" argument is not explicitly provided as an argument."
+        asPreview: Boolean,
+        "The globally unique identifier of the object."
+        id: ID!,
+        "Type of unique identifier to fetch by. Default is Global ID"
+        idType: LaboratoryIdType
+    ): Laboratory
+    "A Laboratory object"
+    laboratoryBy(
+        "Get the Laboratory object by its global ID"
+        id: ID,
+        "Get the Laboratory by its database ID"
+        laboratoryId: Int,
+        "Get the Laboratory by its slug (only available for non-hierarchical types)"
+        slug: String,
+        "Get the Laboratory by its uri"
+        uri: String
+    ): Laboratory @deprecated(reason: "Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)")
     "List available languages"
     languages: [Language]
     "An object of the mediaItem Type. "
@@ -5007,6 +5301,36 @@ type RootQueryToEnqueuedStylesheetConnectionEdge implements Edge & EnqueuedStyle
 
 "Page Info on the &quot;RootQueryToEnqueuedStylesheetConnection&quot;"
 type RootQueryToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStylesheetConnectionPageInfo & PageInfo & WPPageInfo {
+    "When paginating forwards, the cursor to continue."
+    endCursor: String
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+    "When paginating backwards, the cursor to continue."
+    startCursor: String
+}
+
+"Connection between the RootQuery type and the Laboratory type"
+type RootQueryToLaboratoryConnection implements Connection & LaboratoryConnection {
+    "Edges for the RootQueryToLaboratoryConnection connection"
+    edges: [RootQueryToLaboratoryConnectionEdge!]!
+    "The nodes of the connection, without the edges"
+    nodes: [Laboratory!]!
+    "Information about pagination in a connection."
+    pageInfo: RootQueryToLaboratoryConnectionPageInfo!
+}
+
+"An edge in a connection"
+type RootQueryToLaboratoryConnectionEdge implements Edge & LaboratoryConnectionEdge {
+    "A cursor for use in pagination"
+    cursor: String
+    "The item at the end of the edge"
+    node: Laboratory!
+}
+
+"Page Info on the &quot;RootQueryToLaboratoryConnection&quot;"
+type RootQueryToLaboratoryConnectionPageInfo implements LaboratoryConnectionPageInfo & PageInfo & WPPageInfo {
     "When paginating forwards, the cursor to continue."
     endCursor: String
     "When paginating forwards, are there more items?"
@@ -6991,6 +7315,14 @@ type UpdateCommentPayload {
     success: Boolean
 }
 
+"The payload for the updateLaboratory mutation."
+type UpdateLaboratoryPayload {
+    "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The Post object mutation type."
+    laboratory: Laboratory
+}
+
 "The payload for the updateMediaItem mutation."
 type UpdateMediaItemPayload {
     "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -7619,6 +7951,8 @@ enum ContentTypeEnum {
     "The Type of Content object"
     ATTACHMENT
     "The Type of Content object"
+    LABORATORY
+    "The Type of Content object"
     PAGE
     "The Type of Content object"
     POST
@@ -7662,6 +7996,18 @@ enum ContentTypesOfStaffCategoryEnum {
 enum ContentTypesOfTagEnum {
     "The Type of Content object"
     POST
+}
+
+"The Type of Identifier used to fetch a single resource. Default is ID."
+enum LaboratoryIdType {
+    "Identify a resource by the Database ID."
+    DATABASE_ID
+    "Identify a resource by the (hashed) Global ID."
+    ID
+    "Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier."
+    SLUG
+    "Identify a resource by the URI."
+    URI
 }
 
 "Enum of all available language codes"
@@ -8659,6 +9005,28 @@ input CreateCommentInput {
     type: String
 }
 
+"Input for the createLaboratory mutation."
+input CreateLaboratoryInput {
+    "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The content of the object"
+    content: String
+    "The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, \"2017\" as the input will use current date with timestamp 20:17 "
+    date: String
+    "The excerpt of the object"
+    excerpt: String
+    "A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types."
+    menuOrder: Int
+    "The password used to protect the content of the object"
+    password: String
+    "The slug of the object"
+    slug: String
+    "The status of the object"
+    status: PostStatusEnum
+    "The title of the object"
+    title: String
+}
+
 "Input for the createMediaItem mutation."
 input CreateMediaItemInput {
     "Alternative text to display when mediaItem is not displayed"
@@ -8681,6 +9049,7 @@ input CreateMediaItemInput {
     filePath: String
     "The file type of the mediaItem"
     fileType: MimeTypeEnum
+    language: LanguageCodeEnum
     "The ID of the parent object"
     parentId: ID
     "The ping status for the mediaItem"
@@ -8984,6 +9353,18 @@ input DeleteCommentInput {
     forceDelete: Boolean
     "The deleted comment ID"
     id: ID!
+}
+
+"Input for the deleteLaboratory mutation."
+input DeleteLaboratoryInput {
+    "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "Whether the object should be force deleted instead of being moved to the trash"
+    forceDelete: Boolean
+    "The ID of the Laboratory to delete"
+    id: ID!
+    "Override the edit lock when another user is editing the post"
+    ignoreEditLock: Boolean
 }
 
 "Input for the deleteMediaItem mutation."
@@ -10068,6 +10449,44 @@ input RootQueryToContentNodeConnectionWhereArgs {
     title: String
 }
 
+"Arguments for filtering the RootQueryToLaboratoryConnection connection"
+input RootQueryToLaboratoryConnectionWhereArgs {
+    "Filter the connection based on dates"
+    dateQuery: DateQueryInput
+    "True for objects with passwords; False for objects without passwords; null for all objects with or without passwords"
+    hasPassword: Boolean
+    "Specific database ID of the object"
+    id: Int
+    "Array of IDs for the objects to retrieve"
+    in: [ID]
+    "Get objects with a specific mimeType property"
+    mimeType: MimeTypeEnum
+    "Slug / post_name of the object"
+    name: String
+    "Specify objects to retrieve. Use slugs"
+    nameIn: [String]
+    "Specify IDs NOT to retrieve. If this is used in the same query as \"in\", it will be ignored"
+    notIn: [ID]
+    "What parameter to use to order the objects by."
+    orderby: [PostObjectsConnectionOrderbyInput]
+    "Use ID to return only children. Use 0 to return only top-level items"
+    parent: ID
+    "Specify objects whose parent is in an array"
+    parentIn: [ID]
+    "Specify posts whose parent is not in an array"
+    parentNotIn: [ID]
+    "Show posts with a specific password."
+    password: String
+    "Show Posts based on a keyword search"
+    search: String
+    "Retrieve posts where post status is in an array."
+    stati: [PostStatusEnum]
+    "Show posts with a specific status."
+    status: PostStatusEnum
+    "Title of the object"
+    title: String
+}
+
 "Arguments for filtering the RootQueryToMediaItemConnection connection"
 input RootQueryToMediaItemConnectionWhereArgs {
     "The user that's connected as the author of the object. Use the userId for the author object."
@@ -10086,6 +10505,10 @@ input RootQueryToMediaItemConnectionWhereArgs {
     id: Int
     "Array of IDs for the objects to retrieve"
     in: [ID]
+    "Filter by MediaItems by language code (Polylang)"
+    language: LanguageCodeFilterEnum
+    "Filter MediaItems by one or more languages (Polylang)"
+    languages: [LanguageCodeEnum!]
     "Get objects with a specific mimeType property"
     mimeType: MimeTypeEnum
     "Slug / post_name of the object"
@@ -11040,6 +11463,32 @@ input UpdateCommentInput {
     type: String
 }
 
+"Input for the updateLaboratory mutation."
+input UpdateLaboratoryInput {
+    "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The content of the object"
+    content: String
+    "The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, \"2017\" as the input will use current date with timestamp 20:17 "
+    date: String
+    "The excerpt of the object"
+    excerpt: String
+    "The ID of the Laboratory object"
+    id: ID!
+    "Override the edit lock when another user is editing the post"
+    ignoreEditLock: Boolean
+    "A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types."
+    menuOrder: Int
+    "The password used to protect the content of the object"
+    password: String
+    "The slug of the object"
+    slug: String
+    "The status of the object"
+    status: PostStatusEnum
+    "The title of the object"
+    title: String
+}
+
 "Input for the updateMediaItem mutation."
 input UpdateMediaItemInput {
     "Alternative text to display when mediaItem is not displayed"
@@ -11064,6 +11513,7 @@ input UpdateMediaItemInput {
     fileType: MimeTypeEnum
     "The ID of the mediaItem object"
     id: ID!
+    language: LanguageCodeEnum
     "The ID of the parent object"
     parentId: ID
     "The ping status for the mediaItem"

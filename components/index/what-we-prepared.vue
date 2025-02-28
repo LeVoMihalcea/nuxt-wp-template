@@ -29,7 +29,7 @@
                 :key="index"
                 class="col-12 xl:col-4"
             >
-                <prepared-card :image-url="card.imageUrl" :title="card.title" />
+                <prepared-card :image-url="card.imageUrl" :title="card.title" animated/>
             </div>
         </div>
 <!--        <img src="simple-logo.svg" class="logo hidden xl:block"/>-->
