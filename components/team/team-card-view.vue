@@ -11,13 +11,16 @@
     const modalVisible = ref(false);
     const modalPayload = ref<Staff | null>(null);
     const id = ref<string>(route.query.id?.toString() ?? "");
+    console.log(route.query);
     const singleStaff = useSingleStaff(id).data;
 
     watch(() => singleStaff.value, () => {
+        if(id.value === "") return;
         changeModalPayload(singleStaff.value!)
     });
 
     function changeModalPayload(staff: Staff) {
+        console.log("triggering once")
         modalPayload.value = staff;
         modalVisible.value = true;
 
