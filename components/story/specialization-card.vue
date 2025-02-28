@@ -3,9 +3,9 @@
     import type {Specialization} from "~/types/Specialization";
 
     const levelIconMap: { [key: string]: string } = {
-        'licenta': '../../specializations/graduation_cap.svg',
-        'master': '../../specializations/graduation_cap_sparkle.svg',
-        'doctorat': '../../specializations/graduation_cap_sparkle.svg',
+        'licenta': '/specializations/graduation_cap.svg',
+        'master': '/specializations/graduation_cap_sparkle.svg',
+        'doctorat': '/specializations/graduation_cap_sparkle.svg',
     }
 
     const props = defineProps({

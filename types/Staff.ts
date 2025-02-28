@@ -72,7 +72,6 @@ export const mapStaffCategory = (staffCategory: StaffCategoryGraphQL): StaffCate
 }
 
 export const mapSingleStaff = (staffGraphQL: SingleStaffGraphQLResponse): Staff => {
-    debugger
     return mapStaffGraphQLToStaffDTO(staffGraphQL.staff);
 }
 

@@ -2,13 +2,15 @@
     import { ref } from "vue";
     import PreparedCard from "~/components/index/prepared-card.vue";
 
+    const prefix = "./cards/"
+
     const cards = ref([
-        { title: "Cursuri si seminarii online", imageUrl: "/cards/courses.png" },
-        { title: "Servicii de educatie si cercetare", imageUrl: "/cards/education-services.png" },
-        { title: "Prezentare cadre didactice", imageUrl: "/cards/teachers.png" },
-        { title: "Specializari", imageUrl: "/cards/departments.png" },
-        { title: "Grupuri cercetare", imageUrl: "/cards/research-groups.png" },
-        { title: "Laboratoare", imageUrl: "/cards/laboratories.png" },
+        { title: "Cursuri si seminarii online", imageUrl: prefix + "courses.png" },
+        { title: "Servicii de educatie si cercetare", imageUrl: prefix + "education-services.png" },
+        { title: "Prezentare cadre didactice", imageUrl: prefix + "teachers.png" },
+        { title: "Specializari", imageUrl: prefix + "departments.png" },
+        { title: "Grupuri cercetare", imageUrl: prefix + "research-groups.png" },
+        { title: "Laboratoare", imageUrl: prefix + "laboratories.png" },
     ]);
 </script>
 
