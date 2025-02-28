@@ -14,9 +14,8 @@
     <div class="container flex flex-column w-full h-full -p-8 text-white">
         <div class="flex flex-row justify-content-evenly">
             <img :src="picture" alt="profile picture" class="profile-picture w-5"/>
-            <div
-                class="name-box flex flex-column justify-content-start align-items-center w-full xl:p-8 p-4 font-light">
-                <h1 class="xl:text-6xl my-0 uppercase text-center font-light">{{ name }}</h1>
+            <div class="name-box w-7 flex flex-column justify-content-start align-items-center w-full xl:p-8 p-2 font-light">
+                <h2 class="xl:text-6xl my-0 uppercase text-center font-light">{{ name }}</h2>
                 <h4 class="uppercase mt-0 text-black-alpha-90 font-light">{{ title }}</h4>
                 <div v-html="description" class="description"/>
             </div>
