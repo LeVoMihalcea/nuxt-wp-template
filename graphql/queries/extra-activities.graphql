@@ -1,0 +1,16 @@
+query fetchExtraActivities {
+    extraActivities {
+        edges {
+            node {
+                slug
+                title
+                excerpt
+                featuredImage {
+                    node {
+                        sourceUrl
+                    }
+                }
+            }
+        }
+    }
+}

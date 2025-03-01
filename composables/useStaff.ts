@@ -1,5 +1,5 @@
 import fetchStaffQuery from '~/graphql/queries/staff.graphql';
-import fetchSingleStaffQuery from '~/graphql/queries/singleStaff.graphql';
+import fetchSingleStaffQuery from '~/graphql/queries/single-staff.graphql';
 import {useI18n} from "vue-i18n";
 import type {SingleStaffGraphQLResponse, Staff, StaffCategoriesGraphQLResponse, StaffCategory} from "~/types/Staff";
 import {mapSingleStaff, mapStaff} from "~/types/Staff";

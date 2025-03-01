@@ -40,7 +40,7 @@
                     },
                     {
                         label: t('pages.extra-curriculum'),
-                        url: localePath(baseUrl + '/extra-curriculum'),
+                        url: localePath(baseUrl + '/extra-curricular'),
                     },
                     {
                         label: t('pages.announcements'),

@@ -6,7 +6,7 @@ import {
     mapLaboratory
 } from "~/types/Laboratories";
 import fetchLaboratoriesQuery from "~/graphql/queries/laboratories.graphql";
-import fetchSingleLaboratoryQuery from "~/graphql/queries/singleLaboratory.graphql";
+import fetchSingleLaboratoryQuery from "~/graphql/queries/single-laboratory.graphql";
 import {useI18n} from "vue-i18n";
 import {useGraphQL} from "~/composables/useGraphQL";
 

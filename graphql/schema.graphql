@@ -359,6 +359,36 @@ interface EnqueuedStylesheetConnectionPageInfo {
     startCursor: String
 }
 
+"Connection to ExtraActivity Nodes"
+interface ExtraActivityConnection {
+    "A list of edges (relational context) between RootQuery and connected ExtraActivity Nodes"
+    edges: [ExtraActivityConnectionEdge!]!
+    "A list of connected ExtraActivity Nodes"
+    nodes: [ExtraActivity!]!
+    "Information about pagination in a connection."
+    pageInfo: ExtraActivityConnectionPageInfo!
+}
+
+"Edge between a Node and a connected ExtraActivity"
+interface ExtraActivityConnectionEdge {
+    "Opaque reference to the nodes position in the connection. Value can be used with pagination args."
+    cursor: String
+    "The connected ExtraActivity Node"
+    node: ExtraActivity!
+}
+
+"Page Info on the connected ExtraActivityConnectionEdge"
+interface ExtraActivityConnectionPageInfo {
+    "When paginating forwards, the cursor to continue."
+    endCursor: String
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+    "When paginating backwards, the cursor to continue."
+    startCursor: String
+}
+
 "Content node with hierarchical (parent/child) relationships"
 interface HierarchicalContentNode {
     "Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root)."
@@ -1469,7 +1499,7 @@ interface WithAcfTestimonialFieldGroup {
 }
 
 "Deprecated in favor of MenuItemLinkeable Interface"
-union MenuItemObjectUnion = Category | Laboratory | Page | Post | PostFormat | SocialMedia | Specialization | Staff | StaffCategory | Tag | Testimonial
+union MenuItemObjectUnion = Category | ExtraActivity | Laboratory | Page | Post | PostFormat | SocialMedia | Specialization | Staff | StaffCategory | Tag | Testimonial
 
 "Connection between the SocialMediaFieldGroup_Fields type and the MediaItem type"
 type AcfMediaItemConnectionEdge implements Edge & MediaItemConnectionEdge & OneToOneConnection {
@@ -2181,6 +2211,14 @@ type CreateCommentPayload {
     success: Boolean
 }
 
+"The payload for the createExtraActivity mutation."
+type CreateExtraActivityPayload {
+    "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The Post object mutation type."
+    extraActivity: ExtraActivity
+}
+
 "The payload for the createLaboratory mutation."
 type CreateLaboratoryPayload {
     "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -2301,6 +2339,16 @@ type DeleteCommentPayload {
     comment: Comment
     "The deleted comment ID"
     deletedId: ID
+}
+
+"The payload for the deleteExtraActivity mutation."
+type DeleteExtraActivityPayload {
+    "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The ID of the deleted object"
+    deletedId: ID
+    "The object before it was deleted"
+    extraActivity: ExtraActivity
 }
 
 "The payload for the deleteLaboratory mutation."
@@ -2499,6 +2547,174 @@ type EnqueuedStylesheet implements EnqueuedAsset & Node {
     title: String
     "The version of the enqueued style"
     version: String
+}
+
+"The ExtraActivity type"
+type ExtraActivity implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithContentEditor & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable {
+    "The ancestors of the content node."
+    ancestors(
+        "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
+        after: String,
+        "Cursor used along with the \"last\" argument to reference where in the dataset to get data"
+        before: String,
+        "The number of items to return after the referenced \"after\" cursor"
+        first: Int,
+        "The number of items to return before the referenced \"before\" cursor"
+        last: Int
+    ): ExtraActivityToExtraActivityConnection @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+    "The content of the post."
+    content(
+        "Format of the field output"
+        format: PostObjectFieldFormatEnum
+    ): String
+    "Connection between the ContentNode type and the ContentType type"
+    contentType: ContentNodeToContentTypeConnectionEdge
+    "The name of the Content Type the node belongs to"
+    contentTypeName: String!
+    "The unique identifier stored in the database"
+    databaseId: Int!
+    "Post publishing date."
+    date: String
+    "The publishing date set in GMT."
+    dateGmt: String
+    "The desired slug of the post"
+    desiredSlug: String
+    "If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds"
+    editingLockedBy: ContentNodeToEditLockConnectionEdge
+    "The RSS enclosure for the object"
+    enclosure: String
+    "Connection between the ContentNode type and the EnqueuedScript type"
+    enqueuedScripts(
+        "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
+        after: String,
+        "Cursor used along with the \"last\" argument to reference where in the dataset to get data"
+        before: String,
+        "The number of items to return after the referenced \"after\" cursor"
+        first: Int,
+        "The number of items to return before the referenced \"before\" cursor"
+        last: Int
+    ): ContentNodeToEnqueuedScriptConnection
+    "Connection between the ContentNode type and the EnqueuedStylesheet type"
+    enqueuedStylesheets(
+        "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
+        after: String,
+        "Cursor used along with the \"last\" argument to reference where in the dataset to get data"
+        before: String,
+        "The number of items to return after the referenced \"after\" cursor"
+        first: Int,
+        "The number of items to return before the referenced \"before\" cursor"
+        last: Int
+    ): ContentNodeToEnqueuedStylesheetConnection
+    "The excerpt of the post."
+    excerpt(
+        "Format of the field output"
+        format: PostObjectFieldFormatEnum
+    ): String
+    "The id field matches the WP_Post-&gt;ID field."
+    extraActivityId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
+    "Connection between the NodeWithFeaturedImage type and the MediaItem type"
+    featuredImage: NodeWithFeaturedImageToMediaItemConnectionEdge
+    "The database identifier for the featured image node assigned to the content node"
+    featuredImageDatabaseId: Int
+    "Globally unique ID of the featured image assigned to the node"
+    featuredImageId: ID
+    "The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table."
+    guid: String
+    "Whether the extra-activities object is password protected."
+    hasPassword: Boolean
+    "The globally unique identifier of the extra-activities object."
+    id: ID!
+    "Whether the node is a Comment"
+    isComment: Boolean!
+    "Whether the node is a Content Node"
+    isContentNode: Boolean!
+    "Whether the node represents the front page."
+    isFrontPage: Boolean!
+    "Whether  the node represents the blog page."
+    isPostsPage: Boolean!
+    "Whether the object is a node in the preview state"
+    isPreview: Boolean
+    "Whether the object is restricted from the current viewer"
+    isRestricted: Boolean
+    "Whether the node is a Term"
+    isTermNode: Boolean!
+    "The user that most recently edited the node"
+    lastEditedBy: ContentNodeToEditLastConnectionEdge
+    "The permalink of the post"
+    link: String
+    "The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time."
+    modified: String
+    "The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT."
+    modifiedGmt: String
+    "The parent of the content node."
+    parent: ExtraActivityToParentConnectionEdge @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+    "The password for the extra-activities object."
+    password: String
+    "Connection between the ExtraActivity type and the ExtraActivity type"
+    preview: ExtraActivityToPreviewConnectionEdge
+    "The database id of the preview node"
+    previewRevisionDatabaseId: Int
+    "Whether the object is a node in the preview state"
+    previewRevisionId: ID
+    "The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table."
+    slug: String
+    "The current status of the object"
+    status: String
+    "The template assigned to the node"
+    template: ContentTemplate
+    "The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made."
+    title(
+        "Format of the field output"
+        format: PostObjectFieldFormatEnum
+    ): String
+    "The unique resource identifier path"
+    uri: String
+}
+
+"Connection between the ExtraActivity type and the ExtraActivity type"
+type ExtraActivityToExtraActivityConnection implements Connection & ExtraActivityConnection {
+    "Edges for the ExtraActivityToExtraActivityConnection connection"
+    edges: [ExtraActivityToExtraActivityConnectionEdge!]!
+    "The nodes of the connection, without the edges"
+    nodes: [ExtraActivity!]!
+    "Information about pagination in a connection."
+    pageInfo: ExtraActivityToExtraActivityConnectionPageInfo!
+}
+
+"An edge in a connection"
+type ExtraActivityToExtraActivityConnectionEdge implements Edge & ExtraActivityConnectionEdge {
+    "A cursor for use in pagination"
+    cursor: String @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+    "The item at the end of the edge"
+    node: ExtraActivity! @deprecated(reason: "This content type is not hierarchical and typically will not have ancestors")
+}
+
+"Page Info on the &quot;ExtraActivityToExtraActivityConnection&quot;"
+type ExtraActivityToExtraActivityConnectionPageInfo implements ExtraActivityConnectionPageInfo & PageInfo & WPPageInfo {
+    "When paginating forwards, the cursor to continue."
+    endCursor: String
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+    "When paginating backwards, the cursor to continue."
+    startCursor: String
+}
+
+"Connection between the ExtraActivity type and the ExtraActivity type"
+type ExtraActivityToParentConnectionEdge implements Edge & ExtraActivityConnectionEdge & OneToOneConnection {
+    "Opaque reference to the nodes position in the connection. Value can be used with pagination args."
+    cursor: String
+    "The node of the connection, without the edges"
+    node: ExtraActivity! @deprecated(reason: "This content type is not hierarchical and typically will not have a parent")
+}
+
+"Connection between the ExtraActivity type and the ExtraActivity type"
+type ExtraActivityToPreviewConnectionEdge implements Edge & ExtraActivityConnectionEdge & OneToOneConnection {
+    "Opaque reference to the nodes position in the connection. Value can be used with pagination args."
+    cursor: String
+    "The node of the connection, without the edges"
+    node: ExtraActivity!
 }
 
 "The general setting type"
@@ -4278,6 +4494,11 @@ type RootMutation {
         "Input for the createComment mutation"
         input: CreateCommentInput!
     ): CreateCommentPayload
+    "The createExtraActivity mutation"
+    createExtraActivity(
+        "Input for the createExtraActivity mutation"
+        input: CreateExtraActivityInput!
+    ): CreateExtraActivityPayload
     "The createLaboratory mutation"
     createLaboratory(
         "Input for the createLaboratory mutation"
@@ -4348,6 +4569,11 @@ type RootMutation {
         "Input for the deleteComment mutation"
         input: DeleteCommentInput!
     ): DeleteCommentPayload
+    "The deleteExtraActivity mutation"
+    deleteExtraActivity(
+        "Input for the deleteExtraActivity mutation"
+        input: DeleteExtraActivityInput!
+    ): DeleteExtraActivityPayload
     "The deleteLaboratory mutation"
     deleteLaboratory(
         "Input for the deleteLaboratory mutation"
@@ -4443,6 +4669,11 @@ type RootMutation {
         "Input for the updateComment mutation"
         input: UpdateCommentInput!
     ): UpdateCommentPayload
+    "The updateExtraActivity mutation"
+    updateExtraActivity(
+        "Input for the updateExtraActivity mutation"
+        input: UpdateExtraActivityInput!
+    ): UpdateExtraActivityPayload
     "The updateLaboratory mutation"
     updateLaboratory(
         "Input for the updateLaboratory mutation"
@@ -4626,6 +4857,39 @@ type RootQuery {
     defaultLanguage: Language
     "Fields of the &#039;DiscussionSettings&#039; settings group"
     discussionSettings: DiscussionSettings
+    "Connection between the RootQuery type and the ExtraActivity type"
+    extraActivities(
+        "Cursor used along with the \"first\" argument to reference where in the dataset to get data"
+        after: String,
+        "Cursor used along with the \"last\" argument to reference where in the dataset to get data"
+        before: String,
+        "The number of items to return after the referenced \"after\" cursor"
+        first: Int,
+        "The number of items to return before the referenced \"before\" cursor"
+        last: Int,
+        "Arguments for filtering the connection"
+        where: RootQueryToExtraActivityConnectionWhereArgs
+    ): RootQueryToExtraActivityConnection
+    "An object of the ExtraActivity Type. "
+    extraActivity(
+        "Whether to return the Preview Node instead of the Published Node. When the ID of a Node is provided along with asPreview being set to true, the preview node with un-published changes will be returned instead of the published node. If no preview node exists or the requester doesn't have proper capabilities to preview, no node will be returned. If the ID provided is a URI and has a preview query arg, it will be used as a fallback if the \"asPreview\" argument is not explicitly provided as an argument."
+        asPreview: Boolean,
+        "The globally unique identifier of the object."
+        id: ID!,
+        "Type of unique identifier to fetch by. Default is Global ID"
+        idType: ExtraActivityIdType
+    ): ExtraActivity
+    "A ExtraActivity object"
+    extraActivityBy(
+        "Get the ExtraActivity by its database ID"
+        extraActivityId: Int,
+        "Get the ExtraActivity object by its global ID"
+        id: ID,
+        "Get the ExtraActivity by its slug (only available for non-hierarchical types)"
+        slug: String,
+        "Get the ExtraActivity by its uri"
+        uri: String
+    ): ExtraActivity @deprecated(reason: "Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)")
     "Fields of the &#039;GeneralSettings&#039; settings group"
     generalSettings: GeneralSettings
     "Connection between the RootQuery type and the Laboratory type"
@@ -5301,6 +5565,36 @@ type RootQueryToEnqueuedStylesheetConnectionEdge implements Edge & EnqueuedStyle
 
 "Page Info on the &quot;RootQueryToEnqueuedStylesheetConnection&quot;"
 type RootQueryToEnqueuedStylesheetConnectionPageInfo implements EnqueuedStylesheetConnectionPageInfo & PageInfo & WPPageInfo {
+    "When paginating forwards, the cursor to continue."
+    endCursor: String
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+    "When paginating backwards, the cursor to continue."
+    startCursor: String
+}
+
+"Connection between the RootQuery type and the ExtraActivity type"
+type RootQueryToExtraActivityConnection implements Connection & ExtraActivityConnection {
+    "Edges for the RootQueryToExtraActivityConnection connection"
+    edges: [RootQueryToExtraActivityConnectionEdge!]!
+    "The nodes of the connection, without the edges"
+    nodes: [ExtraActivity!]!
+    "Information about pagination in a connection."
+    pageInfo: RootQueryToExtraActivityConnectionPageInfo!
+}
+
+"An edge in a connection"
+type RootQueryToExtraActivityConnectionEdge implements Edge & ExtraActivityConnectionEdge {
+    "A cursor for use in pagination"
+    cursor: String
+    "The item at the end of the edge"
+    node: ExtraActivity!
+}
+
+"Page Info on the &quot;RootQueryToExtraActivityConnection&quot;"
+type RootQueryToExtraActivityConnectionPageInfo implements ExtraActivityConnectionPageInfo & PageInfo & WPPageInfo {
     "When paginating forwards, the cursor to continue."
     endCursor: String
     "When paginating forwards, are there more items?"
@@ -7315,6 +7609,14 @@ type UpdateCommentPayload {
     success: Boolean
 }
 
+"The payload for the updateExtraActivity mutation."
+type UpdateExtraActivityPayload {
+    "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The Post object mutation type."
+    extraActivity: ExtraActivity
+}
+
 "The payload for the updateLaboratory mutation."
 type UpdateLaboratoryPayload {
     "If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -7951,6 +8253,8 @@ enum ContentTypeEnum {
     "The Type of Content object"
     ATTACHMENT
     "The Type of Content object"
+    EXTRA_ACTIVITIES
+    "The Type of Content object"
     LABORATORY
     "The Type of Content object"
     PAGE
@@ -7996,6 +8300,18 @@ enum ContentTypesOfStaffCategoryEnum {
 enum ContentTypesOfTagEnum {
     "The Type of Content object"
     POST
+}
+
+"The Type of Identifier used to fetch a single resource. Default is ID."
+enum ExtraActivityIdType {
+    "Identify a resource by the Database ID."
+    DATABASE_ID
+    "Identify a resource by the (hashed) Global ID."
+    ID
+    "Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier."
+    SLUG
+    "Identify a resource by the URI."
+    URI
 }
 
 "The Type of Identifier used to fetch a single resource. Default is ID."
@@ -9005,6 +9321,28 @@ input CreateCommentInput {
     type: String
 }
 
+"Input for the createExtraActivity mutation."
+input CreateExtraActivityInput {
+    "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The content of the object"
+    content: String
+    "The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, \"2017\" as the input will use current date with timestamp 20:17 "
+    date: String
+    "The excerpt of the object"
+    excerpt: String
+    "A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types."
+    menuOrder: Int
+    "The password used to protect the content of the object"
+    password: String
+    "The slug of the object"
+    slug: String
+    "The status of the object"
+    status: PostStatusEnum
+    "The title of the object"
+    title: String
+}
+
 "Input for the createLaboratory mutation."
 input CreateLaboratoryInput {
     "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
@@ -9353,6 +9691,18 @@ input DeleteCommentInput {
     forceDelete: Boolean
     "The deleted comment ID"
     id: ID!
+}
+
+"Input for the deleteExtraActivity mutation."
+input DeleteExtraActivityInput {
+    "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "Whether the object should be force deleted instead of being moved to the trash"
+    forceDelete: Boolean
+    "The ID of the ExtraActivity to delete"
+    id: ID!
+    "Override the edit lock when another user is editing the post"
+    ignoreEditLock: Boolean
 }
 
 "Input for the deleteLaboratory mutation."
@@ -10449,6 +10799,44 @@ input RootQueryToContentNodeConnectionWhereArgs {
     title: String
 }
 
+"Arguments for filtering the RootQueryToExtraActivityConnection connection"
+input RootQueryToExtraActivityConnectionWhereArgs {
+    "Filter the connection based on dates"
+    dateQuery: DateQueryInput
+    "True for objects with passwords; False for objects without passwords; null for all objects with or without passwords"
+    hasPassword: Boolean
+    "Specific database ID of the object"
+    id: Int
+    "Array of IDs for the objects to retrieve"
+    in: [ID]
+    "Get objects with a specific mimeType property"
+    mimeType: MimeTypeEnum
+    "Slug / post_name of the object"
+    name: String
+    "Specify objects to retrieve. Use slugs"
+    nameIn: [String]
+    "Specify IDs NOT to retrieve. If this is used in the same query as \"in\", it will be ignored"
+    notIn: [ID]
+    "What parameter to use to order the objects by."
+    orderby: [PostObjectsConnectionOrderbyInput]
+    "Use ID to return only children. Use 0 to return only top-level items"
+    parent: ID
+    "Specify objects whose parent is in an array"
+    parentIn: [ID]
+    "Specify posts whose parent is not in an array"
+    parentNotIn: [ID]
+    "Show posts with a specific password."
+    password: String
+    "Show Posts based on a keyword search"
+    search: String
+    "Retrieve posts where post status is in an array."
+    stati: [PostStatusEnum]
+    "Show posts with a specific status."
+    status: PostStatusEnum
+    "Title of the object"
+    title: String
+}
+
 "Arguments for filtering the RootQueryToLaboratoryConnection connection"
 input RootQueryToLaboratoryConnectionWhereArgs {
     "Filter the connection based on dates"
@@ -11461,6 +11849,32 @@ input UpdateCommentInput {
     status: CommentStatusEnum
     "Type of comment."
     type: String
+}
+
+"Input for the updateExtraActivity mutation."
+input UpdateExtraActivityInput {
+    "This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions."
+    clientMutationId: String
+    "The content of the object"
+    content: String
+    "The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, \"2017\" as the input will use current date with timestamp 20:17 "
+    date: String
+    "The excerpt of the object"
+    excerpt: String
+    "The ID of the ExtraActivity object"
+    id: ID!
+    "Override the edit lock when another user is editing the post"
+    ignoreEditLock: Boolean
+    "A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types."
+    menuOrder: Int
+    "The password used to protect the content of the object"
+    password: String
+    "The slug of the object"
+    slug: String
+    "The status of the object"
+    status: PostStatusEnum
+    "The title of the object"
+    title: String
 }
 
 "Input for the updateLaboratory mutation."
