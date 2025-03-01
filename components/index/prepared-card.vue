@@ -17,8 +17,8 @@
         <nuxt-link :to="url">
             <div v-if="!secondary" class="card h-full" :class="{animated}">
                 <div class="card-image full-height" :class="{tall}" :style="{ backgroundImage: `url(${imageUrl})` }">
-                    <div class="card-overlay w-full">
-                        <h3 class="font-normal w-6 xl:w-full text-xl xl:text-4xl">{{ title }}</h3>
+                    <div class="card-overlay">
+                        <h3 class="font-normal w-6 text-xl xl:text-2xl">{{ title }}</h3>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
         background-size: cover;
         background-position: center;
         min-width: 600px;
-        min-height: 200px;
+        min-height: 300px;
         height: 100%;
     }
 
