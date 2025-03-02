@@ -1,7 +1,7 @@
 export type Staff = {
     id: string;
     name: string;
-    imageUrl: string;
+    imageUrl?: string;
     department: string;
     title: string;
     description?: string;
@@ -52,7 +52,7 @@ export const mapStaffGraphQLToStaffDTO = (staff: StaffGraphQL): Staff => {
     return {
         id: staff.slug,
         name: staff.title,
-        imageUrl: staff.featuredImage?.node.sourceUrl ?? "",
+        imageUrl: staff.featuredImage?.node.sourceUrl,
         title: staff.staffFieldGroup.title ?? "",
         department: staff.staffFieldGroup.department ?? "",
         description: staff.staffFieldGroup.description ?? "",

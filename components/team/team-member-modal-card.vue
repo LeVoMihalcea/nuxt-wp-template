@@ -26,7 +26,13 @@
 
 <style scoped>
     img {
-        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+        mask-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 1) 75%,  /* Fully visible until 75% */
+            rgba(0, 0, 0, 0) 100%  /* Fades out to transparent */
+        );
+
+
     }
 
     .profile-picture {

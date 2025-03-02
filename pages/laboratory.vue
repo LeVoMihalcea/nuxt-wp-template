@@ -13,7 +13,6 @@
 
 <template>
     <page-content>
-
         <div v-if="isLoading">
             <skeleton width="400px" height="400px" class="mx-auto"/>
         </div>

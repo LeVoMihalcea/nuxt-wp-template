@@ -4,7 +4,7 @@ export default <RouterConfig>{
     scrollBehavior: (to, from, savedPosition) => {
         // If only the query params change, do not scroll
         if (to.path === from.path && to.fullPath !== from.fullPath) {
-            return false;
+            return !to.path.includes('/staff');
         }
 
         // Smooth scroll to anchor if hash exists

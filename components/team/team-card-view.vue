@@ -73,7 +73,7 @@
                                       :class="{'text-white': index % 2 === 1}"
                                       :id="staff.id"
                                       :name="staff.name"
-                                      :image-url="staff.imageUrl.length > 0 ? staff.imageUrl : 'default-picture.svg'"
+                                      :image-url="staff.imageUrl ?? 'default-picture.svg'"
                                       :department="staff.department"
                                       :title="staff.title"
                                       @click="() => changeModalPayload(staff)"

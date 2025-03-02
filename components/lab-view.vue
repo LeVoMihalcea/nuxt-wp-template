@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import {useLaboratories} from "~/composables/useLaboratories";
     import PreparedCard from "~/components/index/prepared-card.vue";
+    import LoadingSkeletonGrid from "~/components/loading-skeleton-grid.vue";
 
     const {data, status} = useLaboratories();
 
@@ -14,11 +15,7 @@
     </div>
 
     <div v-if="isLoading">
-        <div class="grid">
-            <div v-for="i of [1, 2, 3, 4]" class="col-12 lg:col-6">
-                <skeleton class="400px" height="400px"/>
-            </div>
-        </div>
+        <loading-skeleton-grid/>
     </div>
     <div v-else>
         <div class="grid">

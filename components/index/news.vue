@@ -11,7 +11,7 @@
 
 <template>
     <div class="container p-2 xl:p-8">
-        <h1 class="background-text hidden xl:block">{{ $t('news.articles') }}</h1>
+<!--        <h1 class="background-text hidden xl:block">{{ $t('news.articles') }}</h1>-->
         <h2 class="text-6xl font-normal mb-4">{{ $t('news.news') }}</h2>
         <div v-if="cards" class="flex xl:flex-row flex-column align-items-stretch">
             <div v-for="(card, index) in data?.posts">
