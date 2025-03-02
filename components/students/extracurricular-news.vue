@@ -13,7 +13,7 @@
     <h1>{{ $t('extracurricular-news.title') }}</h1>
 
     <div v-if="isLoading">
-        <loading-skeleton-grid>
+        <loading-skeleton-grid/>
     </div>
     <div v-else>
         <div class="grid">
