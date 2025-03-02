@@ -5,19 +5,8 @@
 
     const cards: Ref<Post[] | null> = ref<Post[]>([]);
 
-    const news = useNews();
+    const {data, status} = useNews(ref(3));
 
-    watchEffect(() => {
-        if (news.data.value) {
-            cards.value = news.data.value;
-        }
-    });
-
-    const lastThreeArticles: Ref<Post[] | undefined> = computed(() => {
-        try {
-            return cards.value?.slice(0, 3)
-        } catch (e) {}
-    });
 </script>
 
 <template>
@@ -25,7 +14,7 @@
         <h1 class="background-text hidden xl:block">{{ $t('news.articles') }}</h1>
         <h2 class="text-6xl font-normal mb-4">{{ $t('news.news') }}</h2>
         <div v-if="cards" class="flex xl:flex-row flex-column align-items-stretch">
-            <div v-for="(card, index) in lastThreeArticles">
+            <div v-for="(card, index) in data?.posts">
                 <prepared-card
                     :title="card.title"
                     :image-url="card.imageUrl"

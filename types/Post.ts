@@ -5,49 +5,72 @@ export type Post = {
     excerpt: string;
     date: string;
     imageUrl: string;
-}
+};
 
-interface PostGraphQL {
-    slug: string;
+export type PostNode = {
     title: string;
-    content: string;
-    postfieldgroup: {
-        description: string;
-    };
+    slug: string;
     date: string;
-    featuredImage: {
-        node: {
-            mediaItemUrl: string;
+    content?: string;
+    postfieldgroup?: {
+        description?: string;
+    };
+    featuredImage?: {
+        node?: {
+            mediaItemUrl?: string;
         };
     };
-}
+};
 
-export type PostsGraphQLResponse = {
-    posts: {
-        nodes: PostGraphQL[];
+
+
+export type PostEdge = {
+    node: PostNode;
+    cursor: string;
+};
+
+export type PageInfo = {
+    hasNextPage: boolean;
+    hasPreviousPage: boolean
+    endCursor?: string;
+    startCursor?: string;
+};
+
+export type GraphQLPostsResponse = {
+    posts?: {
+        edges: PostEdge[];
+        pageInfo: PageInfo;
+    };
+};
+
+export type GraphQLSinglePostResponse = {
+    post: PostNode;
+};
+
+export type PaginatedPosts = {
+    posts: Post[];
+    pageInfo: PageInfo;
+};
+
+export const mapSingleGraphQLPostToPost = (postNode: PostNode) => {
+    return {
+        id: postNode.slug, // Using slug as the unique identifier
+        title: postNode.title,
+        content: postNode.content ?? "", // Not available in query, setting as empty string
+        excerpt: postNode.postfieldgroup?.description || "", // Mapping description to excerpt
+        date: new Date(postNode.date).toLocaleDateString(),
+        imageUrl: postNode.featuredImage?.node?.mediaItemUrl || "", // Providing fallback
     };
 }
 
-export type PostGraphQLResponse = {
-    post: PostGraphQL
-}
-
-export const mapPostGraphQLToPostDTO = (post: PostGraphQL): Post => {
+export const mapGraphQLResponseToPosts = (response: GraphQLPostsResponse): PaginatedPosts => {
     return {
-        id: post.slug,
-        title: post.title,
-        content: post.content ?? "",
-        excerpt: post.postfieldgroup?.description ?? "",
-        date: new Date(post.date).toLocaleDateString(),
-        imageUrl: post.featuredImage?.node.mediaItemUrl,
-    }
+        posts: response.posts?.edges.map((node: PostEdge) => mapSingleGraphQLPostToPost(node.node)) || [],
+        pageInfo: response.posts?.pageInfo || {hasNextPage: false, endCursor: ''} as PageInfo,
+    };
 };
 
-export const mapPost = (apiResponse: PostGraphQLResponse): Post => {
-    return mapPostGraphQLToPostDTO(apiResponse.post)
-}
-
-
-export const mapPosts = (apiResponse: PostsGraphQLResponse): Post[] => {
-    return apiResponse.posts.nodes.map((post: PostGraphQL) => mapPostGraphQLToPostDTO(post));
+export const mapGraphQLSinglePostResponseToPost = (response: GraphQLSinglePostResponse): Post => {
+    return mapSingleGraphQLPostToPost(response.post);
 };
+

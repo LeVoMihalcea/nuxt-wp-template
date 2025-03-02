@@ -1,20 +1,28 @@
-import fetchArticleQuery from "~/graphql/queries/post.graphql";
+import fetchArticleQuery from "~/graphql/queries/single-post.graphql";
 import fetchNewsQuery from "~/graphql/queries/posts.graphql";
-import {mapPost, mapPosts, type Post, type PostGraphQLResponse, type PostsGraphQLResponse} from "~/types/Post";
+import {
+    type GraphQLPostsResponse,
+    type GraphQLSinglePostResponse,
+    mapGraphQLResponseToPosts,
+    mapGraphQLSinglePostResponseToPost,
+    type PaginatedPosts,
+    type Post
+} from "~/types/Post";
 import {useGraphQL} from "~/composables/useGraphQL";
 
-export const useNews = (first: number = 3) => {
+export const useNews = (first: Ref<number> = ref(3), after: Ref<string | null> = ref(null)) => {
     const {locale} = useI18n();
     const variables = ref({
         language: locale.value.toUpperCase(),
         first,
+        after
     });
 
-    const {data, error, status, refresh} = useGraphQL<PostsGraphQLResponse, Post[]>(
+    const {data, error, status, refresh} = useGraphQL<GraphQLPostsResponse, PaginatedPosts>(
         'useNews',
         fetchNewsQuery,
         variables,
-        mapPosts
+        mapGraphQLResponseToPosts
     )
 
     return {data, error, status, refresh};
@@ -24,11 +32,11 @@ export const useSingleArticle = (id: Ref<string>) => {
     const {locale} = useI18n();
     const variables = ref({language: locale.value.toUpperCase(), id});
 
-    const {data, error, status, refresh} = useGraphQL<PostGraphQLResponse, Post>(
+    const {data, error, status, refresh} = useGraphQL<GraphQLSinglePostResponse, Post>(
         'fetchPost',
         fetchArticleQuery,
         variables,
-        mapPost
+        mapGraphQLSinglePostResponseToPost
     )
 
     return {data, error, status, refresh};

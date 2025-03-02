@@ -4,18 +4,27 @@ query fetchPosts($language: LanguageCodeFilterEnum!, $first: Int, $after: String
         after: $after
         where: {orderby: {field: DATE, order: DESC}, language: $language}
     ) {
-        nodes {
-            title
-            slug
-            date
-            postfieldgroup {
-                description
-            }
-            featuredImage {
-                node {
-                    mediaItemUrl
+        edges {
+            node {
+                title
+                slug
+                date
+                postfieldgroup {
+                    description
                 }
-            }
+                featuredImage {
+                    node {
+                        mediaItemUrl
+                    }
+                }
+            },
+            cursor
+        }
+        pageInfo {
+            hasNextPage
+            hasPreviousPage
+            endCursor
+            startCursor
         }
     }
 }

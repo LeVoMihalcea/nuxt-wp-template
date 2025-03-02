@@ -8,30 +8,33 @@
         tall: Boolean,
         url: String,
         button: String,
-        animated: Boolean
+        animated: Boolean,
+        horizontal: Boolean
     });
+
+    const imageUrl = computed(() => props.imageUrl !== "" ? props.imageUrl : 'simple-logo.svg');
 </script>
 
 <template>
     <div class="container h-full">
         <nuxt-link :to="url">
             <div v-if="!secondary" class="card h-full" :class="{animated}">
-                <div class="card-image full-height" :class="{tall}" :style="{ backgroundImage: `url(${imageUrl})` }">
+                <div class="card-image" :class="{tall}" :style="{ backgroundImage: `url(${imageUrl})` }">
                     <div class="card-overlay">
                         <h3 class="font-normal w-6 text-xl xl:text-2xl">{{ title }}</h3>
                     </div>
                 </div>
             </div>
             <div v-else class="card">
-                <div class="flex flex-column justify-content-between">
-                    <img class="article-image w-full border-round-lg" :src="imageUrl"/>
+                <div class="flex justify-content-between" :class="{'flex-column': !horizontal}">
+                    <img class="article-image w-full border-round-lg" :class="{'w-5': horizontal}" :src="imageUrl" alt="article picture"/>
                     <div class="pt-2">
                         <div class="flex flex-column justify-content-start">
                             <p class="accent mt-0">
                                 <span class="line"/>
                                 <span class="date">{{ date }}</span>
                             </p>
-                            <h1 class="mt-0">{{ title }}</h1>
+                            <h3 class="mt-0">{{ title }}</h3>
                         </div>
                         <p class="m-0 text-color-secondary">
                             {{ description }}
