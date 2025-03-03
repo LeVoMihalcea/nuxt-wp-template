@@ -3,7 +3,7 @@ query fetchStaff($language: LanguageCodeFilterEnum!) {
         nodes {
             id
             name
-            staff {
+            staff(first: 999) {
                 nodes {
                     slug
                     title
