@@ -73,7 +73,7 @@ jobs:
           password: ${{ secrets.MAE_FTP_PASSWORD }}
           protocol: ftps
           local-dir: download/
-          server-dir: public/preview/
+          server-dir: public/frontend/
           dry-run: ${{ inputs.dry-run }}
 
       - name: ❌ Delete Artifact
