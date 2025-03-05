@@ -3,7 +3,7 @@
         :title="$t('team.hero.title')"
         :subtitle="$t('team.hero.subtitle')"
         :button="$t('team.hero.button')"
-        background-image="/hero/hero-about.png"
+        background-image="/hero/hero-staff.png"
     />
 </template>
 
