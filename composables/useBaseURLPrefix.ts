@@ -1,3 +1,3 @@
 export const useBaseURLPrefix = () => {
-    return '/preview'
+    return ''
 }
