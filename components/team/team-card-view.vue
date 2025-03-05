@@ -69,7 +69,7 @@
                 <h1 class="uppercase text-xl xl:text-7xl"> {{ category.name }} </h1>
                 <div class="grid w-full xl:w-6 m-auto z-1">
                     <team-member-card v-for="staff of category.staff"
-                                      class="align-items-center col-6 xl:col-3 mb-8"
+                                      class="align-items-center col-6 xl:col-2 mb-8"
                                       :class="{'text-white': index % 2 === 1}"
                                       :id="staff.id"
                                       :name="staff.name"
