@@ -1,19 +1,49 @@
 <script setup>
     useSeoMeta({
-        title: "MAE - UTCN",
-        // ogTitle: "Solis UTCN - Solar Racing Team",
-        // description:
-        //     "Welcome to Solis UTCN! Discover Solis-EV UTCN, where we push the boundaries of solar racing challenges and innovative electric vehicle technologies",
-        // ogDescription:
-        //     "Welcome to Solis UTCN! Discover Solis-EV UTCN, where we push the boundaries of solar racing challenges and innovative electric vehicle technologies",
-        // twitterCard: "summary_large_image",
-        // robots: "index, follow",
+        title: "MAE - Departamentul de mașini și acționari electrice",
+        ogTitle: "MAE - Departamentul de mașini și acționari electrice",
+        description:
+            "Viitorul tehnologiilor electrice: MAE pregătește ingineri prin excelență academică, inovație, parteneriate industriale și studii moderne în electricitate și digitalizare.",
+        ogDescription:
+            "Viitorul tehnologiilor electrice: MAE pregătește ingineri prin excelență academică, inovație, parteneriate industriale și studii moderne în electricitate și digitalizare.",
+        ogImage: "http://localhost:3000/twitter_image.png",
+        twitterCard: "summary_large_image",
+        robots: "index, follow",
     });
 
+    useHead({
+        script: [
+            {
+                "@context": "https://schema.org",
+                "@type": "CollegeOrUniversity",
+                "name": "MAE - Departamentul de mașini și acționari electrice",
+                "url": "https://emd.utcluj.ro/",
+                "logo": "https://emd.utcluj.ro/_nuxt/public/logo.svg",
+                "sameAs": "https://www.facebook.com/mae.utcn",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Strada George Barițiu 26-28",
+                    "addressLocality": "Cluj-Napoca",
+                    "postalCode": "400027",
+                    "addressCountry": "RO"
+                },
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+4 0264 401 242",
+                    "contactType": "Customer Service",
+                    "areaServed": "RO",
+                    "availableLanguage": "Romanian"
+                }
+            }
+        ],
+        link: [
+            { rel: 'canonical', href: 'https://emd.utcluj.ro/' }
+        ],
+    });
 </script>
 
 <template>
-    <NuxtLoadingIndicator :height="20"/>
+    <NuxtLoadingIndicator :height="5"/>
     <NuxtLayout>
         <NuxtPage/>
     </NuxtLayout>
