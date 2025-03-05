@@ -3,9 +3,9 @@
 </script>
 
 <template>
-    <InputText
-        placeholder="Search"
-        class="px-4"/>
+<!--    <InputText-->
+<!--        placeholder="Search"-->
+<!--        class="px-4"/>-->
 </template>
 
 <style scoped>
