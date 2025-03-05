@@ -6,7 +6,7 @@
         <h4 class="font-light xl:w-4">{{ $t('hero.subtitle') }}</h4>
 
         <searchbar/>
-        <social-media-zone class="w-full lg:w-1 mt-3"/>
+        <social-media-zone class="w-full lg:w-1 mt-8"/>
     </header>
 </template>
 
