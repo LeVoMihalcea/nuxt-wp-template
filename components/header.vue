@@ -48,14 +48,13 @@
                     },
                 ]
             },
-            {
-                icon: 'pi pi-language',
-                items: availableLocales.map(loc => ({
-                    label: loc.toUpperCase(),
-                    command: () => locale.value = loc
-                }))
-            }
-
+            // {
+            //     icon: 'pi pi-language',
+            //     items: availableLocales.map(loc => ({
+            //         label: loc.toUpperCase(),
+            //         command: () => locale.value = loc
+            //     }))
+            // }
         ];
     };
 
