@@ -7,13 +7,13 @@
 </script>
 
 <template>
-    <div class="m-8">
+    <div class="lg:m-8 h-24rem flex flex-column">
         <h1>Something went wrong..</h1>
-        <pre class="text-gray">
+        <p class="text-gray">
             {{ error?.statusCode }}
             <br>
             {{ error }}
-        </pre>
+        </p>
 
         <NuxtLink to="/">
             <Button>
